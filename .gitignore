@@ -1,0 +1,11 @@
+# CAD pesado - no subir al repo
+02_CAD/export_autocad.dxf
+
+# QGIS temporales
+01_QGIS/*.qgd
+01_QGIS/~*
+
+# Sistema
+Thumbs.db
+.DS_Store
+desktop.ini
