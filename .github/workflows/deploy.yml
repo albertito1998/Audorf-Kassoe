@@ -3,8 +3,6 @@ name: Deploy WebGIS to GitHub Pages
 on:
   push:
     branches: [main]
-    paths:
-      - '05_WEB/**'
   workflow_dispatch:
 
 permissions:
