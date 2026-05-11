@@ -27,14 +27,21 @@
     <span class="author-name">Alberto Gómez</span>
     <span class="author-date">11.05.2026</span>
   </div>
-  <button id="btn-menu-toggle" onclick="toggleSidebar()">☰</button>
+  <button id="btn-menu-toggle" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
 </header>
 
 <!-- MAIN -->
 <div id="main">
 
+  <!-- BACKDROP (mobile) -->
+  <div id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
   <!-- SIDEBAR -->
   <nav id="sidebar">
+    <div id="sidebar-mobile-header">
+      <span>Capas / Leyenda</span>
+      <button id="btn-sidebar-close" onclick="toggleSidebar()" aria-label="Cerrar menú">✕</button>
+    </div>
     <div id="sidebar-inner">
 
       <!-- LEYENDA APOYOS -->

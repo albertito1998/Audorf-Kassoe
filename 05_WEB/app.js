@@ -553,10 +553,10 @@ window.setBasemap = function(key, btn) {
 
 // ===== SIDEBAR MOBILE =====
 window.toggleSidebar = function() {
-  document.getElementById('sidebar').classList.toggle('open');
+  const sidebar  = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  const btnToggle = document.getElementById('btn-menu-toggle');
+  const isOpen = sidebar.classList.toggle('open');
+  if (backdrop)  backdrop.classList.toggle('visible', isOpen);
+  if (btnToggle) btnToggle.textContent = isOpen ? '✕' : '☰';
 };
-
-map.on('click', () => {
-  if (window.innerWidth <= 768)
-    document.getElementById('sidebar').classList.remove('open');
-});
