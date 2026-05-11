@@ -327,6 +327,42 @@ body {
   color: #69b3ff;
 }
 
+.measure-btn {
+  width: 34px;
+  height: 34px;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.measure-btn:hover { background: #0f3460; color: #fff; }
+.measure-btn.active { background: #e63030; color: #fff; border-color: #e63030; }
+
+#measure-result {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 52, 96, 0.95);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid #ff7700;
+  z-index: 810;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+#measure-result.hidden { display: none; }
+
 #coords-bar {
   position: fixed;
   bottom: 0;

@@ -109,9 +109,99 @@ const LocateControl = L.Control.extend({
 
 map.addControl(new LocateControl());
 
+// ===== MEASURE TOOL =====
+let measureActive = false;
+let measurePts    = [];
+let measureLayers = [];
+let measureRubber = null;
+
+function clearMeasure() {
+  measureLayers.forEach(l => { try { map.removeLayer(l); } catch (_) {} });
+  measureLayers = [];
+  measurePts    = [];
+  if (measureRubber) { map.removeLayer(measureRubber); measureRubber = null; }
+  const el = document.getElementById('measure-result');
+  if (el) el.classList.add('hidden');
+}
+
+const MeasureControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd() {
+    const btn = L.DomUtil.create('button', 'leaflet-bar measure-btn');
+    btn.type  = 'button';
+    btn.title = 'Medir distancia entre dos puntos';
+    btn.setAttribute('aria-label', 'Medir distancia');
+    btn.innerHTML =
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+      '<line x1="2" y1="12" x2="22" y2="12"/>' +
+      '<line x1="2" y1="8" x2="2" y2="16"/>' +
+      '<line x1="22" y1="8" x2="22" y2="16"/>' +
+      '<line x1="7" y1="10" x2="7" y2="14"/>' +
+      '<line x1="12" y1="9" x2="12" y2="15"/>' +
+      '<line x1="17" y1="10" x2="17" y2="14"/>' +
+      '</svg>';
+
+    L.DomEvent.disableClickPropagation(btn);
+    L.DomEvent.on(btn, 'click', () => {
+      measureActive = !measureActive;
+      btn.classList.toggle('active', measureActive);
+      map.getContainer().style.cursor = measureActive ? 'crosshair' : '';
+      if (!measureActive) clearMeasure();
+    });
+    return btn;
+  },
+});
+
+map.addControl(new MeasureControl());
+
 map.on('mousemove', e => {
+  // Línea elástica mientras se elige el segundo punto
+  if (measureActive && measurePts.length === 1) {
+    if (!measureRubber) {
+      measureRubber = L.polyline([measurePts[0], e.latlng], {
+        color: '#ff7700', weight: 2, dashArray: '6 4', opacity: 0.8,
+      }).addTo(map);
+    } else {
+      measureRubber.setLatLngs([measurePts[0], e.latlng]);
+    }
+  }
   document.getElementById('coords-bar').textContent =
     `Lat: ${e.latlng.lat.toFixed(5)}  Lng: ${e.latlng.lng.toFixed(5)}`;
+});
+
+map.on('click', e => {
+  if (!measureActive) return;
+
+  // Tercer clic: reiniciar medición anterior
+  if (measurePts.length >= 2) clearMeasure();
+
+  measurePts.push(e.latlng);
+
+  const dot = L.circleMarker(e.latlng, {
+    radius: 5, color: '#fff', weight: 2,
+    fillColor: '#ff7700', fillOpacity: 1,
+  }).addTo(map);
+  measureLayers.push(dot);
+
+  if (measurePts.length === 2) {
+    if (measureRubber) { map.removeLayer(measureRubber); measureRubber = null; }
+
+    const line = L.polyline(measurePts, {
+      color: '#ff7700', weight: 2.5, dashArray: '8 5', opacity: 0.9,
+    }).addTo(map);
+    measureLayers.push(line);
+
+    const dist = measurePts[0].distanceTo(measurePts[1]);
+    const label = dist >= 1000
+      ? `${(dist / 1000).toFixed(3)} km`
+      : `${Math.round(dist)} m`;
+
+    const el = document.getElementById('measure-result');
+    if (el) {
+      el.textContent = `📏 ${label}`;
+      el.classList.remove('hidden');
+    }
+  }
 });
 
 // ===== WMS LAYERS =====
