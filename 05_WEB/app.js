@@ -31,54 +31,313 @@ const map = L.map('map', {
 L.control.zoom({ position: 'topright' }).addTo(map);
 L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
 
+let userLocationMarker = null;
+let userAccuracyCircle = null;
+
+function showUserLocation(lat, lng, accuracy) {
+  const latlng = [lat, lng];
+
+  if (userLocationMarker) {
+    userLocationMarker.setLatLng(latlng);
+  } else {
+    userLocationMarker = L.circleMarker(latlng, {
+      radius: 8,
+      color: '#ffffff',
+      weight: 3,
+      fillColor: '#1e88ff',
+      fillOpacity: 1,
+    }).addTo(map);
+  }
+
+  if (userAccuracyCircle) {
+    userAccuracyCircle.setLatLng(latlng);
+    userAccuracyCircle.setRadius(accuracy || 0);
+  } else {
+    userAccuracyCircle = L.circle(latlng, {
+      radius: accuracy || 0,
+      color: '#1e88ff',
+      weight: 1,
+      fillColor: '#1e88ff',
+      fillOpacity: 0.18,
+    }).addTo(map);
+  }
+
+  userLocationMarker.bindPopup('Tu ubicacion actual').openPopup();
+  map.flyTo(latlng, Math.max(map.getZoom(), 15), { duration: 0.75 });
+}
+
+function locateUser() {
+  if (!navigator.geolocation) {
+    window.alert('Este navegador no permite geolocalizacion.');
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude, longitude, accuracy } = pos.coords;
+      showUserLocation(latitude, longitude, accuracy);
+    },
+    err => {
+      const msg = err.code === err.PERMISSION_DENIED
+        ? 'Permiso de ubicacion denegado.'
+        : 'No se pudo obtener la ubicacion del dispositivo.';
+      window.alert(msg);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0,
+    }
+  );
+}
+
+const LocateControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd() {
+    const button = L.DomUtil.create('button', 'leaflet-bar locate-btn');
+    button.type = 'button';
+    button.title = 'Mostrar mi ubicacion';
+    button.setAttribute('aria-label', 'Mostrar mi ubicacion');
+    button.innerHTML = '&#9673;';
+
+    L.DomEvent.disableClickPropagation(button);
+    L.DomEvent.on(button, 'click', () => locateUser());
+
+    return button;
+  },
+});
+
+map.addControl(new LocateControl());
+
 map.on('mousemove', e => {
   document.getElementById('coords-bar').textContent =
     `Lat: ${e.latlng.lat.toFixed(5)}  Lng: ${e.latlng.lng.toFixed(5)}`;
 });
 
 // ===== WMS LAYERS =====
+// Fuentes verificadas:
+//   BfN   → geodienste.bfn.de  (Bundesamt für Naturschutz, nacional)
+//   BKG   → sgx.geodatenzentrum.de  (Bundesamt für Kartographie, nacional)
+//   GDI-SH → dienste.gdi-sh.de  (Geodateninfrastruktur Schleswig-Holstein)
 const WMS_LAYERS = {};
 
-WMS_LAYERS['chk-catastro'] = L.tileLayer.wms(
-  'https://service.gdi.nrw.de/wms/alkis_basis',
-  { layers: 'adv_alkis_basis', format: 'image/png', transparent: true,
-    attribution: 'GDI-SH Kataster', opacity: 0.7 }
-);
-WMS_LAYERS['chk-naturschutz'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/llur/wms',
-  { layers: 'nsg', format: 'image/png', transparent: true,
-    attribution: 'LLUR SH – NSG', opacity: 0.6 }
-);
-WMS_LAYERS['chk-ffh'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/llur/wms',
-  { layers: 'ffh_gebiete', format: 'image/png', transparent: true,
-    attribution: 'LLUR SH – FFH', opacity: 0.6 }
-);
-WMS_LAYERS['chk-vogel'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/llur/wms',
-  { layers: 'eu_vogelschutzgebiete', format: 'image/png', transparent: true,
-    attribution: 'LLUR SH – Vogelschutz', opacity: 0.6 }
-);
-WMS_LAYERS['chk-landschaft'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/llur/wms',
-  { layers: 'lsg', format: 'image/png', transparent: true,
-    attribution: 'LLUR SH – LSG', opacity: 0.6 }
-);
-WMS_LAYERS['chk-biotop'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/llur/wms',
-  { layers: 'biotoptypen_sh', format: 'image/png', transparent: true,
-    attribution: 'LLUR SH – Biotope', opacity: 0.65 }
-);
-WMS_LAYERS['chk-hydro'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/lkn/wms',
-  { layers: 'gewaesser', format: 'image/png', transparent: true,
-    attribution: 'LKN SH – Gewässer', opacity: 0.7 }
-);
-WMS_LAYERS['chk-hq100'] = L.tileLayer.wms(
-  'https://opendata.schleswig-holstein.de/geoserver/lkn/wms',
-  { layers: 'ueberschwemmungsgebiete', format: 'image/png', transparent: true,
-    attribution: 'LKN SH – Überschwemmung', opacity: 0.65 }
-);
+const BFN  = 'https://geodienste.bfn.de/ogc/wms/schutzgebiet';
+const GDISH = 'https://service.gdi-sh.de/WMS_SH_ALKIS_OpenGBD';
+const ALKIS_WFS = 'https://service.gdi-sh.de/WFS_SH_ALKIS_vereinf_OpenGBD';
+
+proj4.defs('EPSG:25832', '+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs');
+
+function createWmsLayer(url, options) {
+  const layer = L.tileLayer.wms(url, {
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.1',
+    ...options,
+  });
+
+  let hasWarned = false;
+  layer.on('tileerror', () => {
+    if (hasWarned) return;
+    hasWarned = true;
+    console.warn(`WMS no disponible o con error: ${options.layers} (${url})`);
+  });
+
+  return layer;
+}
+
+function createCatastroVectorLayer() {
+  const layer = L.geoJSON(null, {
+    style: () => ({
+      color: '#7fd0ff',
+      weight: 1,
+      opacity: 0.9,
+      fillOpacity: 0,
+    }),
+    onEachFeature: (feature, leafletLayer) => {
+      const p = feature.properties || {};
+      leafletLayer.bindPopup(
+        `<div class="popup-title">Katasterbezirk</div>
+         <div class="popup-row"><span>Gemarkung:</span> ${p.gemarkung || '—'}</div>
+         <div class="popup-row"><span>Flur:</span> ${p.flur || '—'}</div>`
+      );
+    },
+  });
+
+  layer._loading = false;
+  layer._pendingRefresh = false;
+  layer._lastKey = null;
+
+  layer.refreshData = async function refreshData() {
+    if (!map.hasLayer(layer) || map.getZoom() < 14) {
+      layer.clearLayers();
+      return;
+    }
+
+    if (layer._loading) {
+      layer._pendingRefresh = true;
+      return;
+    }
+
+    const bounds = map.getBounds().pad(0.2);
+    const sw25832 = proj4('EPSG:4326', 'EPSG:25832', [bounds.getWest(), bounds.getSouth()]);
+    const ne25832 = proj4('EPSG:4326', 'EPSG:25832', [bounds.getEast(), bounds.getNorth()]);
+    const bboxKey = [sw25832[0], sw25832[1], ne25832[0], ne25832[1]].map(v => v.toFixed(0)).join(':');
+
+    if (bboxKey === layer._lastKey) return;
+
+    layer._loading = true;
+    layer._lastKey = bboxKey;
+
+    try {
+      const params = new URLSearchParams({
+        service: 'wfs',
+        version: '2.0.0',
+        request: 'GetFeature',
+        storedquery_id: 'http://repository.gdi-de.org/query/adv/produkt/alkis-vereinfacht/2.0/ave-by-bbox',
+        CRS: 'urn:ogc:def:crs:EPSG::25832',
+        x1: sw25832[0].toString(),
+        y1: sw25832[1].toString(),
+        x2: ne25832[0].toString(),
+        y2: ne25832[1].toString(),
+      });
+
+      const response = await fetch(`${ALKIS_WFS}?${params.toString()}`);
+      const xmlText = await response.text();
+      const geojson = parseKatasterbezirkGml(xmlText);
+      layer.clearLayers();
+      layer.addData(geojson);
+    } catch (err) {
+      console.error('Error cargando catastro vectorial:', err);
+    } finally {
+      layer._loading = false;
+      if (layer._pendingRefresh) {
+        layer._pendingRefresh = false;
+        layer._lastKey = null;
+        layer.refreshData();
+      }
+    }
+  };
+
+  return layer;
+}
+
+function parseKatasterbezirkGml(xmlText) {
+  const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
+  const features = [];
+  const katasterNodes = Array.from(xml.getElementsByTagNameNS('*', 'KatasterBezirk'));
+
+  katasterNodes.forEach(node => {
+    const polygons = [];
+    const polygonNodes = Array.from(node.getElementsByTagNameNS('*', 'Polygon'));
+
+    polygonNodes.forEach(polyNode => {
+      const exterior = polyNode.getElementsByTagNameNS('*', 'exterior')[0];
+      if (!exterior) return;
+
+      const rings = [];
+      const exteriorPos = exterior.getElementsByTagNameNS('*', 'posList')[0];
+      const outerRing = posListToLatLngRing(exteriorPos?.textContent || '');
+      if (!outerRing.length) return;
+      rings.push(outerRing);
+
+      const interiorNodes = Array.from(polyNode.getElementsByTagNameNS('*', 'interior'));
+      interiorNodes.forEach(interior => {
+        const pos = interior.getElementsByTagNameNS('*', 'posList')[0];
+        const ring = posListToLatLngRing(pos?.textContent || '');
+        if (ring.length) rings.push(ring);
+      });
+
+      polygons.push(rings);
+    });
+
+    if (!polygons.length) return;
+
+    const properties = {
+      gemarkung: readXmlValue(node, 'gemarkung'),
+      flur: readXmlValue(node, 'flur'),
+      kreis: readXmlValue(node, 'kreis'),
+      gemeinde: readXmlValue(node, 'gemeinde'),
+    };
+
+    features.push({
+      type: 'Feature',
+      properties,
+      geometry: {
+        type: polygons.length === 1 ? 'Polygon' : 'MultiPolygon',
+        coordinates: polygons.length === 1 ? polygons[0] : polygons,
+      },
+    });
+  });
+
+  return { type: 'FeatureCollection', features };
+}
+
+function posListToLatLngRing(posListText) {
+  if (!posListText) return [];
+  const values = posListText.trim().split(/\s+/).map(Number);
+  const ring = [];
+
+  for (let i = 0; i < values.length - 1; i += 2) {
+    const x = values[i];
+    const y = values[i + 1];
+    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+    const [lng, lat] = proj4('EPSG:25832', 'EPSG:4326', [x, y]);
+    ring.push([lng, lat]);
+  }
+
+  return ring;
+}
+
+function readXmlValue(node, localName) {
+  const el = node.getElementsByTagNameNS('*', localName)[0];
+  return el ? el.textContent.trim() : '';
+}
+
+const catastroVectorLayer = createCatastroVectorLayer();
+
+// Naturschutz (BfN nacional — funciona en toda Alemania)
+WMS_LAYERS['chk-naturschutz'] = createWmsLayer(BFN, {
+  layers: 'Naturschutzgebiete',
+  attribution: '© BfN – Naturschutzgebiete', opacity: 0.55,
+});
+
+// FFH (BfN)
+WMS_LAYERS['chk-ffh'] = createWmsLayer(BFN, {
+  layers: 'Fauna_Flora_Habitat_Gebiete',
+  attribution: '© BfN – FFH-Gebiete', opacity: 0.5,
+});
+
+// Vogelschutz SPA (BfN)
+WMS_LAYERS['chk-vogel'] = createWmsLayer(BFN, {
+  layers: 'Vogelschutzgebiete',
+  attribution: '© BfN – Vogelschutzgebiete', opacity: 0.5,
+});
+
+// Landschaftsschutz (BfN)
+WMS_LAYERS['chk-landschaft'] = createWmsLayer(BFN, {
+  layers: 'Landschaftsschutzgebiete',
+  attribution: '© BfN – Landschaftsschutz', opacity: 0.45,
+});
+
+// Biotopkataster (BfN — Biotoptypen bundesweit)
+WMS_LAYERS['chk-biotop'] = createWmsLayer(BFN, {
+  layers: 'biotoptyp',
+  attribution: '© BfN – Biotoptypen', opacity: 0.55,
+});
+
+// Gewässer / Hydrographie — BKG Gewässernetz
+WMS_LAYERS['chk-hydro'] = createWmsLayer(
+  'https://sgx.geodatenzentrum.de/wms_gewaessernetz', {
+  layers: 'gewaessernetz',
+  attribution: '© BKG – Gewässernetz', opacity: 0.7,
+});
+
+// Überschwemmungsgebiete HQ100 — GDI-SH HWRM
+WMS_LAYERS['chk-hq100'] = createWmsLayer(
+  'https://dienste.gdi-sh.de/WMS_SH_HWRM_RL', {
+  layers: 'Ueberschwemmungsgebiete_HQ100',
+  attribution: '© GDI-SH – Überschwemmungsgebiete HQ100', opacity: 0.6,
+});
 
 // ===== STYLE HELPERS =====
 function styleFor(layerName) {
@@ -94,16 +353,25 @@ function styleFor(layerName) {
   return cfg[layerName] || { color: '#888', fillColor: '#aaa', weight: 1, fillOpacity: 0.3 };
 }
 
-// ===== TORRE MARKER (con número visible) =====
-function createTowerIcon(num, zoom) {
+// ===== TORRE MARKER =====
+// mast_typ: "Abspannmast" → rojo #e63030 | "Tragmast" → azul #3a7bd5
+const MAST_COLOR = {
+  'Abspannmast': '#e63030',
+  'Tragmast':    '#3a7bd5',
+};
+
+function createTowerIcon(apoyo, mastTyp, zoom) {
+  const label = apoyo.replace(/^M0*/, 'M');       // M097A → M97A
+  const color = MAST_COLOR[mastTyp] || '#888';
+  const isAbspann = mastTyp === 'Abspannmast';
   const show = zoom >= 12;
   return L.divIcon({
     className: '',
     html: show
-      ? `<div class="tower-label">${num}</div>`
-      : `<div class="tower-dot"></div>`,
-    iconSize: show ? [28, 18] : [8, 8],
-    iconAnchor: show ? [14, 9] : [4, 4],
+      ? `<div class="tower-label" style="border-color:${color};color:#fff;background:rgba(15,52,96,0.92)">${label}</div>`
+      : `<div class="tower-dot" style="background:${color};${isAbspann ? 'width:9px;height:9px;' : ''}"></div>`,
+    iconSize: show ? [38, 18] : (isAbspann ? [9, 9] : [7, 7]),
+    iconAnchor: show ? [19, 9] : (isAbspann ? [4, 4] : [3, 3]),
   });
 }
 
@@ -132,16 +400,20 @@ function loadTowers() {
     .then(data => {
       towerLayer = L.geoJSON(data, {
         pointToLayer: (feat, latlng) => {
-          const num = feat.properties.torre;
-          const m = L.marker(latlng, { icon: createTowerIcon(num, map.getZoom()) });
-          m._towerNum = num;
+          const apoyo   = feat.properties.apoyo    || '';
+          const mastTyp = feat.properties.mast_typ || 'Tragmast';
+          const m = L.marker(latlng, { icon: createTowerIcon(apoyo, mastTyp, map.getZoom()) });
+          m._apoyo   = apoyo;
+          m._mastTyp = mastTyp;
           return m;
         },
         onEachFeature: (feat, layer) => {
-          const p = feat.properties;
+          const p     = feat.properties;
+          const label = (p.apoyo || '').replace(/^M0*/, 'M');
+          const color = MAST_COLOR[p.mast_typ] || '#888';
           layer.bindPopup(
-            `<div class="popup-title">Mast M${p.torre}</div>
-             <div class="popup-row"><span>Número:</span> ${p.nombre}</div>
+            `<div class="popup-title" style="color:${color}">${label}</div>
+             <div class="popup-row"><span>Tipo:</span> ${p.mast_typ || '—'}</div>
              <div class="popup-row"><span>Info:</span> ${p.descripcion || '—'}</div>`
           );
         },
@@ -152,8 +424,8 @@ function loadTowers() {
         if (!towerLayer || !map.hasLayer(towerLayer)) return;
         const z = map.getZoom();
         towerLayer.eachLayer(m => {
-          if (m._towerNum !== undefined)
-            m.setIcon(createTowerIcon(m._towerNum, z));
+          if (m._apoyo !== undefined)
+            m.setIcon(createTowerIcon(m._apoyo, m._mastTyp, z));
         });
       });
 
@@ -172,10 +444,10 @@ const DATA_FILES = [
   { id: 'chk-weg-best',  url: 'data/wbk_weg_best.geojson',  style: () => styleFor('wbk_weg_best'),       checked: true },
   { id: 'chk-weg-temp',  url: 'data/wbk_weg_temp.geojson',  style: () => styleFor('wbk_weg_temp'),       checked: true },
   { id: 'chk-arbeit',    url: 'data/wbk_arbeitsflaeche.geojson', style: () => styleFor('wbk_arbeitsflaeche'), checked: true },
-  { id: 'chk-geruest',   url: 'data/wbk_geruest.geojson',   style: () => styleFor('wbk_geruest'),        checked: false },
-  { id: 'chk-ausholz',   url: 'data/wbk_ausholzung.geojson',style: () => styleFor('wbk_ausholzung'),     checked: false },
-  { id: 'chk-schutz',    url: 'data/wbk_schutznetz.geojson',style: () => styleFor('wbk_schutznetz'),     checked: false },
-  { id: 'chk-sperr',     url: 'data/wbk_sperrung.geojson',  style: () => styleFor('wbk_sperrung'),       checked: false },
+  { id: 'chk-geruest',   url: 'data/wbk_geruest.geojson',   style: () => styleFor('wbk_geruest'),        checked: true },
+  { id: 'chk-ausholz',   url: 'data/wbk_ausholzung.geojson',style: () => styleFor('wbk_ausholzung'),     checked: true },
+  { id: 'chk-schutz',    url: 'data/wbk_schutznetz.geojson',style: () => styleFor('wbk_schutznetz'),     checked: true },
+  { id: 'chk-sperr',     url: 'data/wbk_sperrung.geojson',  style: () => styleFor('wbk_sperrung'),       checked: true },
 ];
 
 // ===== LOAD ALL =====
@@ -236,6 +508,26 @@ Promise.all([...geoPromises, towerPromise]).then(() => {
   document.getElementById('loading-overlay').classList.add('hidden');
 });
 
+// ===== CATASTRO VECTOR =====
+const catastroToggle = document.getElementById('chk-catastro');
+if (catastroToggle) {
+  catastroToggle.addEventListener('change', e => {
+    if (e.target.checked) {
+      catastroVectorLayer.addTo(map);
+      catastroVectorLayer._lastKey = null;
+      catastroVectorLayer.refreshData();
+    } else {
+      map.removeLayer(catastroVectorLayer);
+      catastroVectorLayer.clearLayers();
+      catastroVectorLayer._lastKey = null;
+    }
+  });
+}
+
+map.on('moveend zoomend', () => {
+  if (catastroToggle?.checked) catastroVectorLayer.refreshData();
+});
+
 // ===== WMS CHECKBOXES =====
 Object.keys(WMS_LAYERS).forEach(id => {
   const el = document.getElementById(id);
@@ -249,14 +541,14 @@ Object.keys(WMS_LAYERS).forEach(id => {
 // ===== BASEMAP SWITCHER =====
 let currentBasemap = 'satellite';
 
-window.setBasemap = function(key) {
+window.setBasemap = function(key, btn) {
   if (!BASEMAPS[key]) return;
   map.removeLayer(BASEMAPS[currentBasemap]);
   BASEMAPS[key].addTo(map);
   BASEMAPS[key].bringToBack();
   currentBasemap = key;
-  document.querySelectorAll('.basemap-btn').forEach(btn => btn.classList.remove('active'));
-  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.basemap-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
 };
 
 // ===== SIDEBAR MOBILE =====
@@ -268,11 +560,3 @@ map.on('click', () => {
   if (window.innerWidth <= 768)
     document.getElementById('sidebar').classList.remove('open');
 });
-
-// ===== CHECKBOX HELPER =====
-window.toggleCheck = function(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.checked = !el.checked;
-  el.dispatchEvent(new Event('change'));
-};

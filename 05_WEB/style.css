@@ -44,6 +44,24 @@ body {
 
 #header-spacer { flex: 1; }
 
+.header-author {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-right: 10px;
+}
+
+.author-name {
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.author-date {
+  color: #888;
+}
+
 #btn-menu-toggle {
   display: none;
   background: #e63030;
@@ -101,7 +119,10 @@ body {
 
 .section-title:first-child { margin-top: 4px; }
 
-/* ===== LAYER TOGGLE ===== */
+/* ===== LAYER TOGGLE =====
+   Usar <label for="id"> como wrapper: clic en cualquier parte = un solo toggle
+   Sin onclick en el div, sin doble-toggle
+   ============================= */
 .layer-item {
   display: flex;
   align-items: center;
@@ -111,9 +132,17 @@ body {
   cursor: pointer;
   transition: background 0.15s;
   margin-bottom: 2px;
+  user-select: none;
 }
 
 .layer-item:hover { background: #0f3460; }
+
+.layer-item span:last-child {
+  font-size: 12px;
+  flex: 1;
+  line-height: 1.3;
+  color: #ddd;
+}
 
 .layer-swatch {
   width: 18px;
@@ -123,11 +152,18 @@ body {
   border: 1px solid rgba(255,255,255,0.15);
 }
 
-.layer-item label {
-  font-size: 12px;
-  cursor: pointer;
-  flex: 1;
-  line-height: 1.3;
+/* Doble punto para la leyenda de apoyos */
+.layer-legend {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 .layer-item input[type=checkbox] {
@@ -137,6 +173,33 @@ body {
   cursor: pointer;
   flex-shrink: 0;
 }
+
+/* ===== LEYENDA TIPO APOYO ===== */
+.tower-legend-box {
+  background: rgba(15,52,96,0.5);
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin: 4px 0 8px;
+  font-size: 10px;
+}
+
+.tl-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0;
+  color: #aab;
+}
+
+.tl-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tl-dot.abspann { background: #e63030; border: 1px solid #ff6666; }
+.tl-dot.trag    { background: #3a7bd5; border: 1px solid #6699ff; }
 
 /* ===== WMS SECTION ===== */
 .wms-item {
@@ -148,13 +211,13 @@ body {
   cursor: pointer;
   margin-bottom: 2px;
   transition: background 0.15s;
+  user-select: none;
 }
 
 .wms-item:hover { background: #0f3460; }
 
-.wms-item label {
+.wms-item span {
   font-size: 11px;
-  cursor: pointer;
   flex: 1;
   color: #b0b8cc;
 }
@@ -164,6 +227,24 @@ body {
   width: 14px;
   height: 14px;
   cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+  background: #0f3460;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #aab;
+}
+
+.info-box strong {
+  color: #e0e0e0;
+  display: block;
+  margin-bottom: 4px;
 }
 
 /* ===== BASEMAP SELECTOR ===== */
@@ -184,19 +265,6 @@ body {
 
 .basemap-btn:hover { background: #1a4a80; color: #fff; }
 .basemap-btn.active { background: #e63030; border-color: #e63030; color: #fff; font-weight: 600; }
-
-/* ===== INFO BOX ===== */
-#info-box {
-  background: #0f3460;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 11px;
-  line-height: 1.6;
-  color: #aab;
-}
-
-#info-box strong { color: #e0e0e0; display: block; margin-bottom: 4px; }
 
 /* ===== MAP ===== */
 #map {
@@ -229,6 +297,24 @@ body {
   background: rgba(22, 33, 62, 0.85);
   border-color: #aaa;
   color: #ddd;
+}
+
+.locate-btn {
+  width: 34px;
+  height: 34px;
+  background: #16213e;
+  border: 1px solid #0f3460;
+  color: #1e88ff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.locate-btn:hover {
+  background: #0f3460;
+  color: #69b3ff;
 }
 
 #coords-bar {
@@ -268,6 +354,12 @@ body {
   box-shadow: 0 0 3px rgba(0,0,0,0.6);
 }
 
+.tower-special {
+  background: rgba(80, 0, 120, 0.9);
+  border-color: #cc88ff;
+  color: #ffddff;
+}
+
 /* ===== LOADING ===== */
 #loading-overlay {
   position: fixed;
@@ -301,6 +393,7 @@ body {
 @media (max-width: 768px) {
   #btn-menu-toggle { display: block; }
   #header .subtitle { display: none; }
+  .header-author { display: none; }
 
   #sidebar {
     position: absolute;

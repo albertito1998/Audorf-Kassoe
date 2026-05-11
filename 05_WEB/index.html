@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Audorf–Kassøe BL02 | WebGIS Zuwegungen</title>
+  <title>Audorf–Kassøe BL02+03 | WebGIS Zuwegungen</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,12 +17,16 @@
 
 <!-- HEADER -->
 <header id="header">
-  <div class="logo">⚡ AK-BL02</div>
+  <div class="logo">⚡ AK-BL02+03</div>
   <div class="subtitle">
-    <strong>Audorf–Kassøe BL02+03 | Zuwegungen WebGIS</strong>
+    <strong>Audorf–Kassøe | Baulos 2 &amp; Baulos 3 | Zuwegungen WebGIS</strong>
     Bautechnik-Statik · REV00
   </div>
   <div id="header-spacer"></div>
+  <div class="header-author">
+    <span class="author-name">Alberto Gómez</span>
+    <span class="author-date">11.05.2026</span>
+  </div>
   <button id="btn-menu-toggle" onclick="toggleSidebar()">☰</button>
 </header>
 
@@ -33,131 +37,140 @@
   <nav id="sidebar">
     <div id="sidebar-inner">
 
-      <!-- CAPAS CAD -->
+      <!-- LEYENDA APOYOS -->
       <div class="section-title">Trassierung</div>
 
-      <div class="layer-item" onclick="toggleCheck('chk-torres')">
+      <!-- Usar <label> como wrapper: un solo clic, sin doble-toggle -->
+      <label class="layer-item" for="chk-torres">
         <input type="checkbox" id="chk-torres" checked />
-        <div class="layer-swatch" style="background:#0f3460;border:2px solid #e63030;"></div>
-        <label for="chk-torres">Torres / Masten (M79–M206)</label>
-      </div>
+        <span class="layer-legend">
+          <span class="dot" style="background:#e63030;"></span>
+          <span class="dot" style="background:#3a7bd5;"></span>
+        </span>
+        <span>Apoyos / Masten (M79–M206)</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-eje')">
+      <label class="layer-item" for="chk-eje">
         <input type="checkbox" id="chk-eje" checked />
-        <div class="layer-swatch" style="background:#e63030;"></div>
-        <label for="chk-eje">Eje de Línea (Trassenachse)</label>
-      </div>
+        <span class="layer-swatch" style="background:#e63030;"></span>
+        <span>Eje de Línea (Trassenachse)</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-buffer')">
+      <label class="layer-item" for="chk-buffer">
         <input type="checkbox" id="chk-buffer" checked />
-        <div class="layer-swatch" style="background:#e6303040;border:2px solid #e63030;"></div>
-        <label for="chk-buffer">Buffer 800 m</label>
+        <span class="layer-swatch" style="background:#e6303020;border:2px solid #e63030;"></span>
+        <span>Buffer 800 m</span>
+      </label>
+
+      <!-- Leyenda tipo apoyo -->
+      <div class="tower-legend-box">
+        <div class="tl-row"><span class="tl-dot abspann"></span> Abspannmast / Portal (21)</div>
+        <div class="tl-row"><span class="tl-dot trag"></span> Tragmast (109)</div>
       </div>
 
       <div class="section-title">Zuwegungen</div>
 
-      <div class="layer-item" onclick="toggleCheck('chk-weg-best')">
+      <label class="layer-item" for="chk-weg-best">
         <input type="checkbox" id="chk-weg-best" checked />
-        <div class="layer-swatch" style="background:#a85c00;"></div>
-        <label for="chk-weg-best">WBK Accesos Existentes</label>
-      </div>
+        <span class="layer-swatch" style="background:#a85c00;"></span>
+        <span>WBK Accesos Existentes</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-weg-temp')">
+      <label class="layer-item" for="chk-weg-temp">
         <input type="checkbox" id="chk-weg-temp" checked />
-        <div class="layer-swatch" style="background:#ff8c00;"></div>
-        <label for="chk-weg-temp">WBK Accesos Temporales</label>
-      </div>
+        <span class="layer-swatch" style="background:#ff8c00;"></span>
+        <span>WBK Accesos Temporales</span>
+      </label>
 
       <div class="section-title">Arbeitsflächen</div>
 
-      <div class="layer-item" onclick="toggleCheck('chk-arbeit')">
+      <label class="layer-item" for="chk-arbeit">
         <input type="checkbox" id="chk-arbeit" checked />
-        <div class="layer-swatch" style="background:#00aa44;"></div>
-        <label for="chk-arbeit">WBK Arbeitsfläche</label>
-      </div>
+        <span class="layer-swatch" style="background:#00aa44;"></span>
+        <span>WBK Arbeitsfläche</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-geruest')">
-        <input type="checkbox" id="chk-geruest" />
-        <div class="layer-swatch" style="background:#aa00aa;"></div>
-        <label for="chk-geruest">WBK Gerüst</label>
-      </div>
+      <label class="layer-item" for="chk-geruest">
+        <input type="checkbox" id="chk-geruest" checked />
+        <span class="layer-swatch" style="background:#aa00aa;"></span>
+        <span>WBK Gerüst</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-ausholz')">
-        <input type="checkbox" id="chk-ausholz" />
-        <div class="layer-swatch" style="background:#007733;"></div>
-        <label for="chk-ausholz">WBK Ausholzung</label>
-      </div>
+      <label class="layer-item" for="chk-ausholz">
+        <input type="checkbox" id="chk-ausholz" checked />
+        <span class="layer-swatch" style="background:#007733;"></span>
+        <span>WBK Ausholzung</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-schutz')">
-        <input type="checkbox" id="chk-schutz" />
-        <div class="layer-swatch" style="background:#0055bb;"></div>
-        <label for="chk-schutz">WBK Schutznetz</label>
-      </div>
+      <label class="layer-item" for="chk-schutz">
+        <input type="checkbox" id="chk-schutz" checked />
+        <span class="layer-swatch" style="background:#0055bb;"></span>
+        <span>WBK Schutznetz</span>
+      </label>
 
-      <div class="layer-item" onclick="toggleCheck('chk-sperr')">
-        <input type="checkbox" id="chk-sperr" />
-        <div class="layer-swatch" style="background:#dd0000;"></div>
-        <label for="chk-sperr">WBK Sperrung</label>
-      </div>
+      <label class="layer-item" for="chk-sperr">
+        <input type="checkbox" id="chk-sperr" checked />
+        <span class="layer-swatch" style="background:#dd0000;"></span>
+        <span>WBK Sperrung</span>
+      </label>
 
       <!-- WMS -->
       <div class="section-title">WMS / Hintergrundkarten</div>
 
-      <div class="wms-item" onclick="toggleCheck('chk-catastro')">
+      <label class="wms-item" for="chk-catastro">
         <input type="checkbox" id="chk-catastro" />
-        <label for="chk-catastro">Kataster (SH)</label>
-      </div>
+        <span>Kataster SH (Flur/Gemarkung)</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-naturschutz')">
+      <label class="wms-item" for="chk-naturschutz">
         <input type="checkbox" id="chk-naturschutz" />
-        <label for="chk-naturschutz">Naturschutzgebiete</label>
-      </div>
+        <span>Naturschutzgebiete</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-ffh')">
+      <label class="wms-item" for="chk-ffh">
         <input type="checkbox" id="chk-ffh" />
-        <label for="chk-ffh">FFH-Gebiete</label>
-      </div>
+        <span>FFH-Gebiete</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-vogel')">
+      <label class="wms-item" for="chk-vogel">
         <input type="checkbox" id="chk-vogel" />
-        <label for="chk-vogel">Vogelschutzgebiete (SPA)</label>
-      </div>
+        <span>Vogelschutzgebiete (SPA)</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-landschaft')">
+      <label class="wms-item" for="chk-landschaft">
         <input type="checkbox" id="chk-landschaft" />
-        <label for="chk-landschaft">Landschaftsschutz</label>
-      </div>
+        <span>Landschaftsschutz</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-biotop')">
+      <label class="wms-item" for="chk-biotop">
         <input type="checkbox" id="chk-biotop" />
-        <label for="chk-biotop">Biotopkataster</label>
-      </div>
+        <span>Biotopkataster</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-hydro')">
+      <label class="wms-item" for="chk-hydro">
         <input type="checkbox" id="chk-hydro" />
-        <label for="chk-hydro">Gewässer / Hydrographie</label>
-      </div>
+        <span>Gewässer / Hydrographie</span>
+      </label>
 
-      <div class="wms-item" onclick="toggleCheck('chk-hq100')">
+      <label class="wms-item" for="chk-hq100">
         <input type="checkbox" id="chk-hq100" />
-        <label for="chk-hq100">Überschwemmungsgebiete HQ100</label>
-      </div>
+        <span>Überschwemmungsgebiete HQ100</span>
+      </label>
 
       <!-- BASEMAP -->
       <div class="section-title">Basiskarte</div>
-      <button class="basemap-btn active" onclick="setBasemap('satellite')">Satellit (Standard)</button>
-      <button class="basemap-btn" onclick="setBasemap('topo')">Topographie OSM</button>
-      <button class="basemap-btn" onclick="setBasemap('osm')">OpenStreetMap</button>
-      <button class="basemap-btn" onclick="setBasemap('grey')">Grau (Planung)</button>
+      <button class="basemap-btn active" onclick="setBasemap('satellite', this)">Satellit (Standard)</button>
+      <button class="basemap-btn" onclick="setBasemap('topo', this)">Topographie OSM</button>
+      <button class="basemap-btn" onclick="setBasemap('osm', this)">OpenStreetMap</button>
+      <button class="basemap-btn" onclick="setBasemap('grey', this)">Grau (Planung)</button>
 
       <!-- INFO -->
-      <div class="info-box" style="background:#0f3460;border-radius:8px;padding:10px;margin-top:10px;font-size:11px;line-height:1.6;color:#aab;">
-        <strong style="color:#e0e0e0;display:block;margin-bottom:4px;">Proyecto</strong>
+      <div class="info-box">
+        <strong>Proyecto</strong>
         Audorf–Kassøe BL02+03<br>
-        CRS CAD: EPSG:25832<br>
-        CRS Web: EPSG:4326<br>
-        Eje: ~70 km · Torres: 382<br>
-        Buffer corredor: ±800 m
+        Apoyos: 130 (M79–M206)<br>
+        Eje: ~53 km · Buffer: ±800 m<br>
+        CRS CAD: EPSG:25832 · Web: EPSG:4326
       </div>
 
     </div><!-- /sidebar-inner -->
@@ -172,6 +185,7 @@
 <div id="coords-bar">Lat: — &nbsp; Lng: —</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
