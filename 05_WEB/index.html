@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Audorf–Kassøe BL02+03 | WebGIS Zuwegungen</title>
+  <link rel="icon" type="image/png" href="assets/elecnor-deutsch-tp.png" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,7 +18,9 @@
 
 <!-- HEADER -->
 <header id="header">
-  <div class="logo">⚡ AK-BL02+03</div>
+  <div class="logo">
+    <img src="assets/elecnor-deutsch-tp.png" alt="Elecnor Deutschland" />
+  </div>
   <div class="subtitle">
     <strong>Audorf–Kassøe | Baulos 2 &amp; Baulos 3 | Zuwegungen WebGIS</strong>
     Bautechnik-Statik · REV00
@@ -126,15 +129,20 @@
       <div class="section-title">Catastro / WMS</div>
 
       <label class="layer-item" for="chk-status-genehmigung">
-        <input type="checkbox" id="chk-status-genehmigung" />
+        <input type="checkbox" id="chk-status-genehmigung" checked />
         <span class="layer-swatch" style="background:#22aa55;"></span>
         <span class="layer-swatch" style="background:#e53935;"></span>
         <span>STATUS GENEHMIGUNG</span>
       </label>
 
       <label class="wms-item" for="chk-catastro">
-        <input type="checkbox" id="chk-catastro" />
-        <span>Kataster SH WFS (Flurstuecke)</span>
+        <input type="checkbox" id="chk-catastro" checked />
+        <span>Kataster SH WFS (Flurstuecke, zoom cercano)</span>
+      </label>
+
+      <label class="wms-item" for="chk-infra-osm">
+        <input type="checkbox" id="chk-infra-osm" />
+        <span>Infraestructura OSM WMS</span>
       </label>
 
       <label class="wms-item" for="chk-naturschutz">
@@ -207,7 +215,7 @@
 <div id="measure-result" class="hidden"></div>
 
 <!-- COORDS BAR -->
-<div id="coords-bar">Lat: — &nbsp; Lng: —</div>
+<div id="coords-bar">Lat: — &nbsp; Lng: — &nbsp; | &nbsp; UTM32N EPSG:25832 E: — &nbsp; N: —</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="app.js"></script>

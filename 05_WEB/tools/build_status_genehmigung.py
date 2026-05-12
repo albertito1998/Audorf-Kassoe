@@ -76,6 +76,10 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
     permits = defaultdict(lambda: {
         "masts": set(),
         "owners": set(),
+        "first_names": set(),
+        "last_names": set(),
+        "emails": set(),
+        "phones": set(),
         "baulose": set(),
         "remarks": set(),
         "info_dates": set(),
@@ -116,9 +120,26 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
             entry["baulose"].add(sheet_name.replace("Eigentürmer ", ""))
             entry["masts"].add(format_value(get(row, "Mast")))
 
-            owner = " ".join(part for part in [format_value(get(row, "Vorname")), format_value(get(row, "Nachname"))] if part)
+            first_name = format_value(get(row, "Vorname"))
+            last_name = format_value(get(row, "Nachname"))
+            if first_name:
+                entry["first_names"].add(first_name)
+            if last_name:
+                entry["last_names"].add(last_name)
+
+            owner = " ".join(part for part in [first_name, last_name] if part)
             if owner:
                 entry["owners"].add(owner)
+
+            for header in headers:
+                header_norm = normalize_text(header)
+                value = format_value(get(row, header))
+                if not value:
+                    continue
+                if any(token in header_norm for token in ("mail", "email", "e-mail")):
+                    entry["emails"].add(value)
+                if any(token in header_norm for token in ("telefon", "tel.", "phone", "mobil", "handy")):
+                    entry["phones"].add(value)
 
             remark = format_value(get(row, "Bemerkung"))
             if remark:
@@ -157,7 +178,7 @@ def main() -> None:
         for key, value in read_permit_rows(excel_path).items():
             if key in permits:
                 target = permits[key]
-                for set_key in ("masts", "owners", "baulose", "remarks", "info_dates"):
+                for set_key in ("masts", "owners", "first_names", "last_names", "emails", "phones", "baulose", "remarks", "info_dates"):
                     target[set_key].update(value[set_key])
                 target["permission_values"].extend(value["permission_values"])
                 target["rows"] += value["rows"]
@@ -188,6 +209,10 @@ def main() -> None:
             "baulos": ", ".join(sorted(v for v in entry["baulose"] if v)),
             "masten": ", ".join(sorted((v for v in entry["masts"] if v), key=lambda x: (len(x), x))),
             "eigentuemer": "; ".join(sorted(entry["owners"])),
+            "vorname": "; ".join(sorted(entry["first_names"])),
+            "nachname": "; ".join(sorted(entry["last_names"])),
+            "email": "; ".join(sorted(entry["emails"])),
+            "telefon": "; ".join(sorted(entry["phones"])),
             "info_daten": ", ".join(sorted(entry["info_dates"])),
             "bemerkung": "; ".join(sorted(entry["remarks"])),
             "permit_rows": entry["rows"],

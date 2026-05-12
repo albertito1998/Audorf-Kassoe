@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 // ===== BASEMAPS =====
 const BASEMAPS = {
@@ -8,11 +8,11 @@ const BASEMAPS = {
   ),
   topo: L.tileLayer(
     'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-    { attribution: '© OpenTopoMap', maxZoom: 17 }
+    { attribution: 'Â© OpenTopoMap', maxZoom: 17 }
   ),
   osm: L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    { attribution: '© OpenStreetMap contributors', maxZoom: 19 }
+    { attribution: 'Â© OpenStreetMap contributors', maxZoom: 19 }
   ),
   grey: L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
@@ -30,6 +30,11 @@ const map = L.map('map', {
 
 L.control.zoom({ position: 'topright' }).addTo(map);
 L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+
+map.createPane('catastroPane');
+map.getPane('catastroPane').style.zIndex = 430;
+map.createPane('statusGenehmigungPane');
+map.getPane('statusGenehmigungPane').style.zIndex = 470;
 
 let userLocationMarker = null;
 let userAccuracyCircle = null;
@@ -154,8 +159,48 @@ const MeasureControl = L.Control.extend({
 
 map.addControl(new MeasureControl());
 
+function wgs84ToUtm32(lat, lng) {
+  const a = 6378137.0;
+  const f = 1 / 298.257223563;
+  const k0 = 0.9996;
+  const e2 = f * (2 - f);
+  const ep2 = e2 / (1 - e2);
+  const lon0 = 9 * Math.PI / 180;
+  const latRad = lat * Math.PI / 180;
+  const lonRad = lng * Math.PI / 180;
+  const sinLat = Math.sin(latRad);
+  const cosLat = Math.cos(latRad);
+  const tanLat = Math.tan(latRad);
+  const n = a / Math.sqrt(1 - e2 * sinLat * sinLat);
+  const t = tanLat * tanLat;
+  const c = ep2 * cosLat * cosLat;
+  const aa = cosLat * (lonRad - lon0);
+  const m = a * (
+    (1 - e2 / 4 - 3 * e2 ** 2 / 64 - 5 * e2 ** 3 / 256) * latRad
+    - (3 * e2 / 8 + 3 * e2 ** 2 / 32 + 45 * e2 ** 3 / 1024) * Math.sin(2 * latRad)
+    + (15 * e2 ** 2 / 256 + 45 * e2 ** 3 / 1024) * Math.sin(4 * latRad)
+    - (35 * e2 ** 3 / 3072) * Math.sin(6 * latRad)
+  );
+
+  const easting = k0 * n * (
+    aa
+    + (1 - t + c) * aa ** 3 / 6
+    + (5 - 18 * t + t ** 2 + 72 * c - 58 * ep2) * aa ** 5 / 120
+  ) + 500000;
+  const northing = k0 * (
+    m
+    + n * tanLat * (
+      aa ** 2 / 2
+      + (5 - t + 9 * c + 4 * c ** 2) * aa ** 4 / 24
+      + (61 - 58 * t + t ** 2 + 600 * c - 330 * ep2) * aa ** 6 / 720
+    )
+  );
+
+  return { easting, northing };
+}
+
 map.on('mousemove', e => {
-  // Línea elástica mientras se elige el segundo punto
+  // LÃ­nea elÃ¡stica mientras se elige el segundo punto
   if (measureActive && measurePts.length === 1) {
     if (!measureRubber) {
       measureRubber = L.polyline([measurePts[0], e.latlng], {
@@ -165,14 +210,15 @@ map.on('mousemove', e => {
       measureRubber.setLatLngs([measurePts[0], e.latlng]);
     }
   }
+  const utm = wgs84ToUtm32(e.latlng.lat, e.latlng.lng);
   document.getElementById('coords-bar').textContent =
-    `Lat: ${e.latlng.lat.toFixed(5)}  Lng: ${e.latlng.lng.toFixed(5)}`;
+    `Lat: ${e.latlng.lat.toFixed(5)}  Lng: ${e.latlng.lng.toFixed(5)}  |  UTM32N EPSG:25832 E: ${utm.easting.toFixed(1)}  N: ${utm.northing.toFixed(1)}`;
 });
 
 map.on('click', e => {
   if (!measureActive) return;
 
-  // Tercer clic: reiniciar medición anterior
+  // Tercer clic: reiniciar mediciÃ³n anterior
   if (measurePts.length >= 2) clearMeasure();
 
   measurePts.push(e.latlng);
@@ -198,7 +244,7 @@ map.on('click', e => {
 
     const el = document.getElementById('measure-result');
     if (el) {
-      el.textContent = `📏 ${label}`;
+      el.textContent = `ðŸ“ ${label}`;
       el.classList.remove('hidden');
     }
   }
@@ -206,12 +252,13 @@ map.on('click', e => {
 
 // ===== WMS LAYERS =====
 // Fuentes verificadas:
-//   BfN   → geodienste.bfn.de  (Bundesamt für Naturschutz, nacional)
-//   BKG   → sgx.geodatenzentrum.de  (Bundesamt für Kartographie, nacional)
-//   GDI-SH → dienste.gdi-sh.de  (Geodateninfrastruktur Schleswig-Holstein)
+//   BfN   â†’ geodienste.bfn.de  (Bundesamt fÃ¼r Naturschutz, nacional)
+//   BKG   â†’ sgx.geodatenzentrum.de  (Bundesamt fÃ¼r Kartographie, nacional)
+//   GDI-SH â†’ dienste.gdi-sh.de  (Geodateninfrastruktur Schleswig-Holstein)
 const WMS_LAYERS = {};
 
 const BFN  = 'https://geodienste.bfn.de/ogc/wms/schutzgebiet';
+const OSM_WMS = 'https://ows.terrestris.de/osm/service';
 
 function createWmsLayer(url, options) {
   const layer = L.tileLayer.wms(url, {
@@ -231,48 +278,56 @@ function createWmsLayer(url, options) {
   return layer;
 }
 
-// Naturschutz (BfN nacional — funciona en toda Alemania)
+// Naturschutz (BfN nacional)
 WMS_LAYERS['chk-naturschutz'] = createWmsLayer(BFN, {
   layers: 'Naturschutzgebiete',
-  attribution: '© BfN – Naturschutzgebiete', opacity: 0.55,
+  attribution: 'BfN - Naturschutzgebiete',
+  opacity: 0.55,
+});
+
+// Infraestructura general OSM via WMS
+WMS_LAYERS['chk-infra-osm'] = createWmsLayer(OSM_WMS, {
+  layers: 'OSM-Overlay-WMS',
+  attribution: 'OpenStreetMap contributors / terrestris OSM WMS',
+  opacity: 0.7,
 });
 
 // FFH (BfN)
 WMS_LAYERS['chk-ffh'] = createWmsLayer(BFN, {
   layers: 'Fauna_Flora_Habitat_Gebiete',
-  attribution: '© BfN – FFH-Gebiete', opacity: 0.5,
+  attribution: 'Â© BfN â€“ FFH-Gebiete', opacity: 0.5,
 });
 
 // Vogelschutz SPA (BfN)
 WMS_LAYERS['chk-vogel'] = createWmsLayer(BFN, {
   layers: 'Vogelschutzgebiete',
-  attribution: '© BfN – Vogelschutzgebiete', opacity: 0.5,
+  attribution: 'Â© BfN â€“ Vogelschutzgebiete', opacity: 0.5,
 });
 
 // Landschaftsschutz (BfN)
 WMS_LAYERS['chk-landschaft'] = createWmsLayer(BFN, {
   layers: 'Landschaftsschutzgebiete',
-  attribution: '© BfN – Landschaftsschutz', opacity: 0.45,
+  attribution: 'Â© BfN â€“ Landschaftsschutz', opacity: 0.45,
 });
 
-// Biotopkataster (BfN — Biotoptypen bundesweit)
+// Biotopkataster (BfN â€” Biotoptypen bundesweit)
 WMS_LAYERS['chk-biotop'] = createWmsLayer(BFN, {
   layers: 'biotoptyp',
-  attribution: '© BfN – Biotoptypen', opacity: 0.55,
+  attribution: 'Â© BfN â€“ Biotoptypen', opacity: 0.55,
 });
 
-// Gewässer / Hydrographie — BKG Gewässernetz
+// GewÃ¤sser / Hydrographie â€” BKG GewÃ¤ssernetz
 WMS_LAYERS['chk-hydro'] = createWmsLayer(
   'https://sgx.geodatenzentrum.de/wms_gewaessernetz', {
   layers: 'gewaessernetz',
-  attribution: '© BKG – Gewässernetz', opacity: 0.7,
+  attribution: 'Â© BKG â€“ GewÃ¤ssernetz', opacity: 0.7,
 });
 
-// Überschwemmungsgebiete HQ100 — GDI-SH HWRM
+// Ãœberschwemmungsgebiete HQ100 â€” GDI-SH HWRM
 WMS_LAYERS['chk-hq100'] = createWmsLayer(
   'https://dienste.gdi-sh.de/WMS_SH_HWRM_RL', {
   layers: 'Ueberschwemmungsgebiete_HQ100',
-  attribution: '© GDI-SH – Überschwemmungsgebiete HQ100', opacity: 0.6,
+  attribution: 'Â© GDI-SH â€“ Ãœberschwemmungsgebiete HQ100', opacity: 0.6,
 });
 
 // ===== STYLE HELPERS =====
@@ -290,7 +345,7 @@ function styleFor(layerName) {
 }
 
 // ===== TORRE MARKER =====
-// mast_typ: "Abspannmast" → rojo #e63030 | "Tragmast" → azul #3a7bd5
+// mast_typ: "Abspannmast" â†’ rojo #e63030 | "Tragmast" â†’ azul #3a7bd5
 const MAST_COLOR = {
   'Abspannmast': '#e63030',
   'Tragmast':    '#3a7bd5',
@@ -359,7 +414,7 @@ function formatTowerChains(apoyo) {
 }
 
 function createTowerIcon(apoyo, mastTyp, zoom) {
-  const label = apoyo.replace(/^M0*/, 'M');       // M097A → M97A
+  const label = apoyo.replace(/^M0*/, 'M');       // M097A â†’ M97A
   const color = MAST_COLOR[mastTyp] || '#888';
   const isAbspann = mastTyp === 'Abspannmast';
   const show = zoom >= 12;
@@ -412,7 +467,7 @@ function loadTowers() {
           const chainHtml = formatTowerChains(p.apoyo);
           layer.bindPopup(
             `<div class="popup-title" style="color:${color}">${label}</div>
-             <div class="popup-row"><span>Tipo:</span> ${p.mast_typ || '—'}</div>
+             <div class="popup-row"><span>Tipo:</span> ${p.mast_typ || 'â€”'}</div>
              <div class="popup-row"><span>Cadenas:</span> ${chainHtml}</div>`
           );
         },
@@ -464,7 +519,7 @@ const geoPromises = DATA_FILES.map(def =>
           layer.bindPopup(
             `<div class="popup-title">${lname.toUpperCase().replace(/_/g,' ')}</div>
              ${Object.entries(feat.properties || {}).map(([k,v]) =>
-               `<div class="popup-row"><span>${k}:</span> ${v ?? '—'}</div>`).join('')}`
+               `<div class="popup-row"><span>${k}:</span> ${v ?? 'â€”'}</div>`).join('')}`
           ).openPopup()
         );
         if (layer.setStyle) {
@@ -502,15 +557,17 @@ const towerPromise = loadTowers().then(gl => {
 Promise.all([...geoPromises, towerPromise]).then(() => {
   if (bounds && bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
   document.getElementById('loading-overlay').classList.add('hidden');
+  loadDefaultDeferredLayers();
 }).catch(err => {
   console.error('Error cargando datos:', err);
   document.getElementById('loading-overlay').classList.add('hidden');
+  loadDefaultDeferredLayers();
 });
 
 // ===== STATUS GENEHMIGUNG =====
 let statusGenehmigungLayer = null;
 let statusGenehmigungPromise = null;
-const statusGenehmigungRenderer = L.canvas({ padding: 0.5 });
+const statusGenehmigungRenderer = L.svg({ padding: 0.5, pane: 'statusGenehmigungPane' });
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -532,22 +589,40 @@ function statusGenehmigungStyle(feature) {
   return { color: '#b8860b', weight: 1.4, opacity: 0.9, fillColor: '#f6c343', fillOpacity: 0.32 };
 }
 
+function statusGenehmigungHoverStyle(feature) {
+  const base = statusGenehmigungStyle(feature);
+  return { ...base, weight: 3, opacity: 1, fillOpacity: Math.min((base.fillOpacity || 0.35) + 0.18, 0.62) };
+}
+
+function statusGenehmigungTooltip(props) {
+  const p = props || {};
+  return `
+    <strong>${escapeHtml(p.status_label || 'STATUS')}</strong><br>
+    ${escapeHtml(p.gemarkung || 'â€”')} Â· Flur ${escapeHtml(p.flur || 'â€”')} Â· ${escapeHtml(p.flurstueck || 'â€”')}<br>
+    ${escapeHtml(p.eigentuemer || 'Sin propietario')}
+  `;
+}
+
 function statusGenehmigungPopup(props) {
   const p = props || {};
   return `
     <div class="popup-title">STATUS GENEHMIGUNG</div>
-    <div class="popup-row"><span>Status:</span> ${escapeHtml(p.status_label || '—')}</div>
-    <div class="popup-row"><span>Gemarkung:</span> ${escapeHtml(p.gemarkung || '—')}</div>
-    <div class="popup-row"><span>Flur:</span> ${escapeHtml(p.flur || '—')}</div>
-    <div class="popup-row"><span>Flurstück:</span> ${escapeHtml(p.flurstueck || p.flstkennz || '—')}</div>
-    <div class="popup-row"><span>Gemeinde:</span> ${escapeHtml(p.gemeinde || '—')}</div>
-    <div class="popup-row"><span>Kreis:</span> ${escapeHtml(p.kreis || '—')}</div>
-    <div class="popup-row"><span>ALKIS aktualit.:</span> ${escapeHtml(p.aktualit || '—')}</div>
-    <div class="popup-row"><span>Baulos:</span> ${escapeHtml(p.baulos || '—')}</div>
-    <div class="popup-row"><span>Masten:</span> ${escapeHtml(p.masten || '—')}</div>
-    <div class="popup-row"><span>Eigentuemer:</span> ${escapeHtml(p.eigentuemer || '—')}</div>
-    <div class="popup-row"><span>Info fechas:</span> ${escapeHtml(p.info_daten || '—')}</div>
-    <div class="popup-row"><span>Bemerkung:</span> ${escapeHtml(p.bemerkung || '—')}</div>
+    <div class="popup-row"><span>Status:</span> ${escapeHtml(p.status_label || 'â€”')}</div>
+    <div class="popup-row"><span>Gemarkung:</span> ${escapeHtml(p.gemarkung || 'â€”')}</div>
+    <div class="popup-row"><span>Flur:</span> ${escapeHtml(p.flur || 'â€”')}</div>
+    <div class="popup-row"><span>FlurstÃ¼ck:</span> ${escapeHtml(p.flurstueck || p.flstkennz || 'â€”')}</div>
+    <div class="popup-row"><span>Gemeinde:</span> ${escapeHtml(p.gemeinde || 'â€”')}</div>
+    <div class="popup-row"><span>Kreis:</span> ${escapeHtml(p.kreis || 'â€”')}</div>
+    <div class="popup-row"><span>ALKIS aktualit.:</span> ${escapeHtml(p.aktualit || 'â€”')}</div>
+    <div class="popup-row"><span>Baulos:</span> ${escapeHtml(p.baulos || 'â€”')}</div>
+    <div class="popup-row"><span>Masten:</span> ${escapeHtml(p.masten || 'â€”')}</div>
+    <div class="popup-row"><span>Eigentuemer:</span> ${escapeHtml(p.eigentuemer || 'â€”')}</div>
+    <div class="popup-row"><span>Nombre:</span> ${escapeHtml(p.vorname || 'â€”')}</div>
+    <div class="popup-row"><span>Apellido:</span> ${escapeHtml(p.nachname || 'â€”')}</div>
+    <div class="popup-row"><span>Correo:</span> ${escapeHtml(p.email || 'â€”')}</div>
+    <div class="popup-row"><span>Telefono:</span> ${escapeHtml(p.telefon || 'â€”')}</div>
+    <div class="popup-row"><span>Info fechas:</span> ${escapeHtml(p.info_daten || 'â€”')}</div>
+    <div class="popup-row"><span>Bemerkung:</span> ${escapeHtml(p.bemerkung || 'â€”')}</div>
   `;
 }
 
@@ -566,6 +641,28 @@ function loadStatusGenehmigungLayer() {
         style: statusGenehmigungStyle,
         onEachFeature: (feature, layer) => {
           layer.bindPopup(statusGenehmigungPopup(feature.properties));
+          layer.bindTooltip(statusGenehmigungTooltip(feature.properties), {
+            sticky: true,
+            direction: 'top',
+            className: 'status-genehmigung-tooltip',
+            opacity: 0.96,
+          });
+          layer.on({
+            click: e => {
+              layer.openPopup(e.latlng);
+            },
+            mouseover: () => {
+              layer.setStyle(statusGenehmigungHoverStyle(feature));
+              layer.bringToFront();
+            },
+            mouseout: () => {
+              statusGenehmigungLayer?.resetStyle(layer);
+            },
+            contextmenu: e => {
+              L.DomEvent.preventDefault(e.originalEvent);
+              layer.openPopup(e.latlng);
+            },
+          });
         },
       });
       return statusGenehmigungLayer;
@@ -589,14 +686,37 @@ if (statusGenehmigungToggle) {
       map.removeLayer(statusGenehmigungLayer);
     }
   });
+
+  if (statusGenehmigungToggle.checked) {
+    loadStatusGenehmigungLayer().then(layer => layer.addTo(map).bringToFront());
+  }
+}
+
+let defaultDeferredLayersStarted = false;
+
+function scheduleDeferredLayerLoad(callback) {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(callback, { timeout: 2500 });
+  } else {
+    window.setTimeout(callback, 600);
+  }
+}
+
+function loadDefaultDeferredLayers() {
+  if (defaultDeferredLayersStarted) return;
+  defaultDeferredLayersStarted = true;
+  scheduleDeferredLayerLoad(() => {
+    syncCatastroVisibility();
+  });
 }
 
 // ===== CATASTRO WFS VECTOR =====
 let catastroLayer = null;
 let catastroPromise = null;
 let catastroLabelData = [];
-const catastroRenderer = L.canvas({ padding: 0.5 });
+const catastroRenderer = L.canvas({ padding: 0.5, pane: 'catastroPane' });
 const catastroLabelLayer = L.layerGroup();
+const CATASTRO_LOAD_MIN_ZOOM = 15;
 const CATASTRO_LABEL_MIN_ZOOM = 16;
 
 function getFeatureLabelLatLng(feature) {
@@ -640,6 +760,21 @@ function updateCatastroLabels() {
   });
 }
 
+function catastroPopup(props) {
+  const p = props || {};
+  return `
+    <div class="popup-title">ALKIS Flurstueck</div>
+    <div class="popup-row"><span>Flurstueck:</span> ${escapeHtml(p.flurstueck || 'â€”')}</div>
+    <div class="popup-row"><span>Kennzeichen:</span> ${escapeHtml(p.flstkennz || 'â€”')}</div>
+    <div class="popup-row"><span>Gemarkung:</span> ${escapeHtml(p.gemarkung || 'â€”')}</div>
+    <div class="popup-row"><span>Flur:</span> ${escapeHtml(p.flur || 'â€”')}</div>
+    <div class="popup-row"><span>Gemeinde:</span> ${escapeHtml(p.gemeinde || 'â€”')}</div>
+    <div class="popup-row"><span>Kreis:</span> ${escapeHtml(p.kreis || 'â€”')}</div>
+    <div class="popup-row"><span>Aktualitaet:</span> ${escapeHtml(p.aktualit || 'â€”')}</div>
+    <div class="popup-row"><span>OID:</span> ${escapeHtml(p.oid || 'â€”')}</div>
+  `;
+}
+
 function loadCatastroWfsLayer() {
   if (catastroPromise) return catastroPromise;
 
@@ -657,7 +792,7 @@ function loadCatastroWfsLayer() {
         .filter(item => item.latlng && item.label);
 
       catastroLayer = L.geoJSON(data, {
-        attribution: '© GeoBasis-DE/LVermGeo SH/CC BY 4.0',
+        attribution: 'Â© GeoBasis-DE/LVermGeo SH/CC BY 4.0',
         renderer: catastroRenderer,
         style: () => ({
           color: '#00c8ff',
@@ -667,14 +802,11 @@ function loadCatastroWfsLayer() {
           fillOpacity: 0,
         }),
         onEachFeature: (feature, layer) => {
-          const p = feature.properties || {};
-          const parcelNumber = p.flurstueck || p.flstkennz || '';
-          layer.bindPopup(
-            `<div class="popup-title">Flurstück</div>
-             <div class="popup-row"><span>Gemarkung:</span> ${p.gemarkung || '—'}</div>
-             <div class="popup-row"><span>Flur:</span> ${p.flur || '—'}</div>
-             <div class="popup-row"><span>Nr.:</span> ${p.flurstueck || p.flstkennz || '—'}</div>`
-          );
+          layer.bindPopup(catastroPopup(feature.properties));
+          layer.on('contextmenu', e => {
+            L.DomEvent.preventDefault(e.originalEvent);
+            layer.openPopup(e.latlng);
+          });
         },
       });
       return catastroLayer;
@@ -689,24 +821,47 @@ function loadCatastroWfsLayer() {
   return catastroPromise;
 }
 
+function hideCatastroLayer() {
+  if (catastroLayer && map.hasLayer(catastroLayer)) map.removeLayer(catastroLayer);
+  if (map.hasLayer(catastroLabelLayer)) map.removeLayer(catastroLabelLayer);
+  catastroLabelLayer.clearLayers();
+}
+
+function syncCatastroVisibility() {
+  if (!catastroToggle?.checked || map.getZoom() < CATASTRO_LOAD_MIN_ZOOM) {
+    hideCatastroLayer();
+    return;
+  }
+
+  loadCatastroWfsLayer().then(layer => {
+    if (!catastroToggle?.checked || map.getZoom() < CATASTRO_LOAD_MIN_ZOOM) {
+      hideCatastroLayer();
+      return;
+    }
+    if (!map.hasLayer(layer)) layer.addTo(map);
+    if (!map.hasLayer(catastroLabelLayer)) catastroLabelLayer.addTo(map);
+    updateCatastroLabels();
+    if (statusGenehmigungLayer && map.hasLayer(statusGenehmigungLayer)) statusGenehmigungLayer.bringToFront();
+  });
+}
+
 const catastroToggle = document.getElementById('chk-catastro');
 if (catastroToggle) {
   catastroToggle.addEventListener('change', e => {
     if (e.target.checked) {
-      loadCatastroWfsLayer().then(layer => {
-        layer.addTo(map).bringToFront();
-        catastroLabelLayer.addTo(map);
-        updateCatastroLabels();
-      });
-    } else if (catastroLayer) {
-      map.removeLayer(catastroLayer);
-      map.removeLayer(catastroLabelLayer);
-      catastroLabelLayer.clearLayers();
+      syncCatastroVisibility();
+    } else {
+      hideCatastroLayer();
     }
   });
+
+  // Autoload is deferred until the base project layers are visible.
 }
 
-map.on('zoomend moveend', updateCatastroLabels);
+map.on('zoomend moveend', () => {
+  syncCatastroVisibility();
+  updateCatastroLabels();
+});
 
 // ===== WMS CHECKBOXES =====
 Object.keys(WMS_LAYERS).forEach(id => {
@@ -738,5 +893,5 @@ window.toggleSidebar = function() {
   const btnToggle = document.getElementById('btn-menu-toggle');
   const isOpen = sidebar.classList.toggle('open');
   if (backdrop)  backdrop.classList.toggle('visible', isOpen);
-  if (btnToggle) btnToggle.textContent = isOpen ? '✕' : '☰';
+  if (btnToggle) btnToggle.textContent = isOpen ? 'âœ•' : 'â˜°';
 };
