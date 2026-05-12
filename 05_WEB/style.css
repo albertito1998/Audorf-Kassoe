@@ -302,6 +302,25 @@ body {
 .popup-row { font-size: 12px; margin: 2px 0; }
 .popup-row span { color: #aaa; }
 
+/* ===== CATASTRO LABELS ===== */
+.catastro-parcel-label {
+  background: rgba(8, 18, 30, 0.72);
+  border: 1px solid rgba(0, 200, 255, 0.72);
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.45);
+  color: #e9fbff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.15;
+  padding: 1px 3px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.catastro-parcel-label::before {
+  display: none;
+}
+
 /* ===== SCALE / COORDS ===== */
 .leaflet-control-scale-line {
   background: rgba(22, 33, 62, 0.85);

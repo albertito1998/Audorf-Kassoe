@@ -212,10 +212,6 @@ map.on('click', e => {
 const WMS_LAYERS = {};
 
 const BFN  = 'https://geodienste.bfn.de/ogc/wms/schutzgebiet';
-const GDISH = 'https://service.gdi-sh.de/WMS_SH_ALKIS_OpenGBD';
-const ALKIS_WFS = 'https://service.gdi-sh.de/WFS_SH_ALKIS_vereinf_OpenGBD';
-
-proj4.defs('EPSG:25832', '+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs');
 
 function createWmsLayer(url, options) {
   const layer = L.tileLayer.wms(url, {
@@ -234,156 +230,6 @@ function createWmsLayer(url, options) {
 
   return layer;
 }
-
-function createCatastroVectorLayer() {
-  const layer = L.geoJSON(null, {
-    style: () => ({
-      color: '#7fd0ff',
-      weight: 1,
-      opacity: 0.9,
-      fillOpacity: 0,
-    }),
-    onEachFeature: (feature, leafletLayer) => {
-      const p = feature.properties || {};
-      leafletLayer.bindPopup(
-        `<div class="popup-title">Katasterbezirk</div>
-         <div class="popup-row"><span>Gemarkung:</span> ${p.gemarkung || '—'}</div>
-         <div class="popup-row"><span>Flur:</span> ${p.flur || '—'}</div>`
-      );
-    },
-  });
-
-  layer._loading = false;
-  layer._pendingRefresh = false;
-  layer._lastKey = null;
-
-  layer.refreshData = async function refreshData() {
-    if (!map.hasLayer(layer) || map.getZoom() < 14) {
-      layer.clearLayers();
-      return;
-    }
-
-    if (layer._loading) {
-      layer._pendingRefresh = true;
-      return;
-    }
-
-    const bounds = map.getBounds().pad(0.2);
-    const sw25832 = proj4('EPSG:4326', 'EPSG:25832', [bounds.getWest(), bounds.getSouth()]);
-    const ne25832 = proj4('EPSG:4326', 'EPSG:25832', [bounds.getEast(), bounds.getNorth()]);
-    const bboxKey = [sw25832[0], sw25832[1], ne25832[0], ne25832[1]].map(v => v.toFixed(0)).join(':');
-
-    if (bboxKey === layer._lastKey) return;
-
-    layer._loading = true;
-    layer._lastKey = bboxKey;
-
-    try {
-      const params = new URLSearchParams({
-        service: 'wfs',
-        version: '2.0.0',
-        request: 'GetFeature',
-        storedquery_id: 'http://repository.gdi-de.org/query/adv/produkt/alkis-vereinfacht/2.0/ave-by-bbox',
-        CRS: 'urn:ogc:def:crs:EPSG::25832',
-        x1: sw25832[0].toString(),
-        y1: sw25832[1].toString(),
-        x2: ne25832[0].toString(),
-        y2: ne25832[1].toString(),
-      });
-
-      const response = await fetch(`${ALKIS_WFS}?${params.toString()}`);
-      const xmlText = await response.text();
-      const geojson = parseKatasterbezirkGml(xmlText);
-      layer.clearLayers();
-      layer.addData(geojson);
-    } catch (err) {
-      console.error('Error cargando catastro vectorial:', err);
-    } finally {
-      layer._loading = false;
-      if (layer._pendingRefresh) {
-        layer._pendingRefresh = false;
-        layer._lastKey = null;
-        layer.refreshData();
-      }
-    }
-  };
-
-  return layer;
-}
-
-function parseKatasterbezirkGml(xmlText) {
-  const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
-  const features = [];
-  const katasterNodes = Array.from(xml.getElementsByTagNameNS('*', 'KatasterBezirk'));
-
-  katasterNodes.forEach(node => {
-    const polygons = [];
-    const polygonNodes = Array.from(node.getElementsByTagNameNS('*', 'Polygon'));
-
-    polygonNodes.forEach(polyNode => {
-      const exterior = polyNode.getElementsByTagNameNS('*', 'exterior')[0];
-      if (!exterior) return;
-
-      const rings = [];
-      const exteriorPos = exterior.getElementsByTagNameNS('*', 'posList')[0];
-      const outerRing = posListToLatLngRing(exteriorPos?.textContent || '');
-      if (!outerRing.length) return;
-      rings.push(outerRing);
-
-      const interiorNodes = Array.from(polyNode.getElementsByTagNameNS('*', 'interior'));
-      interiorNodes.forEach(interior => {
-        const pos = interior.getElementsByTagNameNS('*', 'posList')[0];
-        const ring = posListToLatLngRing(pos?.textContent || '');
-        if (ring.length) rings.push(ring);
-      });
-
-      polygons.push(rings);
-    });
-
-    if (!polygons.length) return;
-
-    const properties = {
-      gemarkung: readXmlValue(node, 'gemarkung'),
-      flur: readXmlValue(node, 'flur'),
-      kreis: readXmlValue(node, 'kreis'),
-      gemeinde: readXmlValue(node, 'gemeinde'),
-    };
-
-    features.push({
-      type: 'Feature',
-      properties,
-      geometry: {
-        type: polygons.length === 1 ? 'Polygon' : 'MultiPolygon',
-        coordinates: polygons.length === 1 ? polygons[0] : polygons,
-      },
-    });
-  });
-
-  return { type: 'FeatureCollection', features };
-}
-
-function posListToLatLngRing(posListText) {
-  if (!posListText) return [];
-  const values = posListText.trim().split(/\s+/).map(Number);
-  const ring = [];
-
-  for (let i = 0; i < values.length - 1; i += 2) {
-    const x = values[i];
-    const y = values[i + 1];
-    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
-    const [lng, lat] = proj4('EPSG:25832', 'EPSG:4326', [x, y]);
-    ring.push([lng, lat]);
-  }
-
-  return ring;
-}
-
-function readXmlValue(node, localName) {
-  const el = node.getElementsByTagNameNS('*', localName)[0];
-  return el ? el.textContent.trim() : '';
-}
-
-const catastroVectorLayer = createCatastroVectorLayer();
 
 // Naturschutz (BfN nacional — funciona en toda Alemania)
 WMS_LAYERS['chk-naturschutz'] = createWmsLayer(BFN, {
@@ -598,25 +444,122 @@ Promise.all([...geoPromises, towerPromise]).then(() => {
   document.getElementById('loading-overlay').classList.add('hidden');
 });
 
-// ===== CATASTRO VECTOR =====
+// ===== CATASTRO WFS VECTOR =====
+let catastroLayer = null;
+let catastroPromise = null;
+let catastroLabelData = [];
+const catastroRenderer = L.canvas({ padding: 0.5 });
+const catastroLabelLayer = L.layerGroup();
+const CATASTRO_LABEL_MIN_ZOOM = 16;
+
+function getFeatureLabelLatLng(feature) {
+  const bounds = { minLng: Infinity, minLat: Infinity, maxLng: -Infinity, maxLat: -Infinity };
+
+  function scan(coords) {
+    if (!coords) return;
+    if (typeof coords[0] === 'number') {
+      const [lng, lat] = coords;
+      if (Number.isFinite(lng) && Number.isFinite(lat)) {
+        bounds.minLng = Math.min(bounds.minLng, lng);
+        bounds.minLat = Math.min(bounds.minLat, lat);
+        bounds.maxLng = Math.max(bounds.maxLng, lng);
+        bounds.maxLat = Math.max(bounds.maxLat, lat);
+      }
+      return;
+    }
+    coords.forEach(scan);
+  }
+
+  scan(feature.geometry?.coordinates);
+  if (!Number.isFinite(bounds.minLng)) return null;
+  return L.latLng((bounds.minLat + bounds.maxLat) / 2, (bounds.minLng + bounds.maxLng) / 2);
+}
+
+function updateCatastroLabels() {
+  catastroLabelLayer.clearLayers();
+  if (!catastroLayer || !map.hasLayer(catastroLayer) || map.getZoom() < CATASTRO_LABEL_MIN_ZOOM) return;
+
+  const viewBounds = map.getBounds().pad(0.08);
+  const visibleLabels = catastroLabelData.filter(item => viewBounds.contains(item.latlng));
+  visibleLabels.forEach(item => {
+    L.marker(item.latlng, {
+      interactive: false,
+      icon: L.divIcon({
+        className: 'catastro-parcel-label',
+        html: item.label,
+        iconAnchor: [10, 6],
+      }),
+    }).addTo(catastroLabelLayer);
+  });
+}
+
+function loadCatastroWfsLayer() {
+  if (catastroPromise) return catastroPromise;
+
+  catastroPromise = fetch('data/catastro_flurstueck.geojson')
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
+    .then(data => {
+      catastroLabelData = data.features
+        .map(feature => ({
+          latlng: getFeatureLabelLatLng(feature),
+          label: feature.properties?.flurstueck || feature.properties?.flstkennz || '',
+        }))
+        .filter(item => item.latlng && item.label);
+
+      catastroLayer = L.geoJSON(data, {
+        attribution: '© GeoBasis-DE/LVermGeo SH/CC BY 4.0',
+        renderer: catastroRenderer,
+        style: () => ({
+          color: '#00c8ff',
+          weight: 1.1,
+          opacity: 0.95,
+          fill: false,
+          fillOpacity: 0,
+        }),
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const parcelNumber = p.flurstueck || p.flstkennz || '';
+          layer.bindPopup(
+            `<div class="popup-title">Flurstück</div>
+             <div class="popup-row"><span>Gemarkung:</span> ${p.gemarkung || '—'}</div>
+             <div class="popup-row"><span>Flur:</span> ${p.flur || '—'}</div>
+             <div class="popup-row"><span>Nr.:</span> ${p.flurstueck || p.flstkennz || '—'}</div>`
+          );
+        },
+      });
+      return catastroLayer;
+    })
+    .catch(err => {
+      catastroPromise = null;
+      console.error('Error cargando catastro WFS local:', err);
+      window.alert('No se pudo cargar data/catastro_flurstueck.geojson. Genera primero la capa WFS local.');
+      throw err;
+    });
+
+  return catastroPromise;
+}
+
 const catastroToggle = document.getElementById('chk-catastro');
 if (catastroToggle) {
   catastroToggle.addEventListener('change', e => {
     if (e.target.checked) {
-      catastroVectorLayer.addTo(map);
-      catastroVectorLayer._lastKey = null;
-      catastroVectorLayer.refreshData();
-    } else {
-      map.removeLayer(catastroVectorLayer);
-      catastroVectorLayer.clearLayers();
-      catastroVectorLayer._lastKey = null;
+      loadCatastroWfsLayer().then(layer => {
+        layer.addTo(map).bringToFront();
+        catastroLabelLayer.addTo(map);
+        updateCatastroLabels();
+      });
+    } else if (catastroLayer) {
+      map.removeLayer(catastroLayer);
+      map.removeLayer(catastroLabelLayer);
+      catastroLabelLayer.clearLayers();
     }
   });
 }
 
-map.on('moveend zoomend', () => {
-  if (catastroToggle?.checked) catastroVectorLayer.refreshData();
-});
+map.on('zoomend moveend', updateCatastroLabels);
 
 // ===== WMS CHECKBOXES =====
 Object.keys(WMS_LAYERS).forEach(id => {
