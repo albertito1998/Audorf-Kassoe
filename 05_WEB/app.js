@@ -296,6 +296,68 @@ const MAST_COLOR = {
   'Tragmast':    '#3a7bd5',
 };
 
+const TOWER_CHAIN_TYPES = {};
+
+function setTowerChains(mast, chains) {
+  TOWER_CHAIN_TYPES[String(mast).toUpperCase()] = chains;
+}
+
+function setTowerChainRange(start, end, chainType, value) {
+  for (let mast = start; mast <= end; mast += 1) {
+    setTowerChains(mast, { [chainType]: value });
+  }
+}
+
+setTowerChains(79, { 'DA-Kette': '12.00', 'Hilfskette': '2.00' });
+setTowerChainRange(80, 90, 'V-Kette', '6.00');
+setTowerChains(91, { 'DA-Kette': '12.00' });
+setTowerChainRange(92, 96, 'V-Kette', '6.00');
+setTowerChainRange(101, 102, 'V-Kette', '6.00');
+setTowerChains(103, { 'TA-Kette': '6.00' });
+setTowerChainRange(104, 106, 'V-Kette', '6.00');
+setTowerChains(107, { 'TA-Kette': '6.00' });
+setTowerChains(108, { 'DA-Kette': '12.00' });
+setTowerChains(109, { 'V-Kette': '6.00' });
+setTowerChains(110, { 'TA-Kette': '6.00' });
+setTowerChainRange(111, 113, 'V-Kette', '6.00');
+setTowerChains(114, { 'DA-Kette': '12.00' });
+setTowerChainRange(115, 118, 'V-Kette', '6.00');
+setTowerChains(119, { 'DA-Kette': '12.00', 'Hilfskette': '2.00' });
+setTowerChains(120, { 'V-Kette': '6.00' });
+setTowerChains(121, { 'TA-Kette': '6.00' });
+setTowerChains(122, { 'DA-Kette': '12.00' });
+setTowerChainRange(123, 127, 'V-Kette', '6.00');
+setTowerChains(128, { 'DA-Kette': '12.00', 'Hilfskette': '2.00' });
+setTowerChainRange(129, 140, 'V-Kette', '6.00');
+setTowerChains(141, { 'DA-Kette': '12.00', 'Hilfskette': '2.00' });
+setTowerChainRange(142, 145, 'V-Kette', '6.00');
+setTowerChains(146, { 'DA-Kette': '12.00', 'Hilfskette': '2.00' });
+setTowerChainRange(147, 159, 'V-Kette', '6.00');
+setTowerChains(160, { 'DA-Kette': '12.00' });
+setTowerChains(165, { 'DA-Kette': '12.00', 'Hilfskette': '2.00' });
+setTowerChainRange(166, 188, 'V-Kette', '6.00');
+setTowerChains(189, { 'DA-Kette': '12.00' });
+setTowerChains(190, { 'TA-Kette': '6.00' });
+setTowerChainRange(191, 202, 'V-Kette', '6.00');
+setTowerChains('203N', { 'DA-Kette': '12.00' });
+setTowerChains('204N', { 'DA-Kette': '12.00' });
+setTowerChains(205, { 'V-Kette': '6.00' });
+setTowerChains(206, { 'DA-Kette': '12.00' });
+
+function getTowerChainTypes(apoyo) {
+  const key = (apoyo || '').replace(/^M0*/i, '').toUpperCase();
+  const numericKey = key.replace(/[A-Z]+$/i, '');
+  return TOWER_CHAIN_TYPES[key] || TOWER_CHAIN_TYPES[numericKey] || null;
+}
+
+function formatTowerChains(apoyo) {
+  const chains = getTowerChainTypes(apoyo);
+  if (!chains) return '&mdash;';
+  return Object.entries(chains)
+    .map(([type, value]) => `${type}: ${value}`)
+    .join('<br>');
+}
+
 function createTowerIcon(apoyo, mastTyp, zoom) {
   const label = apoyo.replace(/^M0*/, 'M');       // M097A → M97A
   const color = MAST_COLOR[mastTyp] || '#888';
@@ -347,10 +409,11 @@ function loadTowers() {
           const p     = feat.properties;
           const label = (p.apoyo || '').replace(/^M0*/, 'M');
           const color = MAST_COLOR[p.mast_typ] || '#888';
+          const chainHtml = formatTowerChains(p.apoyo);
           layer.bindPopup(
             `<div class="popup-title" style="color:${color}">${label}</div>
              <div class="popup-row"><span>Tipo:</span> ${p.mast_typ || '—'}</div>
-             <div class="popup-row"><span>Info:</span> ${p.descripcion || '—'}</div>`
+             <div class="popup-row"><span>Cadenas:</span> ${chainHtml}</div>`
           );
         },
       });
