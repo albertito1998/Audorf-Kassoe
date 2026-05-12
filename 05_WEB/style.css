@@ -52,6 +52,17 @@ body {
   font-size: 14px;
 }
 
+.deploy-status {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f1f5f9;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 #header-spacer { flex: 1; }
 
 .header-author {
@@ -495,6 +506,12 @@ body {
   #btn-menu-toggle { display: block; }
   #header .subtitle { display: none; }
   .header-author { display: none; }
+  .deploy-status {
+    position: static;
+    transform: none;
+    margin-left: auto;
+    font-size: 11px;
+  }
 
   #main { position: relative; overflow: hidden; }
 

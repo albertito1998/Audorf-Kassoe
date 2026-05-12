@@ -507,6 +507,90 @@ Promise.all([...geoPromises, towerPromise]).then(() => {
   document.getElementById('loading-overlay').classList.add('hidden');
 });
 
+// ===== STATUS GENEHMIGUNG =====
+let statusGenehmigungLayer = null;
+let statusGenehmigungPromise = null;
+const statusGenehmigungRenderer = L.canvas({ padding: 0.5 });
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function statusGenehmigungStyle(feature) {
+  const status = feature.properties?.status_genehmigung;
+  if (status === 'genehmigt') {
+    return { color: '#0f7a38', weight: 1.6, opacity: 0.95, fillColor: '#22aa55', fillOpacity: 0.42 };
+  }
+  if (status === 'nicht_informiert') {
+    return { color: '#b71c1c', weight: 1.6, opacity: 0.95, fillColor: '#e53935', fillOpacity: 0.42 };
+  }
+  return { color: '#b8860b', weight: 1.4, opacity: 0.9, fillColor: '#f6c343', fillOpacity: 0.32 };
+}
+
+function statusGenehmigungPopup(props) {
+  const p = props || {};
+  return `
+    <div class="popup-title">STATUS GENEHMIGUNG</div>
+    <div class="popup-row"><span>Status:</span> ${escapeHtml(p.status_label || '—')}</div>
+    <div class="popup-row"><span>Gemarkung:</span> ${escapeHtml(p.gemarkung || '—')}</div>
+    <div class="popup-row"><span>Flur:</span> ${escapeHtml(p.flur || '—')}</div>
+    <div class="popup-row"><span>Flurstück:</span> ${escapeHtml(p.flurstueck || p.flstkennz || '—')}</div>
+    <div class="popup-row"><span>Gemeinde:</span> ${escapeHtml(p.gemeinde || '—')}</div>
+    <div class="popup-row"><span>Kreis:</span> ${escapeHtml(p.kreis || '—')}</div>
+    <div class="popup-row"><span>ALKIS aktualit.:</span> ${escapeHtml(p.aktualit || '—')}</div>
+    <div class="popup-row"><span>Baulos:</span> ${escapeHtml(p.baulos || '—')}</div>
+    <div class="popup-row"><span>Masten:</span> ${escapeHtml(p.masten || '—')}</div>
+    <div class="popup-row"><span>Eigentuemer:</span> ${escapeHtml(p.eigentuemer || '—')}</div>
+    <div class="popup-row"><span>Info fechas:</span> ${escapeHtml(p.info_daten || '—')}</div>
+    <div class="popup-row"><span>Bemerkung:</span> ${escapeHtml(p.bemerkung || '—')}</div>
+  `;
+}
+
+function loadStatusGenehmigungLayer() {
+  if (statusGenehmigungPromise) return statusGenehmigungPromise;
+
+  statusGenehmigungPromise = fetch('data/status_genehmigung.geojson')
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
+    .then(data => {
+      statusGenehmigungLayer = L.geoJSON(data, {
+        attribution: 'Status Genehmigung: 04_PERMITS / ALKIS WFS',
+        renderer: statusGenehmigungRenderer,
+        style: statusGenehmigungStyle,
+        onEachFeature: (feature, layer) => {
+          layer.bindPopup(statusGenehmigungPopup(feature.properties));
+        },
+      });
+      return statusGenehmigungLayer;
+    })
+    .catch(err => {
+      statusGenehmigungPromise = null;
+      console.error('Error cargando STATUS GENEHMIGUNG:', err);
+      window.alert('No se pudo cargar data/status_genehmigung.geojson.');
+      throw err;
+    });
+
+  return statusGenehmigungPromise;
+}
+
+const statusGenehmigungToggle = document.getElementById('chk-status-genehmigung');
+if (statusGenehmigungToggle) {
+  statusGenehmigungToggle.addEventListener('change', e => {
+    if (e.target.checked) {
+      loadStatusGenehmigungLayer().then(layer => layer.addTo(map).bringToFront());
+    } else if (statusGenehmigungLayer) {
+      map.removeLayer(statusGenehmigungLayer);
+    }
+  });
+}
+
 // ===== CATASTRO WFS VECTOR =====
 let catastroLayer = null;
 let catastroPromise = null;

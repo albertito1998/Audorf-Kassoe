@@ -5,6 +5,9 @@
 01_QGIS/*.qgd
 01_QGIS/~*
 
+# Permisos originales
+04_PERMITS/*.xlsx
+
 # Sistema
 Thumbs.db
 .DS_Store
