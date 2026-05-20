@@ -361,7 +361,7 @@ const MAST_COLOR = {
 
 const TOWER_CHAIN_TYPES = {};
 const CHAIN_PLAN_BASE_URL = window.location.hostname.endsWith('github.io')
-  ? `${window.location.origin}/Audorf-Kassoe/05_WEB/assets/ketten/`
+  ? `${window.location.origin}/Audorf-Kassoe/assets/ketten/`
   : 'assets/ketten/';
 const CHAIN_PLAN_LINKS = {
   'DA-Kette': `${CHAIN_PLAN_BASE_URL}da-kette.pdf`,
