@@ -413,6 +413,40 @@ function formatTowerChains(apoyo) {
     .join('<br>');
 }
 
+function googleMapsDirectionsUrl(latlng) {
+  if (!latlng) return '#';
+  const lat = Number(latlng.lat).toFixed(6);
+  const lng = Number(latlng.lng).toFixed(6);
+  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+}
+
+function popupNavigationLink(latlng) {
+  if (!latlng) return '';
+  const lat = Number(latlng.lat).toFixed(6);
+  const lng = Number(latlng.lng).toFixed(6);
+  return `
+    <div class="popup-actions">
+      <a class="popup-nav-link" href="${googleMapsDirectionsUrl(latlng)}" target="_blank" rel="noopener noreferrer">
+        Abrir ruta en Google Maps
+      </a>
+      <div class="popup-coords">Destino: ${lat}, ${lng}</div>
+    </div>
+  `;
+}
+
+function towerPopupHtml(props, latlng) {
+  const p = props || {};
+  const label = (p.apoyo || '').replace(/^M0*/, 'M');
+  const color = MAST_COLOR[p.mast_typ] || '#888';
+  const chainHtml = formatTowerChains(p.apoyo);
+  return `
+    <div class="popup-title" style="color:${color}">${escapeHtml(label)}</div>
+    <div class="popup-row"><span>Tipo:</span> ${escapeHtml(p.mast_typ || '-')}</div>
+    <div class="popup-row"><span>Cadenas:</span> ${chainHtml}</div>
+    ${popupNavigationLink(latlng)}
+  `;
+}
+
 function createTowerIcon(apoyo, mastTyp, zoom) {
   const label = apoyo.replace(/^M0*/, 'M');       // M097A â†’ M97A
   const color = MAST_COLOR[mastTyp] || '#888';
@@ -461,15 +495,10 @@ function loadTowers() {
           return m;
         },
         onEachFeature: (feat, layer) => {
-          const p     = feat.properties;
-          const label = (p.apoyo || '').replace(/^M0*/, 'M');
-          const color = MAST_COLOR[p.mast_typ] || '#888';
-          const chainHtml = formatTowerChains(p.apoyo);
-          layer.bindPopup(
-            `<div class="popup-title" style="color:${color}">${label}</div>
-             <div class="popup-row"><span>Tipo:</span> ${p.mast_typ || 'â€”'}</div>
-             <div class="popup-row"><span>Cadenas:</span> ${chainHtml}</div>`
-          );
+          layer.on('click', e => {
+            layer.bindPopup(towerPopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
         },
       });
 
@@ -515,13 +544,15 @@ const geoPromises = DATA_FILES.map(def =>
         L.circleMarker(latlng, { radius: 5, color: '#e63030', fillColor: '#ff6060', weight: 1, fillOpacity: 0.9 }),
       onEachFeature: (feat, layer) => {
         const lname = def.url.split('/').pop().replace('.geojson', '');
-        layer.on('click', () =>
+        layer.on('click', e => {
           layer.bindPopup(
             `<div class="popup-title">${lname.toUpperCase().replace(/_/g,' ')}</div>
              ${Object.entries(feat.properties || {}).map(([k,v]) =>
-               `<div class="popup-row"><span>${k}:</span> ${v ?? 'â€”'}</div>`).join('')}`
-          ).openPopup()
-        );
+               `<div class="popup-row"><span>${escapeHtml(k)}:</span> ${escapeHtml(v ?? '-')}</div>`).join('')}
+             ${popupNavigationLink(e.latlng)}`
+          );
+          layer.openPopup(e.latlng);
+        });
         if (layer.setStyle) {
           layer.on('mouseover', function() { this.setStyle({ weight: 4, opacity: 1 }); });
           layer.on('mouseout',  function() { gl.resetStyle(this); });
@@ -603,7 +634,7 @@ function statusGenehmigungTooltip(props) {
   `;
 }
 
-function statusGenehmigungPopup(props) {
+function statusGenehmigungPopup(props, latlng) {
   const p = props || {};
   return `
     <div class="popup-title">STATUS GENEHMIGUNG</div>
@@ -623,6 +654,7 @@ function statusGenehmigungPopup(props) {
     <div class="popup-row"><span>Telefono:</span> ${escapeHtml(p.telefon || 'â€”')}</div>
     <div class="popup-row"><span>Info fechas:</span> ${escapeHtml(p.info_daten || 'â€”')}</div>
     <div class="popup-row"><span>Bemerkung:</span> ${escapeHtml(p.bemerkung || 'â€”')}</div>
+    ${popupNavigationLink(latlng)}
   `;
 }
 
@@ -649,6 +681,7 @@ function loadStatusGenehmigungLayer() {
           });
           layer.on({
             click: e => {
+              layer.bindPopup(statusGenehmigungPopup(feature.properties, e.latlng));
               layer.openPopup(e.latlng);
             },
             mouseover: () => {
@@ -660,6 +693,7 @@ function loadStatusGenehmigungLayer() {
             },
             contextmenu: e => {
               L.DomEvent.preventDefault(e.originalEvent);
+              layer.bindPopup(statusGenehmigungPopup(feature.properties, e.latlng));
               layer.openPopup(e.latlng);
             },
           });
@@ -760,7 +794,7 @@ function updateCatastroLabels() {
   });
 }
 
-function catastroPopup(props) {
+function catastroPopup(props, latlng) {
   const p = props || {};
   return `
     <div class="popup-title">ALKIS Flurstueck</div>
@@ -772,6 +806,7 @@ function catastroPopup(props) {
     <div class="popup-row"><span>Kreis:</span> ${escapeHtml(p.kreis || 'â€”')}</div>
     <div class="popup-row"><span>Aktualitaet:</span> ${escapeHtml(p.aktualit || 'â€”')}</div>
     <div class="popup-row"><span>OID:</span> ${escapeHtml(p.oid || 'â€”')}</div>
+    ${popupNavigationLink(latlng)}
   `;
 }
 
@@ -803,8 +838,13 @@ function loadCatastroWfsLayer() {
         }),
         onEachFeature: (feature, layer) => {
           layer.bindPopup(catastroPopup(feature.properties));
+          layer.on('click', e => {
+            layer.bindPopup(catastroPopup(feature.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
           layer.on('contextmenu', e => {
             L.DomEvent.preventDefault(e.originalEvent);
+            layer.bindPopup(catastroPopup(feature.properties, e.latlng));
             layer.openPopup(e.latlng);
           });
         },

@@ -320,6 +320,37 @@ body {
 .popup-row { font-size: 12px; margin: 2px 0; }
 .popup-row span { color: #aaa; }
 
+.popup-actions {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.popup-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 5px 9px;
+  background: #e63030;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.popup-nav-link:hover {
+  background: #ff4747;
+  color: #fff;
+}
+
+.popup-coords {
+  color: #9fb0c8;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
 /* ===== CATASTRO LABELS ===== */
 .catastro-parcel-label {
   background: rgba(8, 18, 30, 0.72);

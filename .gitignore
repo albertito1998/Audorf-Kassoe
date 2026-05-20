@@ -1,5 +1,8 @@
 # CAD pesado - no subir al repo
 02_CAD/export_autocad.dxf
+02_CAD/*.bak
+02_CAD/*.dwl
+02_CAD/*.dwl2
 
 # QGIS temporales
 01_QGIS/*.qgd
@@ -12,6 +15,9 @@
 05_WEB/Elecnor Deutsch_TP.png
 
 # Sistema
+__pycache__/
+*/__pycache__/
+05_WEB/tools/__pycache__*/
 Thumbs.db
 .DS_Store
 desktop.ini

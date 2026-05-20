@@ -4,8 +4,7 @@ param(
   [switch]$ConvertDxf,
   [switch]$SkipGit,
   [string]$CommitMessage = "Update WebGIS data",
-  [string]$DxfPath = "02_CAD/export_autocad.dxf",
-  [string]$DxfOutput = "05_WEB/data/export_autocad.geojson"
+  [string]$DxfPath = "02_CAD/export_autocad.dxf"
 )
 
 $ErrorActionPreference = "Stop"
@@ -49,25 +48,60 @@ if ($UpdateCatastro) {
 }
 
 if ($ConvertDxf) {
-  Write-Step "Converting DXF to GeoJSON"
-  Require-Command "ogr2ogr" "Install QGIS/GDAL and make sure ogr2ogr is available in PATH."
+  Write-Step "Converting DXF WBK layers to web GeoJSON"
 
-  $ResolvedDxf = Resolve-Path $DxfPath
-  $OutputPath = Join-Path $RepoRoot $DxfOutput
-  $OutputDir = Split-Path -Parent $OutputPath
-  New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
+  $Ogr2Ogr = "ogr2ogr"
+  if (-not (Get-Command $Ogr2Ogr -ErrorAction SilentlyContinue)) {
+    $QgisOgr2Ogr = @(
+      "C:\Program Files\QGIS 3.40.13\bin\ogr2ogr.exe",
+      "C:\Program Files\QGIS 3.34.15\bin\ogr2ogr.exe"
+    ) | Where-Object { Test-Path $_ } | Select-Object -First 1
 
-  if (Test-Path $OutputPath) {
-    Remove-Item -LiteralPath $OutputPath -Force
+    if (-not $QgisOgr2Ogr) {
+      throw "ogr2ogr not found. Install QGIS/GDAL or add ogr2ogr to PATH."
+    }
+    $Ogr2Ogr = $QgisOgr2Ogr
   }
 
-  & ogr2ogr `
-    -f "GeoJSON" `
-    -t_srs "EPSG:4326" `
-    $OutputPath `
-    $ResolvedDxf
+  $ResolvedDxf = Resolve-Path $DxfPath
 
-  Write-Host "DXF converted to $DxfOutput"
+  $LayerMap = [ordered]@{
+    "WBK_WEG_BEST"       = "05_WEB/data/wbk_weg_best.geojson"
+    "WBK_WEG_TEMP"       = "05_WEB/data/wbk_weg_temp.geojson"
+    "WBK_ARBEITSFLAECHE" = "05_WEB/data/wbk_arbeitsflaeche.geojson"
+    "WBK_GERUEST"        = "05_WEB/data/wbk_geruest.geojson"
+    "WBK_AUSHOLZUNG"     = "05_WEB/data/wbk_ausholzung.geojson"
+    "WBK_SCHUTZNETZ"     = "05_WEB/data/wbk_schutznetz.geojson"
+    "WBK_SPERRUNG"       = "05_WEB/data/wbk_sperrung.geojson"
+  }
+
+  foreach ($LayerName in $LayerMap.Keys) {
+    $OutputPath = Join-Path $RepoRoot $LayerMap[$LayerName]
+    $OutputDir = Split-Path -Parent $OutputPath
+    New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
+
+    $TmpPath = "$OutputPath.tmp"
+    if (Test-Path $TmpPath) {
+      Remove-Item -LiteralPath $TmpPath -Force
+    }
+
+    Write-Host "Converting $LayerName -> $($LayerMap[$LayerName])"
+    & $Ogr2Ogr `
+      -f "GeoJSON" `
+      -s_srs "EPSG:25832" `
+      -t_srs "EPSG:4326" `
+      -dim "XY" `
+      -where "Layer='$LayerName'" `
+      $TmpPath `
+      $ResolvedDxf `
+      "entities"
+
+    if (-not (Test-Path $TmpPath)) {
+      throw "DXF conversion did not create $TmpPath"
+    }
+
+    Move-Item -LiteralPath $TmpPath -Destination $OutputPath -Force
+  }
 }
 
 Write-Step "Updating header date"
