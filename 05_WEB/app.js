@@ -35,6 +35,14 @@ map.createPane('catastroPane');
 map.getPane('catastroPane').style.zIndex = 430;
 map.createPane('statusGenehmigungPane');
 map.getPane('statusGenehmigungPane').style.zIndex = 470;
+map.createPane('rescuePane');
+map.getPane('rescuePane').style.zIndex = 650;
+map.createPane('warehousePane');
+map.getPane('warehousePane').style.zIndex = 640;
+map.createPane('spanPane');
+map.getPane('spanPane').style.zIndex = 520;
+map.createPane('vogelschutzPane');
+map.getPane('vogelschutzPane').style.zIndex = 630;
 
 let userLocationMarker = null;
 let userAccuracyCircle = null;
@@ -352,6 +360,15 @@ const MAST_COLOR = {
 };
 
 const TOWER_CHAIN_TYPES = {};
+const CHAIN_PLAN_BASE_URL = window.location.hostname.endsWith('github.io')
+  ? `${window.location.origin}/Audorf-Kassoe/05_WEB/assets/ketten/`
+  : 'assets/ketten/';
+const CHAIN_PLAN_LINKS = {
+  'DA-Kette': `${CHAIN_PLAN_BASE_URL}da-kette.pdf`,
+  'V-Kette': `${CHAIN_PLAN_BASE_URL}v-kette.pdf`,
+  'TA-Kette': `${CHAIN_PLAN_BASE_URL}ta-kette.pdf`,
+  'Hilfskette': `${CHAIN_PLAN_BASE_URL}eh-kette.pdf`,
+};
 
 function setTowerChains(mast, chains) {
   TOWER_CHAIN_TYPES[String(mast).toUpperCase()] = chains;
@@ -413,6 +430,21 @@ function formatTowerChains(apoyo) {
     .join('<br>');
 }
 
+function towerChainPlanButtons(apoyo) {
+  const chains = getTowerChainTypes(apoyo);
+  if (!chains) return '';
+  const buttons = Object.keys(chains)
+    .map(type => {
+      const href = CHAIN_PLAN_LINKS[type];
+      if (!href) return '';
+      return `<a class="popup-plan-link" href="${href}" target="_blank" rel="noopener noreferrer">Plano ${escapeHtml(type)}</a>`;
+    })
+    .filter(Boolean)
+    .join('');
+  if (!buttons) return '';
+  return `<div class="popup-plan-actions">${buttons}</div>`;
+}
+
 function googleMapsDirectionsUrl(latlng) {
   if (!latlng) return '#';
   const lat = Number(latlng.lat).toFixed(6);
@@ -443,6 +475,97 @@ function towerPopupHtml(props, latlng) {
     <div class="popup-title" style="color:${color}">${escapeHtml(label)}</div>
     <div class="popup-row"><span>Tipo:</span> ${escapeHtml(p.mast_typ || '-')}</div>
     <div class="popup-row"><span>Cadenas:</span> ${chainHtml}</div>
+    ${towerChainPlanButtons(p.apoyo)}
+    ${popupNavigationLink(latlng)}
+  `;
+}
+
+function createRescueIcon(label) {
+  const suffix = String(label || 'R').replace(/^.*-RP/i, 'R');
+  return L.divIcon({
+    className: '',
+    html: `<div class="rescue-marker"><span>${escapeHtml(suffix)}</span></div>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -15],
+  });
+}
+
+function rescuePopupHtml(props, latlng) {
+  const p = props || {};
+  return `
+    <div class="popup-title">RETTUNGSPUNKT</div>
+    <div class="popup-row"><span>Rettungspunkt:</span> ${escapeHtml(p.rettungspunkt || '-')}</div>
+    <div class="popup-row"><span>Mast Nr.:</span> ${escapeHtml(p.mast_nr || '-')}</div>
+    <div class="popup-row"><span>Adresse:</span> ${escapeHtml(p.adresse || '-')}</div>
+    <div class="popup-row"><span>Koordinaten:</span> ${escapeHtml(p.koordinaten || '-')}</div>
+    ${popupNavigationLink(latlng)}
+  `;
+}
+
+function createWarehouseIcon(label) {
+  const suffix = String(label || 'B').match(/\d+/)?.[0] || 'B';
+  return L.divIcon({
+    className: '',
+    html: `<div class="warehouse-marker"><span>${escapeHtml(suffix)}</span></div>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    popupAnchor: [0, -17],
+  });
+}
+
+function warehousePopupHtml(props, latlng) {
+  const p = props || {};
+  return `
+    <div class="popup-title">BAULAGER</div>
+    <div class="popup-row"><span>Name:</span> ${escapeHtml(p.name || '-')}</div>
+    <div class="popup-row"><span>Baulos:</span> ${escapeHtml(p.baulos || '-')}</div>
+    <div class="popup-row"><span>Adresse:</span> ${escapeHtml(p.adresse || '-')}</div>
+    <div class="popup-row"><span>PLZ / Stadt:</span> ${escapeHtml(p.plz || '-')} ${escapeHtml(p.stadt || '')}</div>
+    <div class="popup-row"><span>Land:</span> ${escapeHtml(p.land || '-')}</div>
+    <div class="popup-row"><span>Kontakt obra:</span> ${escapeHtml(p.kontakt || '-')}</div>
+    <div class="popup-row"><span>Telefon:</span> ${escapeHtml(p.telefon || '-')}</div>
+    <div class="popup-row"><span>Observaciones:</span> ${escapeHtml(p.observaciones || '-')}</div>
+    <div class="popup-row"><span>Horario recepción:</span> ${escapeHtml(p.materialannahme || '-')}</div>
+    <div class="popup-row"><span>GIS:</span> ${escapeHtml(p.type || '-')} · ${escapeHtml(p.project || '-')} · ${escapeHtml(p.owner || '-')} · ${escapeHtml(p.status || '-')}</div>
+    <div class="popup-row"><span>Geocoding:</span> ${escapeHtml(p.geocoding_quality || '-')}</div>
+    ${popupNavigationLink(latlng)}
+  `;
+}
+
+function spanPopupHtml(props, latlng) {
+  const p = props || {};
+  return `
+    <div class="popup-title">VANO / SPANNFELD</div>
+    <div class="popup-row"><span>Vano:</span> ${escapeHtml(p.vano || '-')}</div>
+    <div class="popup-row"><span>Mast inicio:</span> ${escapeHtml(p.mast_start || '-')}</div>
+    <div class="popup-row"><span>Mast final:</span> ${escapeHtml(p.mast_end || '-')}</div>
+    <div class="popup-row"><span>Distancia:</span> ${escapeHtml(p.distancia_m || '-')} m</div>
+    ${popupNavigationLink(latlng)}
+  `;
+}
+
+function createVogelschutzIcon() {
+  return L.divIcon({
+    className: '',
+    html: '<div class="vogel-marker"><span>VSM</span></div>',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -15],
+  });
+}
+
+function vogelschutzPopupHtml(props, latlng) {
+  const p = props || {};
+  return `
+    <div class="popup-title">VOGELSCHUTZMARKER</div>
+    <div class="popup-row"><span>Baulos:</span> ${escapeHtml(p.baulos || '-')}</div>
+    <div class="popup-row"><span>Leitung:</span> ${escapeHtml(p.leitungsname || '-')}</div>
+    <div class="popup-row"><span>Vano:</span> ${escapeHtml(p.vano || '-')}</div>
+    <div class="popup-row"><span>Longitud tabla:</span> ${escapeHtml(p.longitud_tabla_m || '-')} m</div>
+    <div class="popup-row"><span>Longitud calculada:</span> ${escapeHtml(p.longitud_calc_m || '-')} m</div>
+    <div class="popup-row"><span>Plano:</span> ${escapeHtml(p.plan || '-')}</div>
+    <div class="popup-row"><span>PDF pág.:</span> ${escapeHtml(p.pdf_page || '-')}</div>
     ${popupNavigationLink(latlng)}
   `;
 }
@@ -480,6 +603,10 @@ function loadGeoJSON(id, url, optsFn, onEachFn) {
 
 // ===== TORRE LAYER (special handling) =====
 let towerLayer = null;
+let rescueLayer = null;
+let warehouseLayer = null;
+let spanLayer = null;
+let vogelschutzLayer = null;
 
 function loadTowers() {
   return fetch('data/torres_masten.geojson')
@@ -513,6 +640,137 @@ function loadTowers() {
       });
 
       return towerLayer;
+    });
+}
+
+function loadRescuePoints() {
+  return fetch('data/rettungspunkte.geojson')
+    .then(r => r.json())
+    .then(data => {
+      rescueLayer = L.geoJSON(data, {
+        pane: 'rescuePane',
+        pointToLayer: (feat, latlng) => {
+          const marker = L.marker(latlng, {
+            icon: createRescueIcon(feat.properties?.rettungspunkt),
+            pane: 'rescuePane',
+          });
+          marker.bindTooltip(feat.properties?.rettungspunkt || 'Rettungspunkt', {
+            direction: 'top',
+            offset: [0, -12],
+            opacity: 0.96,
+          });
+          return marker;
+        },
+        onEachFeature: (feat, layer) => {
+          layer.on('click', e => {
+            layer.bindPopup(rescuePopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
+        },
+      });
+      return rescueLayer;
+    });
+}
+
+function loadWarehouses() {
+  return fetch('data/baulager.geojson')
+    .then(r => r.json())
+    .then(data => {
+      warehouseLayer = L.geoJSON(data, {
+        pane: 'warehousePane',
+        pointToLayer: (feat, latlng) => {
+          const marker = L.marker(latlng, {
+            icon: createWarehouseIcon(feat.properties?.name),
+            pane: 'warehousePane',
+          });
+          marker.bindTooltip(feat.properties?.name || 'Baulager', {
+            direction: 'top',
+            offset: [0, -14],
+            opacity: 0.96,
+          });
+          return marker;
+        },
+        onEachFeature: (feat, layer) => {
+          layer.on('click', e => {
+            layer.bindPopup(warehousePopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
+        },
+      });
+      return warehouseLayer;
+    });
+}
+
+function createSpanLabel(feature) {
+  const p = feature.properties || {};
+  if (!Number.isFinite(Number(p.mid_lat)) || !Number.isFinite(Number(p.mid_lng))) return null;
+  return L.marker([Number(p.mid_lat), Number(p.mid_lng)], {
+    interactive: false,
+    pane: 'spanPane',
+    icon: L.divIcon({
+      className: 'span-distance-label',
+      html: escapeHtml(p.label || ''),
+      iconAnchor: [16, 6],
+    }),
+  });
+}
+
+function loadSpanDistances() {
+  return fetch('data/vanos_distancias.geojson')
+    .then(r => r.json())
+    .then(data => {
+      const lines = L.geoJSON(data, {
+        pane: 'spanPane',
+        style: () => ({
+          color: '#fbbf24',
+          weight: 2,
+          opacity: 0.95,
+          dashArray: '5 4',
+        }),
+        onEachFeature: (feat, layer) => {
+          layer.on('click', e => {
+            layer.bindPopup(spanPopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
+          layer.on('mouseover', function() { this.setStyle({ weight: 4, opacity: 1 }); });
+          layer.on('mouseout', function() { lines.resetStyle(this); });
+        },
+      });
+      const labels = L.layerGroup(
+        (data.features || []).map(createSpanLabel).filter(Boolean),
+        { pane: 'spanPane' }
+      );
+      spanLayer = L.layerGroup([lines, labels]);
+      return spanLayer;
+    });
+}
+
+function loadVogelschutzMarkers() {
+  return fetch('data/vogelschutzmarker_vanos.geojson')
+    .then(r => r.json())
+    .then(data => {
+      vogelschutzLayer = L.geoJSON(data, {
+        pane: 'vogelschutzPane',
+        pointToLayer: (feat, latlng) => {
+          const marker = L.marker(latlng, {
+            icon: createVogelschutzIcon(),
+            pane: 'vogelschutzPane',
+          });
+          marker.bindTooltip(feat.properties?.vano || 'Vogelschutzmarker', {
+            direction: 'top',
+            offset: [0, -14],
+            opacity: 0.96,
+          });
+          return marker;
+        },
+        onEachFeature: (feat, layer) => {
+          layer.on('click', e => {
+            layer.bindPopup(vogelschutzPopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
+        },
+      });
+      return vogelschutzLayer;
     });
 }
 
@@ -585,7 +843,61 @@ const towerPromise = loadTowers().then(gl => {
   return gl;
 });
 
-Promise.all([...geoPromises, towerPromise]).then(() => {
+const rescuePromise = loadRescuePoints().then(gl => {
+  GEO_LAYERS['chk-rettung'] = gl;
+  gl.addTo(map);
+  const b = gl.getBounds();
+  if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+  const el = document.getElementById('chk-rettung');
+  if (el) el.addEventListener('change', e => {
+    if (e.target.checked) gl.addTo(map);
+    else map.removeLayer(gl);
+  });
+  return gl;
+});
+
+const warehousePromise = loadWarehouses().then(gl => {
+  GEO_LAYERS['chk-baulager'] = gl;
+  gl.addTo(map);
+  const b = gl.getBounds();
+  if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+  const el = document.getElementById('chk-baulager');
+  if (el) el.addEventListener('change', e => {
+    if (e.target.checked) gl.addTo(map);
+    else map.removeLayer(gl);
+  });
+  return gl;
+});
+
+const spanPromise = loadSpanDistances().then(gl => {
+  GEO_LAYERS['chk-vanos'] = gl;
+  const el = document.getElementById('chk-vanos');
+  if (el) {
+    if (el.checked) gl.addTo(map);
+    el.addEventListener('change', e => {
+      if (e.target.checked) gl.addTo(map);
+      else map.removeLayer(gl);
+    });
+  }
+  return gl;
+});
+
+const vogelschutzPromise = loadVogelschutzMarkers().then(gl => {
+  GEO_LAYERS['chk-vogelschutz'] = gl;
+  const el = document.getElementById('chk-vogelschutz');
+  if (el) {
+    if (el.checked) gl.addTo(map);
+    const b = gl.getBounds();
+    if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+    el.addEventListener('change', e => {
+      if (e.target.checked) gl.addTo(map);
+      else map.removeLayer(gl);
+    });
+  }
+  return gl;
+});
+
+Promise.all([...geoPromises, towerPromise, rescuePromise, warehousePromise, spanPromise, vogelschutzPromise]).then(() => {
   if (bounds && bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
   document.getElementById('loading-overlay').classList.add('hidden');
   loadDefaultDeferredLayers();

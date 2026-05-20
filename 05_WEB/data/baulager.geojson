@@ -1,0 +1,72 @@
+{
+  "type": "FeatureCollection",
+  "name": "baulager",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Baulager Los 2",
+        "baulos": "Los 2",
+        "adresse": "An der Landesstrasse 265",
+        "plz": "24811",
+        "stadt": "Owschlag",
+        "land": "Alemania",
+        "kontakt": "William Marciales",
+        "telefon": "+49 173 7052909",
+        "observaciones": "Almacen principal materiales tendido y armaduras",
+        "type": "Warehouse",
+        "project": "Audorf-Kassoe",
+        "owner": "Elecnor",
+        "status": "Active",
+        "country": "Germany",
+        "materialannahme": "Mo-Do 08:00-17:00; Fr 08:00-11:00",
+        "geocoding_quality": "street approximate"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.5611175, 54.3973694] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Baulager Baulos 02",
+        "baulos": "Los 2",
+        "adresse": "Industriestrasse",
+        "plz": "24848",
+        "stadt": "Kropp",
+        "land": "Alemania",
+        "kontakt": "William Marciales",
+        "telefon": "+49 173 7052909",
+        "observaciones": "Recepcion materiales FAT, herrajes y conductor",
+        "type": "Warehouse",
+        "project": "Audorf-Kassoe",
+        "owner": "Elecnor",
+        "status": "Active",
+        "country": "Germany",
+        "materialannahme": "Mo-Do 08:00-17:00; Fr 08:00-11:00",
+        "geocoding_quality": "street approximate"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.5221916, 54.4182746] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Baulager Los 3",
+        "baulos": "Los 3",
+        "adresse": "Ostring 4",
+        "plz": "24980",
+        "stadt": "Meyn",
+        "land": "Alemania",
+        "kontakt": "Eduard Knaub",
+        "telefon": "+49 1520 2629160",
+        "observaciones": "Almacen operativo Baulos 3",
+        "type": "Warehouse",
+        "project": "Audorf-Kassoe",
+        "owner": "Elecnor",
+        "status": "Active",
+        "country": "Germany",
+        "materialannahme": "Mo-Do 08:00-17:00; Fr 08:00-11:00",
+        "geocoding_quality": "street result"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.2570231, 54.7454041] }
+    }
+  ]
+}

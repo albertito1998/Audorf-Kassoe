@@ -1,0 +1,166 @@
+{
+  "type": "FeatureCollection",
+  "name": "rettungspunkte",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP1",
+        "mast_nr": "79 - 83",
+        "adresse": "Moorweg - 24872 Gross Rheide",
+        "koordinaten": "N 54°27'04.1\" E 9°24'49.7\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.41380556, 54.45113889] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP2",
+        "mast_nr": "84 - 89",
+        "adresse": "Morgenstern Str. - 24870 Ellingstedt",
+        "koordinaten": "N 54°28'07.8\" E 9°25'27.3\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.42425, 54.46883333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP3",
+        "mast_nr": "90 - 96",
+        "adresse": "Huesbyfelder Str. 3-1 - 24850 Huesby",
+        "koordinaten": "N 54°29'45.3\" E 9°25'43.7\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.42880556, 54.49591667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP4",
+        "mast_nr": "97A - 106",
+        "adresse": "Weideweg Str. - 24850 Schuby",
+        "koordinaten": "N 54°31'54.7\" E 9°25'33.3\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.42591667, 54.53186111] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP5",
+        "mast_nr": "107 - 114",
+        "adresse": "Bollingstedter Str. - 24855 Juebek",
+        "koordinaten": "N 54°33'47.3\" E 9°24'46.2\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.41283333, 54.56313889] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP6",
+        "mast_nr": "115 - 118",
+        "adresse": "Suederfeld Str. 3 - 24855 Bollingstedt",
+        "koordinaten": "N 54°35'05.1\" E 9°24'31.3\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.40869444, 54.58475] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP7",
+        "mast_nr": "119 - 128",
+        "adresse": "Drebenholter Weg - 24855 Bollingstedt",
+        "koordinaten": "N 54°36'30.3\" E 9°25'06.1\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.41836111, 54.60841667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP8",
+        "mast_nr": "129 - 135",
+        "adresse": "Stenderupauer Str. - 24963 Tarp",
+        "koordinaten": "N 54°38'20.8\" E 9°25'01.2\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.417, 54.63911111] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP9",
+        "mast_nr": "136 - 141",
+        "adresse": "Am Buchenhain - 24963 Tarp",
+        "koordinaten": "N 54°39'35.7\" E 9°24'51.8\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.41438889, 54.65991667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP10",
+        "mast_nr": "142 - 150",
+        "adresse": "Froerup-Westerfeld Str - 24988 Oeversee",
+        "koordinaten": "N 54°41'21.3\" E 9°24'24.1\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.40669444, 54.68925] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002279-RP11",
+        "mast_nr": "151 - 161N",
+        "adresse": "Julianenhoeh - 24997 Wanderup",
+        "koordinaten": "N 54°42'29.2\" E 9°21'14.9\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.35413889, 54.70811111] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002301-RP1",
+        "mast_nr": "165B - 168",
+        "adresse": "Umspannwerk Handewitt Bredstedter Str. 100 - 24983 Handewitt",
+        "koordinaten": "N 54°43'36.2\" E 9°18'44.9\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.31247222, 54.72672222] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002301-RP2",
+        "mast_nr": "169 - 180",
+        "adresse": "Baulager 3 Elecnor Ostring Str. - 24980 Meyn",
+        "koordinaten": "N 54°44'48.3\" E 9°15'52.0\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.26444444, 54.74675] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002301-RP3",
+        "mast_nr": "181 - 191",
+        "adresse": "Osterbylund - 24994 Osterby",
+        "koordinaten": "N 54°47'46.6\" E 9°14'23.5\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.23986111, 54.79627778] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002301-RP4",
+        "mast_nr": "192 - 199",
+        "adresse": "Grenzstrasse 7 - 24994 Jardelund",
+        "koordinaten": "N 54°49'28.6\" E 9°13'12.9\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.22025, 54.82461111] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "rettungspunkt": "A6002301-RP5",
+        "mast_nr": "200 - 206",
+        "adresse": "Umspannwerk Jardelund Grenzstrasse 3a - 24994 Jardelund",
+        "koordinaten": "N 54°50'58.0\" E 9°11'44.9\""
+      },
+      "geometry": { "type": "Point", "coordinates": [9.19580556, 54.84944444] }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "row": 12,
+    "baulos": "Baulos 2",
+    "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+    "start": "Mast 165A",
+    "end": "Portal 999A",
+    "longitud_m": 162.7,
+    "plan": "M165A-Portal999A",
+    "pdf_page": "BL2 p.36",
+    "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+    "span_key": "M165A_MPORTAL 999A"
+  },
+  {
+    "row": 13,
+    "baulos": "Baulos 2",
+    "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+    "start": "Mast 165A",
+    "end": "Portal 999B",
+    "longitud_m": 147.7,
+    "plan": "M165A-Portal999B",
+    "pdf_page": "BL2 p.37",
+    "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+    "span_key": "M165A_MPORTAL 999B"
+  },
+  {
+    "row": 15,
+    "baulos": "Baulos 3",
+    "leitungsname": "Handewitt-Jardelund (LH-13-332)",
+    "start": "Portal 000A",
+    "end": "Mast 165B",
+    "longitud_m": 168.4,
+    "plan": "Portal000A-M165B",
+    "pdf_page": "BL3 p.4",
+    "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+    "span_key": "MPORTAL 000A_M165B"
+  },
+  {
+    "row": 16,
+    "baulos": "Baulos 3",
+    "leitungsname": "Handewitt-Jardelund (LH-13-332)",
+    "start": "Portal 000B",
+    "end": "Mast 165B",
+    "longitud_m": 176.5,
+    "plan": "Portal000B-M165B",
+    "pdf_page": "BL3 p.5",
+    "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+    "span_key": "MPORTAL 000B_M165B"
+  }
+]

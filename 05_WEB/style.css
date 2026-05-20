@@ -180,6 +180,113 @@ body {
   border: 1px solid rgba(255,255,255,0.15);
 }
 
+.rescue-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  background: #009a44;
+  border: 2px solid #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+}
+
+.rescue-cross {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  display: block;
+}
+
+.rescue-cross::before,
+.rescue-cross::after {
+  content: '';
+  position: absolute;
+  background: #ffffff;
+  border-radius: 1px;
+}
+
+.rescue-cross::before {
+  left: 4px;
+  top: 0;
+  width: 3px;
+  height: 11px;
+}
+
+.rescue-cross::after {
+  left: 0;
+  top: 4px;
+  width: 11px;
+  height: 3px;
+}
+
+.warehouse-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background: #1f2937;
+  border: 2px solid #f59e0b;
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.18);
+}
+
+.warehouse-swatch::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  width: 10px;
+  height: 8px;
+  border: 2px solid #ffffff;
+  border-top: 0;
+}
+
+.warehouse-swatch::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  transform: rotate(45deg);
+}
+
+.span-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  background: rgba(15, 52, 96, 0.95);
+  border: 2px solid #fbbf24;
+  color: #fbbf24;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.vogel-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #f97316;
+  border: 2px solid #ffffff;
+  color: #111827;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+}
+
 /* Doble punto para la leyenda de apoyos */
 .layer-legend {
   display: flex;
@@ -326,6 +433,15 @@ body {
   padding-top: 8px;
 }
 
+.popup-plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
 .popup-nav-link {
   display: inline-flex;
   align-items: center;
@@ -342,6 +458,26 @@ body {
 
 .popup-nav-link:hover {
   background: #ff4747;
+  color: #fff;
+}
+
+.popup-plan-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 4px 8px;
+  background: #0f3460;
+  border: 1px solid #4a9eff;
+  border-radius: 6px;
+  color: #e8f2ff;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.popup-plan-link:hover {
+  background: #1a4a80;
   color: #fff;
 }
 
@@ -479,10 +615,166 @@ body {
   box-shadow: 0 0 3px rgba(0,0,0,0.6);
 }
 
+.rescue-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background: #009a44;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.65);
+}
+
+.rescue-marker::before,
+.rescue-marker::after {
+  content: '';
+  position: absolute;
+  background: #ffffff;
+  border-radius: 1px;
+}
+
+.rescue-marker::before {
+  width: 5px;
+  height: 18px;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rescue-marker::after {
+  width: 18px;
+  height: 5px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rescue-marker span {
+  position: relative;
+  z-index: 1;
+  transform: translateY(9px);
+}
+
+.warehouse-marker {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #111827;
+  border: 3px solid #f59e0b;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.7);
+}
+
+.warehouse-marker::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 13px;
+  width: 14px;
+  height: 11px;
+  border: 2px solid #ffffff;
+  border-top: 0;
+}
+
+.warehouse-marker::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  transform: rotate(45deg);
+}
+
+.warehouse-marker span {
+  position: relative;
+  z-index: 1;
+  transform: translateY(9px);
+  color: #fbbf24;
+  font-size: 9px;
+  font-weight: 900;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
 .tower-special {
   background: rgba(80, 0, 120, 0.9);
   border-color: #cc88ff;
   color: #ffddff;
+}
+
+.span-distance-label {
+  background: rgba(8, 18, 30, 0.82);
+  border: 1px solid rgba(251, 191, 36, 0.95);
+  border-radius: 4px;
+  color: #fef3c7;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  padding: 3px 5px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.55);
+}
+
+.vogel-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f97316;
+  border: 3px solid #ffffff;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 10px;
+  font-weight: 900;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.65);
+}
+
+.vogel-marker::before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 8px;
+  border-radius: 70% 70% 20% 20%;
+  background: #111827;
+  top: 8px;
+  left: 6px;
+  transform: rotate(-18deg);
+}
+
+.vogel-marker::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #111827;
+  top: 7px;
+  right: 6px;
+}
+
+.vogel-marker span {
+  position: relative;
+  z-index: 1;
+  transform: translateY(8px);
+  color: #111827;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.45);
 }
 
 /* ===== LOADING ===== */

@@ -1,0 +1,408 @@
+{
+  "type": "FeatureCollection",
+  "name": "vogelschutzmarker_vanos",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 096 - Mast 097A",
+        "mast_start": "M096",
+        "mast_end": "M097A",
+        "longitud_tabla_m": 408.1,
+        "longitud_calc_m": 407.7,
+        "plan": "M094-M097A",
+        "pdf_page": "BL2 p.6",
+        "label": "VSM",
+        "mid_lat": 54.50759533,
+        "mid_lng": 9.42924101
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42924101,
+          54.50759533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 097A - Mast 098A",
+        "mast_start": "M097A",
+        "mast_end": "M098A",
+        "longitud_tabla_m": 367.5,
+        "longitud_calc_m": 366.9,
+        "plan": "M097A-M099A",
+        "pdf_page": "BL2 p.7",
+        "label": "VSM",
+        "mid_lat": 54.51082086,
+        "mid_lng": 9.43098893
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43098893,
+          54.51082086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 098A - Mast 099A",
+        "mast_start": "M098A",
+        "mast_end": "M099A",
+        "longitud_tabla_m": 254.0,
+        "longitud_calc_m": 253.5,
+        "plan": "M097A-M099A",
+        "pdf_page": "BL2 p.7",
+        "label": "VSM",
+        "mid_lat": 54.51318424,
+        "mid_lng": 9.43354274
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43354274,
+          54.51318424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 099A - Mast 099B",
+        "mast_start": "M099A",
+        "mast_end": "M099B",
+        "longitud_tabla_m": 433.9,
+        "longitud_calc_m": 433.4,
+        "plan": "M099A-M099B",
+        "pdf_page": "BL2 p.8",
+        "label": "VSM",
+        "mid_lat": 54.51607884,
+        "mid_lng": 9.43410806
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43410806,
+          54.51607884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 099B - Mast 100N",
+        "mast_start": "M099B",
+        "mast_end": "M100N",
+        "longitud_tabla_m": 373.5,
+        "longitud_calc_m": 372.9,
+        "plan": "M099B-M100N",
+        "pdf_page": "BL2 p.9",
+        "label": "VSM",
+        "mid_lat": 54.51948873,
+        "mid_lng": 9.43227459
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43227459,
+          54.51948873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 100N - Mast 101",
+        "mast_start": "M100N",
+        "mast_end": "M101",
+        "longitud_tabla_m": 496.0,
+        "longitud_calc_m": 495.4,
+        "plan": "M100N-M101",
+        "pdf_page": "BL2 p.10",
+        "label": "VSM",
+        "mid_lat": 54.52318909,
+        "mid_lng": 9.43058445
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43058445,
+          54.52318909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 101 - Mast 102",
+        "mast_start": "M101",
+        "mast_end": "M102",
+        "longitud_tabla_m": 402.0,
+        "longitud_calc_m": 401.6,
+        "plan": "M101-M103",
+        "pdf_page": "BL2 p.11",
+        "label": "VSM",
+        "mid_lat": 54.52720597,
+        "mid_lng": 9.4299528
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4299528,
+          54.52720597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 161N - Mast 162A",
+        "mast_start": "M161N",
+        "mast_end": "M162A",
+        "longitud_tabla_m": 433.5,
+        "longitud_calc_m": 432.3,
+        "plan": "M161N-M162A",
+        "pdf_page": "BL2 p.32",
+        "label": "VSM",
+        "mid_lat": 54.72202446,
+        "mid_lng": 9.32929639
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.32929639,
+          54.72202446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 162A - Mast 163A",
+        "mast_start": "M162A",
+        "mast_end": "M163A",
+        "longitud_tabla_m": 452.2,
+        "longitud_calc_m": 450.7,
+        "plan": "M162A-M163A",
+        "pdf_page": "BL2 p.33",
+        "label": "VSM",
+        "mid_lat": 54.72301934,
+        "mid_lng": 9.32289523
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.32289523,
+          54.72301934
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 163A - Mast 164A",
+        "mast_start": "M163A",
+        "mast_end": "M164A",
+        "longitud_tabla_m": 297.4,
+        "longitud_calc_m": 296.5,
+        "plan": "M163A-M164A",
+        "pdf_page": "BL2 p.34",
+        "label": "VSM",
+        "mid_lat": 54.72362016,
+        "mid_lng": 9.31732451
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.31732451,
+          54.72362016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "vano": "Mast 164A - Mast 165A",
+        "mast_start": "M164A",
+        "mast_end": "M165A",
+        "longitud_tabla_m": 283.5,
+        "longitud_calc_m": 283.1,
+        "plan": "M164A-M165A",
+        "pdf_page": "BL2 p.35",
+        "label": "VSM",
+        "mid_lat": 54.72543152,
+        "mid_lng": 9.31458466
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.31458466,
+          54.72543152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "baulos": "Baulos 3",
+        "leitungsname": "Jardelund-Kassoe/Elsam (LH-13-323)",
+        "vano": "Mast 204N - Mast 205",
+        "mast_start": "M204N",
+        "mast_end": "M205",
+        "longitud_tabla_m": 430.8,
+        "longitud_calc_m": 430.3,
+        "plan": "M204N-M206",
+        "pdf_page": "BL3 p.3",
+        "label": "VSM",
+        "mid_lat": 54.85456613,
+        "mid_lng": 9.19474625
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.19474625,
+          54.85456613
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "baulos": "Baulos 3",
+        "leitungsname": "Handewitt-Jardelund (LH-13-332)",
+        "vano": "Mast 165B - Mast 166",
+        "mast_start": "M165B",
+        "mast_end": "M166",
+        "longitud_tabla_m": 245.4,
+        "longitud_calc_m": 244.8,
+        "plan": "M165B-M166",
+        "pdf_page": "BL3 p.6",
+        "label": "VSM",
+        "mid_lat": 54.73073521,
+        "mid_lng": 9.31214965
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.31214965,
+          54.73073521
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "baulos": "Baulos 3",
+        "leitungsname": "Handewitt-Jardelund (LH-13-332)",
+        "vano": "Mast 202 - Mast 203N",
+        "mast_start": "M202",
+        "mast_end": "M203N",
+        "longitud_tabla_m": 413.5,
+        "longitud_calc_m": 412.8,
+        "plan": "M201-M203N",
+        "pdf_page": "BL3 p.18",
+        "label": "VSM",
+        "mid_lat": 54.8475601,
+        "mid_lng": 9.20025657
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.20025657,
+          54.8475601
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "missing_without_portal_coordinates": [
+      {
+        "row": 12,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "start": "Mast 165A",
+        "end": "Portal 999A",
+        "longitud_m": 162.7,
+        "plan": "M165A-Portal999A",
+        "pdf_page": "BL2 p.36",
+        "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+        "span_key": "M165A_MPORTAL 999A"
+      },
+      {
+        "row": 13,
+        "baulos": "Baulos 2",
+        "leitungsname": "380-kV-Ltg. Audorf_Sued-Handewitt (LH-13-305)",
+        "start": "Mast 165A",
+        "end": "Portal 999B",
+        "longitud_m": 147.7,
+        "plan": "M165A-Portal999B",
+        "pdf_page": "BL2 p.37",
+        "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+        "span_key": "M165A_MPORTAL 999B"
+      },
+      {
+        "row": 15,
+        "baulos": "Baulos 3",
+        "leitungsname": "Handewitt-Jardelund (LH-13-332)",
+        "start": "Portal 000A",
+        "end": "Mast 165B",
+        "longitud_m": 168.4,
+        "plan": "Portal000A-M165B",
+        "pdf_page": "BL3 p.4",
+        "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+        "span_key": "MPORTAL 000A_M165B"
+      },
+      {
+        "row": 16,
+        "baulos": "Baulos 3",
+        "leitungsname": "Handewitt-Jardelund (LH-13-332)",
+        "start": "Portal 000B",
+        "end": "Mast 165B",
+        "longitud_m": 176.5,
+        "plan": "Portal000B-M165B",
+        "pdf_page": "BL3 p.5",
+        "reason": "No hay coordenadas para uno de los apoyos en torres_masten.geojson",
+        "span_key": "MPORTAL 000B_M165B"
+      }
+    ]
+  }
+}

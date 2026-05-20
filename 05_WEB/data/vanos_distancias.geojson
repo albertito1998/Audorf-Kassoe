@@ -1,0 +1,3360 @@
+{
+  "type": "FeatureCollection",
+  "name": "vanos_distancias",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M79_M80",
+        "mast_start": "M79",
+        "mast_end": "M80",
+        "vano": "M79 - M80",
+        "distancia_m": 401.1,
+        "label": "401 m",
+        "mid_lat": 54.44323621,
+        "mid_lng": 9.42331572
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42318487719121,
+            54.44143408397129
+          ],
+          [
+            9.42344656357891,
+            54.44503834521801
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M80_M81",
+        "mast_start": "M80",
+        "mast_end": "M81",
+        "vano": "M80 - M81",
+        "distancia_m": 307.9,
+        "label": "308 m",
+        "mid_lat": 54.44642173,
+        "mid_lng": 9.42354697
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42344656357891,
+            54.44503834521801
+          ],
+          [
+            9.42364737127401,
+            54.44780510881459
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M81_M82",
+        "mast_start": "M81",
+        "mast_end": "M82",
+        "vano": "M81 - M82",
+        "distancia_m": 477.9,
+        "label": "478 m",
+        "mid_lat": 54.44995204,
+        "mid_lng": 9.42380318
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42364737127401,
+            54.44780510881459
+          ],
+          [
+            9.42395898870912,
+            54.4520989669431
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M82_M83",
+        "mast_start": "M82",
+        "mast_end": "M83",
+        "vano": "M82 - M83",
+        "distancia_m": 415.7,
+        "label": "416 m",
+        "mid_lat": 54.4539665,
+        "mid_lng": 9.42409459
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42395898870912,
+            54.4520989669431
+          ],
+          [
+            9.42423018961733,
+            54.4558340422546
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M83_M84",
+        "mast_start": "M83",
+        "mast_end": "M84",
+        "vano": "M83 - M84",
+        "distancia_m": 478.1,
+        "label": "478 m",
+        "mid_lat": 54.45798187,
+        "mid_lng": 9.42438623
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42423018961733,
+            54.4558340422546
+          ],
+          [
+            9.42454226059494,
+            54.4601296892468
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M84_M85",
+        "mast_start": "M84",
+        "mast_end": "M85",
+        "vano": "M84 - M85",
+        "distancia_m": 408.6,
+        "label": "409 m",
+        "mid_lat": 54.46196519,
+        "mid_lng": 9.42467558
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42454226059494,
+            54.4601296892468
+          ],
+          [
+            9.42480889683037,
+            54.46380069505089
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M85_M86",
+        "mast_start": "M85",
+        "mast_end": "M86",
+        "vano": "M85 - M86",
+        "distancia_m": 465.7,
+        "label": "466 m",
+        "mid_lat": 54.46589281,
+        "mid_lng": 9.42496087
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42480889683037,
+            54.46380069505089
+          ],
+          [
+            9.42511284099121,
+            54.4679849212157
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M86_M87",
+        "mast_start": "M86",
+        "mast_end": "M87",
+        "vano": "M86 - M87",
+        "distancia_m": 403.9,
+        "label": "404 m",
+        "mid_lat": 54.4697994,
+        "mid_lng": 9.42524468
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42511284099121,
+            54.4679849212157
+          ],
+          [
+            9.42537652365015,
+            54.47161387103931
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M87_M88",
+        "mast_start": "M87",
+        "mast_end": "M88",
+        "vano": "M87 - M88",
+        "distancia_m": 465.3,
+        "label": "465 m",
+        "mid_lat": 54.47370432,
+        "mid_lng": 9.42552846
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42537652365015,
+            54.47161387103931
+          ],
+          [
+            9.42568039903455,
+            54.4757947655093
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M88_M89",
+        "mast_start": "M88",
+        "mast_end": "M89",
+        "vano": "M88 - M89",
+        "distancia_m": 349.7,
+        "label": "350 m",
+        "mid_lat": 54.47736592,
+        "mid_lng": 9.42579464
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42568039903455,
+            54.4757947655093
+          ],
+          [
+            9.42590887981337,
+            54.4789370825942
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M89_M90",
+        "mast_start": "M89",
+        "mast_end": "M90",
+        "vano": "M89 - M90",
+        "distancia_m": 396.0,
+        "label": "396 m",
+        "mid_lat": 54.48071624,
+        "mid_lng": 9.42603819
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42590887981337,
+            54.4789370825942
+          ],
+          [
+            9.4261674981364,
+            54.4824954022243
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M90_M91",
+        "mast_start": "M90",
+        "mast_end": "M91",
+        "vano": "M90 - M91",
+        "distancia_m": 368.6,
+        "label": "369 m",
+        "mid_lat": 54.48415133,
+        "mid_lng": 9.42628798
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4261674981364,
+            54.4824954022243
+          ],
+          [
+            9.4264084712358,
+            54.4858072607373
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M91_M92",
+        "mast_start": "M91",
+        "mast_end": "M92",
+        "vano": "M91 - M92",
+        "distancia_m": 426.9,
+        "label": "427 m",
+        "mid_lat": 54.48772143,
+        "mid_lng": 9.42665717
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4264084712358,
+            54.4858072607373
+          ],
+          [
+            9.42690587615297,
+            54.48963560855039
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M92_M93",
+        "mast_start": "M92",
+        "mast_end": "M93",
+        "vano": "M92 - M93",
+        "distancia_m": 473.0,
+        "label": "473 m",
+        "mid_lat": 54.49175648,
+        "mid_lng": 9.42718156
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42690587615297,
+            54.48963560855039
+          ],
+          [
+            9.42745724806042,
+            54.49387735485791
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M93_M94",
+        "mast_start": "M93",
+        "mast_end": "M94",
+        "vano": "M93 - M94",
+        "distancia_m": 427.7,
+        "label": "428 m",
+        "mid_lat": 54.49579503,
+        "mid_lng": 9.42770655
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42745724806042,
+            54.49387735485791
+          ],
+          [
+            9.42795585258593,
+            54.4977126993903
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M94_M95",
+        "mast_start": "M94",
+        "mast_end": "M95",
+        "vano": "M94 - M95",
+        "distancia_m": 473.0,
+        "label": "473 m",
+        "mid_lat": 54.49983334,
+        "mid_lng": 9.42823157
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42795585258593,
+            54.4977126993903
+          ],
+          [
+            9.428507287261,
+            54.5019539860295
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M95_M96",
+        "mast_start": "M95",
+        "mast_end": "M96",
+        "vano": "M95 - M96",
+        "distancia_m": 425.2,
+        "label": "425 m",
+        "mid_lat": 54.50386069,
+        "mid_lng": 9.42875526
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.428507287261,
+            54.5019539860295
+          ],
+          [
+            9.42900323743192,
+            54.50576740199601
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M96_M097A",
+        "mast_start": "M96",
+        "mast_end": "M097A",
+        "vano": "M96 - M097A",
+        "distancia_m": 407.7,
+        "label": "408 m",
+        "mid_lat": 54.50759533,
+        "mid_lng": 9.42924101
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42900323743192,
+            54.50576740199601
+          ],
+          [
+            9.42947878628323,
+            54.5094232500405
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M097A_M098A",
+        "mast_start": "M097A",
+        "mast_end": "M098A",
+        "vano": "M097A - M098A",
+        "distancia_m": 366.9,
+        "label": "367 m",
+        "mid_lat": 54.51082086,
+        "mid_lng": 9.43098893
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42947878628323,
+            54.5094232500405
+          ],
+          [
+            9.43249907379355,
+            54.5122184794938
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M098A_M099A",
+        "mast_start": "M098A",
+        "mast_end": "M099A",
+        "vano": "M098A - M099A",
+        "distancia_m": 253.5,
+        "label": "254 m",
+        "mid_lat": 54.51318424,
+        "mid_lng": 9.43354274
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.43249907379355,
+            54.5122184794938
+          ],
+          [
+            9.43458640787166,
+            54.51414999124371
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M099A_M099B",
+        "mast_start": "M099A",
+        "mast_end": "M099B",
+        "vano": "M099A - M099B",
+        "distancia_m": 433.4,
+        "label": "433 m",
+        "mid_lat": 54.51607884,
+        "mid_lng": 9.43410806
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.43458640787166,
+            54.51414999124371
+          ],
+          [
+            9.43362971874725,
+            54.5180076876144
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M099B_M100N",
+        "mast_start": "M099B",
+        "mast_end": "M100N",
+        "vano": "M099B - M100N",
+        "distancia_m": 372.9,
+        "label": "373 m",
+        "mid_lat": 54.51948873,
+        "mid_lng": 9.43227459
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.43362971874725,
+            54.5180076876144
+          ],
+          [
+            9.43091946433343,
+            54.5209697670888
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M100N_M101",
+        "mast_start": "M100N",
+        "mast_end": "M101",
+        "vano": "M100N - M101",
+        "distancia_m": 495.4,
+        "label": "495 m",
+        "mid_lat": 54.52318909,
+        "mid_lng": 9.43058445
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.43091946433343,
+            54.5209697670888
+          ],
+          [
+            9.43024943134209,
+            54.52540842165501
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M101_M102",
+        "mast_start": "M101",
+        "mast_end": "M102",
+        "vano": "M101 - M102",
+        "distancia_m": 401.6,
+        "label": "402 m",
+        "mid_lat": 54.52720597,
+        "mid_lng": 9.4299528
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.43024943134209,
+            54.52540842165501
+          ],
+          [
+            9.42965615981671,
+            54.52900352685699
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M102_M103",
+        "mast_start": "M102",
+        "mast_end": "M103",
+        "vano": "M102 - M103",
+        "distancia_m": 489.6,
+        "label": "490 m",
+        "mid_lat": 54.53119499,
+        "mid_lng": 9.42929452
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42965615981671,
+            54.52900352685699
+          ],
+          [
+            9.42893288954297,
+            54.533386456473
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M103_M104",
+        "mast_start": "M103",
+        "mast_end": "M104",
+        "vano": "M103 - M104",
+        "distancia_m": 408.9,
+        "label": "409 m",
+        "mid_lat": 54.53521683,
+        "mid_lng": 9.42863077
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42893288954297,
+            54.533386456473
+          ],
+          [
+            9.42832864074126,
+            54.5370471954517
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M104_M105",
+        "mast_start": "M104",
+        "mast_end": "M105",
+        "vano": "M104 - M105",
+        "distancia_m": 422.5,
+        "label": "423 m",
+        "mid_lat": 54.5389384,
+        "mid_lng": 9.42801643
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42832864074126,
+            54.5370471954517
+          ],
+          [
+            9.42770422750621,
+            54.5408295969533
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M105_M106",
+        "mast_start": "M105",
+        "mast_end": "M106",
+        "vano": "M105 - M106",
+        "distancia_m": 459.4,
+        "label": "459 m",
+        "mid_lat": 54.54288576,
+        "mid_lng": 9.4273647
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42770422750621,
+            54.5408295969533
+          ],
+          [
+            9.42702517749536,
+            54.5449419252294
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M106_M107",
+        "mast_start": "M106",
+        "mast_end": "M107",
+        "vano": "M106 - M107",
+        "distancia_m": 405.5,
+        "label": "405 m",
+        "mid_lat": 54.54675682,
+        "mid_lng": 9.42672551
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42702517749536,
+            54.5449419252294
+          ],
+          [
+            9.42642583548736,
+            54.5485717139058
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M107_M108",
+        "mast_start": "M107",
+        "mast_end": "M108",
+        "vano": "M107 - M108",
+        "distancia_m": 483.6,
+        "label": "484 m",
+        "mid_lat": 54.55073646,
+        "mid_lng": 9.42606822
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42642583548736,
+            54.5485717139058
+          ],
+          [
+            9.42571060443588,
+            54.5529011967414
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M108_M109",
+        "mast_start": "M108",
+        "mast_end": "M109",
+        "vano": "M108 - M109",
+        "distancia_m": 344.1,
+        "label": "344 m",
+        "mid_lat": 54.55431766,
+        "mid_lng": 9.42463672
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42571060443588,
+            54.5529011967414
+          ],
+          [
+            9.42356284001315,
+            54.5557341201716
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M109_M110",
+        "mast_start": "M109",
+        "mast_end": "M110",
+        "vano": "M109 - M110",
+        "distancia_m": 478.2,
+        "label": "478 m",
+        "mid_lat": 54.55770262,
+        "mid_lng": 9.42207009
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42356284001315,
+            54.5557341201716
+          ],
+          [
+            9.42057734757633,
+            54.559671114896
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M110_M111",
+        "mast_start": "M110",
+        "mast_end": "M111",
+        "vano": "M110 - M111",
+        "distancia_m": 420.8,
+        "label": "421 m",
+        "mid_lat": 54.56140318,
+        "mid_lng": 9.41926362
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42057734757633,
+            54.559671114896
+          ],
+          [
+            9.41794988341582,
+            54.5631352404951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M111_M112",
+        "mast_start": "M111",
+        "mast_end": "M112",
+        "vano": "M111 - M112",
+        "distancia_m": 478.2,
+        "label": "478 m",
+        "mid_lat": 54.56510371,
+        "mid_lng": 9.41645652
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41794988341582,
+            54.5631352404951
+          ],
+          [
+            9.4149631586922,
+            54.5670721841391
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M112_M113",
+        "mast_start": "M112",
+        "mast_end": "M113",
+        "vano": "M112 - M113",
+        "distancia_m": 410.5,
+        "label": "410 m",
+        "mid_lat": 54.5687617,
+        "mid_lng": 9.41368124
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4149631586922,
+            54.5670721841391
+          ],
+          [
+            9.41239931730491,
+            54.5704512164494
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M113_M114",
+        "mast_start": "M113",
+        "mast_end": "M114",
+        "vano": "M113 - M114",
+        "distancia_m": 473.9,
+        "label": "474 m",
+        "mid_lat": 54.57240173,
+        "mid_lng": 9.41091901
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41239931730491,
+            54.5704512164494
+          ],
+          [
+            9.40943870286297,
+            54.5743522492661
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M114_M115",
+        "mast_start": "M114",
+        "mast_end": "M115",
+        "vano": "M114 - M115",
+        "distancia_m": 383.3,
+        "label": "383 m",
+        "mid_lat": 54.57605333,
+        "mid_lng": 9.40896139
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40943870286297,
+            54.5743522492661
+          ],
+          [
+            9.40848407040671,
+            54.5777544071244
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M115_M116",
+        "mast_start": "M115",
+        "mast_end": "M116",
+        "vano": "M115 - M116",
+        "distancia_m": 366.5,
+        "label": "366 m",
+        "mid_lat": 54.57938086,
+        "mid_lng": 9.40802759
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40848407040671,
+            54.5777544071244
+          ],
+          [
+            9.40757111265847,
+            54.5810073186116
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M116_M117",
+        "mast_start": "M116",
+        "mast_end": "M117",
+        "vano": "M116 - M117",
+        "distancia_m": 373.4,
+        "label": "373 m",
+        "mid_lat": 54.5826644,
+        "mid_lng": 9.40710597
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40757111265847,
+            54.5810073186116
+          ],
+          [
+            9.40664082657135,
+            54.5843214816932
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M117_M118",
+        "mast_start": "M117",
+        "mast_end": "M118",
+        "vano": "M117 - M118",
+        "distancia_m": 277.7,
+        "label": "278 m",
+        "mid_lat": 54.58555415,
+        "mid_lng": 9.4062948
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40664082657135,
+            54.5843214816932
+          ],
+          [
+            9.40594876964812,
+            54.5867868130436
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M118_M119",
+        "mast_start": "M118",
+        "mast_end": "M119",
+        "vano": "M118 - M119",
+        "distancia_m": 420.8,
+        "label": "421 m",
+        "mid_lat": 54.58865438,
+        "mid_lng": 9.40542438
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40594876964812,
+            54.5867868130436
+          ],
+          [
+            9.4048999871007,
+            54.5905219530328
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M119_M120",
+        "mast_start": "M119",
+        "mast_end": "M120",
+        "vano": "M119 - M120",
+        "distancia_m": 287.5,
+        "label": "288 m",
+        "mid_lat": 54.59174835,
+        "mid_lng": 9.40560581
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4048999871007,
+            54.5905219530328
+          ],
+          [
+            9.40631163356523,
+            54.5929747463387
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M120_M121",
+        "mast_start": "M120",
+        "mast_end": "M121",
+        "vano": "M120 - M121",
+        "distancia_m": 409.7,
+        "label": "410 m",
+        "mid_lat": 54.59472241,
+        "mid_lng": 9.4073176
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40631163356523,
+            54.5929747463387
+          ],
+          [
+            9.40832357172794,
+            54.5964700695369
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M121_M122",
+        "mast_start": "M121",
+        "mast_end": "M122",
+        "vano": "M121 - M122",
+        "distancia_m": 489.2,
+        "label": "489 m",
+        "mid_lat": 54.59855663,
+        "mid_lng": 9.40952483
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40832357172794,
+            54.5964700695369
+          ],
+          [
+            9.41072609760527,
+            54.60064318789371
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M122_M123",
+        "mast_start": "M122",
+        "mast_end": "M123",
+        "vano": "M122 - M123",
+        "distancia_m": 433.9,
+        "label": "434 m",
+        "mid_lat": 54.60249414,
+        "mid_lng": 9.41179201
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41072609760527,
+            54.60064318789371
+          ],
+          [
+            9.41285792066183,
+            54.6043450882684
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M123_M124",
+        "mast_start": "M123",
+        "mast_end": "M124",
+        "vano": "M123 - M124",
+        "distancia_m": 366.2,
+        "label": "366 m",
+        "mid_lat": 54.60590702,
+        "mid_lng": 9.41375767
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41285792066183,
+            54.6043450882684
+          ],
+          [
+            9.41465742692007,
+            54.6074689604629
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M124_M125",
+        "mast_start": "M124",
+        "mast_end": "M125",
+        "vano": "M124 - M125",
+        "distancia_m": 340.6,
+        "label": "341 m",
+        "mid_lat": 54.608922,
+        "mid_lng": 9.41549443
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41465742692007,
+            54.6074689604629
+          ],
+          [
+            9.41633143110373,
+            54.6103750300861
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M125_M126",
+        "mast_start": "M125",
+        "mast_end": "M126",
+        "vano": "M125 - M126",
+        "distancia_m": 453.9,
+        "label": "454 m",
+        "mid_lat": 54.612311,
+        "mid_lng": 9.41744696
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41633143110373,
+            54.6103750300861
+          ],
+          [
+            9.41856249027577,
+            54.6142469693115
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M126_M127",
+        "mast_start": "M126",
+        "mast_end": "M127",
+        "vano": "M126 - M127",
+        "distancia_m": 449.9,
+        "label": "450 m",
+        "mid_lat": 54.61616579,
+        "mid_lng": 9.41966838
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41856249027577,
+            54.6142469693115
+          ],
+          [
+            9.42077426364327,
+            54.6180846020778
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M127_M128",
+        "mast_start": "M127",
+        "mast_end": "M128",
+        "vano": "M127 - M128",
+        "distancia_m": 449.6,
+        "label": "450 m",
+        "mid_lat": 54.62000246,
+        "mid_lng": 9.42187973
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42077426364327,
+            54.6180846020778
+          ],
+          [
+            9.42298519644657,
+            54.62192030837
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M128_M129",
+        "mast_start": "M128",
+        "mast_end": "M129",
+        "vano": "M128 - M129",
+        "distancia_m": 436.6,
+        "label": "437 m",
+        "mid_lat": 54.62388193,
+        "mid_lng": 9.42285197
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42298519644657,
+            54.62192030837
+          ],
+          [
+            9.42271875109234,
+            54.6258435523217
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M129_M130",
+        "mast_start": "M129",
+        "mast_end": "M130",
+        "vano": "M129 - M130",
+        "distancia_m": 444.7,
+        "label": "445 m",
+        "mid_lat": 54.62784162,
+        "mid_lng": 9.42258302
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42271875109234,
+            54.6258435523217
+          ],
+          [
+            9.42244728043643,
+            54.6298396955884
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M130_M131",
+        "mast_start": "M130",
+        "mast_end": "M131",
+        "vano": "M130 - M131",
+        "distancia_m": 314.5,
+        "label": "315 m",
+        "mid_lat": 54.63125284,
+        "mid_lng": 9.42235132
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42244728043643,
+            54.6298396955884
+          ],
+          [
+            9.42225535202048,
+            54.6326659837424
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M131_M132",
+        "mast_start": "M131",
+        "mast_end": "M132",
+        "vano": "M131 - M132",
+        "distancia_m": 496.0,
+        "label": "496 m",
+        "mid_lat": 54.63489471,
+        "mid_lng": 9.42210391
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42225535202048,
+            54.6326659837424
+          ],
+          [
+            9.42195247138087,
+            54.6371234457783
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M132_M133",
+        "mast_start": "M132",
+        "mast_end": "M133",
+        "vano": "M132 - M133",
+        "distancia_m": 394.3,
+        "label": "394 m",
+        "mid_lat": 54.63889499,
+        "mid_lng": 9.42183206
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42195247138087,
+            54.6371234457783
+          ],
+          [
+            9.42171165052741,
+            54.6406665262526
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M133_M134",
+        "mast_start": "M133",
+        "mast_end": "M134",
+        "vano": "M133 - M134",
+        "distancia_m": 394.1,
+        "label": "394 m",
+        "mid_lat": 54.64243726,
+        "mid_lng": 9.42159129
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42171165052741,
+            54.6406665262526
+          ],
+          [
+            9.42147092761826,
+            54.6442079860945
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M134_M135",
+        "mast_start": "M134",
+        "mast_end": "M135",
+        "vano": "M134 - M135",
+        "distancia_m": 494.6,
+        "label": "495 m",
+        "mid_lat": 54.6464302,
+        "mid_lng": 9.4213198
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42147092761826,
+            54.6442079860945
+          ],
+          [
+            9.4211686770323,
+            54.64865240399249
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M135_M136",
+        "mast_start": "M135",
+        "mast_end": "M136",
+        "vano": "M135 - M136",
+        "distancia_m": 402.6,
+        "label": "403 m",
+        "mid_lat": 54.65046138,
+        "mid_lng": 9.42104572
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4211686770323,
+            54.64865240399249
+          ],
+          [
+            9.4209227642508,
+            54.6522703554893
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M136_M137",
+        "mast_start": "M136",
+        "mast_end": "M137",
+        "vano": "M136 - M137",
+        "distancia_m": 493.4,
+        "label": "493 m",
+        "mid_lat": 54.65448717,
+        "mid_lng": 9.42077199
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4209227642508,
+            54.6522703554893
+          ],
+          [
+            9.42062121721761,
+            54.65670397903351
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M137_M138",
+        "mast_start": "M137",
+        "mast_end": "M138",
+        "vano": "M137 - M138",
+        "distancia_m": 397.2,
+        "label": "397 m",
+        "mid_lat": 54.65848886,
+        "mid_lng": 9.42049975
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42062121721761,
+            54.65670397903351
+          ],
+          [
+            9.42037827895947,
+            54.6602737437562
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M138_M139",
+        "mast_start": "M138",
+        "mast_end": "M139",
+        "vano": "M138 - M139",
+        "distancia_m": 488.0,
+        "label": "488 m",
+        "mid_lat": 54.66246651,
+        "mid_lng": 9.42022906
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42037827895947,
+            54.6602737437562
+          ],
+          [
+            9.42007984257041,
+            54.6646592686374
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M139_M140",
+        "mast_start": "M139",
+        "mast_end": "M140",
+        "vano": "M139 - M140",
+        "distancia_m": 409.2,
+        "label": "409 m",
+        "mid_lat": 54.66649777,
+        "mid_lng": 9.41995477
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.42007984257041,
+            54.6646592686374
+          ],
+          [
+            9.41982970128927,
+            54.6683362672326
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M140_M141",
+        "mast_start": "M140",
+        "mast_end": "M141",
+        "vano": "M140 - M141",
+        "distancia_m": 314.4,
+        "label": "314 m",
+        "mid_lat": 54.66974886,
+        "mid_lng": 9.41973356
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41982970128927,
+            54.6683362672326
+          ],
+          [
+            9.41963741246636,
+            54.6711614554421
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M141_M142",
+        "mast_start": "M141",
+        "mast_end": "M142",
+        "vano": "M141 - M142",
+        "distancia_m": 258.6,
+        "label": "259 m",
+        "mid_lat": 54.67224095,
+        "mid_lng": 9.4188904
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41963741246636,
+            54.6711614554421
+          ],
+          [
+            9.41814339007126,
+            54.673320442376
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M142_M143",
+        "mast_start": "M142",
+        "mast_end": "M143",
+        "vano": "M142 - M143",
+        "distancia_m": 442.6,
+        "label": "443 m",
+        "mid_lat": 54.6751683,
+        "mid_lng": 9.41686447
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41814339007126,
+            54.673320442376
+          ],
+          [
+            9.41558555270839,
+            54.6770161524046
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M143_M144",
+        "mast_start": "M143",
+        "mast_end": "M144",
+        "vano": "M143 - M144",
+        "distancia_m": 448.1,
+        "label": "448 m",
+        "mid_lat": 54.67888691,
+        "mid_lng": 9.4142905
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41558555270839,
+            54.6770161524046
+          ],
+          [
+            9.41299545697541,
+            54.6807576590291
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M144_M145",
+        "mast_start": "M144",
+        "mast_end": "M145",
+        "vano": "M144 - M145",
+        "distancia_m": 319.4,
+        "label": "319 m",
+        "mid_lat": 54.6820911,
+        "mid_lng": 9.41207221
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41299545697541,
+            54.6807576590291
+          ],
+          [
+            9.41114896331285,
+            54.6834245310626
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M145_M146",
+        "mast_start": "M145",
+        "mast_end": "M146",
+        "vano": "M145 - M146",
+        "distancia_m": 400.5,
+        "label": "400 m",
+        "mid_lat": 54.68509629,
+        "mid_lng": 9.40999135
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.41114896331285,
+            54.6834245310626
+          ],
+          [
+            9.40883374293864,
+            54.686768056333
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M146_M147",
+        "mast_start": "M146",
+        "mast_end": "M147",
+        "vano": "M146 - M147",
+        "distancia_m": 419.2,
+        "label": "419 m",
+        "mid_lat": 54.68791847,
+        "mid_lng": 9.4062502
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40883374293864,
+            54.686768056333
+          ],
+          [
+            9.40366665620698,
+            54.689068874408
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M147_M148",
+        "mast_start": "M147",
+        "mast_end": "M148",
+        "vano": "M147 - M148",
+        "distancia_m": 424.8,
+        "label": "425 m",
+        "mid_lat": 54.69023443,
+        "mid_lng": 9.40104853
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.40366665620698,
+            54.689068874408
+          ],
+          [
+            9.39843040138889,
+            54.6913999837499
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M148_M149",
+        "mast_start": "M148",
+        "mast_end": "M149",
+        "vano": "M148 - M149",
+        "distancia_m": 402.1,
+        "label": "402 m",
+        "mid_lat": 54.69250323,
+        "mid_lng": 9.39595163
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.39843040138889,
+            54.6913999837499
+          ],
+          [
+            9.39347285095562,
+            54.69360647978431
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M149_M150",
+        "mast_start": "M149",
+        "mast_end": "M150",
+        "vano": "M149 - M150",
+        "distancia_m": 448.7,
+        "label": "449 m",
+        "mid_lat": 54.69483753,
+        "mid_lng": 9.39070644
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.39347285095562,
+            54.69360647978431
+          ],
+          [
+            9.38794002058461,
+            54.696068585041
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M150_M151",
+        "mast_start": "M150",
+        "mast_end": "M151",
+        "vano": "M150 - M151",
+        "distancia_m": 429.7,
+        "label": "430 m",
+        "mid_lat": 54.69724729,
+        "mid_lng": 9.38529063
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.38794002058461,
+            54.696068585041
+          ],
+          [
+            9.38264123513566,
+            54.6984259877304
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M151_M152",
+        "mast_start": "M151",
+        "mast_end": "M152",
+        "vano": "M151 - M152",
+        "distancia_m": 401.8,
+        "label": "402 m",
+        "mid_lat": 54.6995281,
+        "mid_lng": 9.38016346
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.38264123513566,
+            54.6984259877304
+          ],
+          [
+            9.37768567915721,
+            54.700630208702
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M152_M153",
+        "mast_start": "M152",
+        "mast_end": "M153",
+        "vano": "M152 - M153",
+        "distancia_m": 421.9,
+        "label": "422 m",
+        "mid_lat": 54.70178719,
+        "mid_lng": 9.37508407
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.37768567915721,
+            54.700630208702
+          ],
+          [
+            9.37248245498437,
+            54.70294417789851
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M153_M154",
+        "mast_start": "M153",
+        "mast_end": "M154",
+        "vano": "M153 - M154",
+        "distancia_m": 375.1,
+        "label": "375 m",
+        "mid_lat": 54.70397288,
+        "mid_lng": 9.37016882
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.37248245498437,
+            54.70294417789851
+          ],
+          [
+            9.36785518590689,
+            54.70500157594469
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M154_M155",
+        "mast_start": "M154",
+        "mast_end": "M155",
+        "vano": "M154 - M155",
+        "distancia_m": 443.6,
+        "label": "444 m",
+        "mid_lat": 54.70621784,
+        "mid_lng": 9.36511914
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.36785518590689,
+            54.70500157594469
+          ],
+          [
+            9.36238309583246,
+            54.70743410175911
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M155_M156",
+        "mast_start": "M155",
+        "mast_end": "M156",
+        "vano": "M155 - M156",
+        "distancia_m": 412.2,
+        "label": "412 m",
+        "mid_lat": 54.70856425,
+        "mid_lng": 9.35984021
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.36238309583246,
+            54.70743410175911
+          ],
+          [
+            9.35729732889049,
+            54.7096943993452
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M156_M157",
+        "mast_start": "M156",
+        "mast_end": "M157",
+        "vano": "M156 - M157",
+        "distancia_m": 463.5,
+        "label": "463 m",
+        "mid_lat": 54.71096502,
+        "mid_lng": 9.3544378
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.35729732889049,
+            54.7096943993452
+          ],
+          [
+            9.3515782766046,
+            54.7122356331964
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M157_M158",
+        "mast_start": "M157",
+        "mast_end": "M158",
+        "vano": "M157 - M158",
+        "distancia_m": 335.7,
+        "label": "336 m",
+        "mid_lat": 54.71315598,
+        "mid_lng": 9.3495066
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.3515782766046,
+            54.7122356331964
+          ],
+          [
+            9.34743492187995,
+            54.7140763236904
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M158_M159",
+        "mast_start": "M158",
+        "mast_end": "M159",
+        "vano": "M158 - M159",
+        "distancia_m": 460.3,
+        "label": "460 m",
+        "mid_lat": 54.71533794,
+        "mid_lng": 9.3445945
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.34743492187995,
+            54.7140763236904
+          ],
+          [
+            9.34175407287732,
+            54.7165995463513
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M159_M160",
+        "mast_start": "M159",
+        "mast_end": "M160",
+        "vano": "M159 - M160",
+        "distancia_m": 408.4,
+        "label": "408 m",
+        "mid_lat": 54.71771895,
+        "mid_lng": 9.33923332
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.34175407287732,
+            54.7165995463513
+          ],
+          [
+            9.33671256756887,
+            54.7188383586755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M160_M161N",
+        "mast_start": "M160",
+        "mast_end": "M161N",
+        "vano": "M160 - M161N",
+        "distancia_m": 379.2,
+        "label": "379 m",
+        "mid_lat": 54.71993435,
+        "mid_lng": 9.33445054
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.33671256756887,
+            54.7188383586755
+          ],
+          [
+            9.33218851355321,
+            54.7210303390471
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M161N_M162A",
+        "mast_start": "M161N",
+        "mast_end": "M162A",
+        "vano": "M161N - M162A",
+        "distancia_m": 432.3,
+        "label": "432 m",
+        "mid_lat": 54.72202446,
+        "mid_lng": 9.32929639
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.33218851355321,
+            54.7210303390471
+          ],
+          [
+            9.32640425735953,
+            54.72301858036501
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M162A_M163A",
+        "mast_start": "M162A",
+        "mast_end": "M163A",
+        "vano": "M162A - M163A",
+        "distancia_m": 450.7,
+        "label": "451 m",
+        "mid_lat": 54.72301934,
+        "mid_lng": 9.32289523
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.32640425735953,
+            54.72301858036501
+          ],
+          [
+            9.31938620755971,
+            54.723020105589
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M163A_M164A",
+        "mast_start": "M163A",
+        "mast_end": "M164A",
+        "vano": "M163A - M164A",
+        "distancia_m": 296.5,
+        "label": "297 m",
+        "mid_lat": 54.72362016,
+        "mid_lng": 9.31732451
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.31938620755971,
+            54.723020105589
+          ],
+          [
+            9.3152628115128,
+            54.7242202208333
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M164A_M165A",
+        "mast_start": "M164A",
+        "mast_end": "M165A",
+        "vano": "M164A - M165A",
+        "distancia_m": 283.1,
+        "label": "283 m",
+        "mid_lat": 54.72543152,
+        "mid_lng": 9.31458466
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.3152628115128,
+            54.7242202208333
+          ],
+          [
+            9.31390650975511,
+            54.72664282690661
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M165A_M165B",
+        "mast_start": "M165A",
+        "mast_end": "M165B",
+        "vano": "M165A - M165B",
+        "distancia_m": 376.6,
+        "label": "377 m",
+        "mid_lat": 54.72833401,
+        "mid_lng": 9.3137563
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.31390650975511,
+            54.72664282690661
+          ],
+          [
+            9.31360608401119,
+            54.7300251840354
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M165B_M166",
+        "mast_start": "M165B",
+        "mast_end": "M166",
+        "vano": "M165B - M166",
+        "distancia_m": 244.8,
+        "label": "245 m",
+        "mid_lat": 54.73073521,
+        "mid_lng": 9.31214965
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.31360608401119,
+            54.7300251840354
+          ],
+          [
+            9.31069320931607,
+            54.7314452382947
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M166_M167",
+        "mast_start": "M166",
+        "mast_end": "M167",
+        "vano": "M166 - M167",
+        "distancia_m": 397.6,
+        "label": "398 m",
+        "mid_lat": 54.73259409,
+        "mid_lng": 9.30832038
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.31069320931607,
+            54.7314452382947
+          ],
+          [
+            9.3059475546548,
+            54.7337429336036
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M167_M168",
+        "mast_start": "M167",
+        "mast_end": "M168",
+        "vano": "M167 - M168",
+        "distancia_m": 491.2,
+        "label": "491 m",
+        "mid_lat": 54.7351621,
+        "mid_lng": 9.30301571
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.3059475546548,
+            54.7337429336036
+          ],
+          [
+            9.30008386852389,
+            54.736581256472
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M168_M169",
+        "mast_start": "M168",
+        "mast_end": "M169",
+        "vano": "M168 - M169",
+        "distancia_m": 384.0,
+        "label": "384 m",
+        "mid_lat": 54.73769052,
+        "mid_lng": 9.29779177
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.30008386852389,
+            54.736581256472
+          ],
+          [
+            9.2954996813592,
+            54.7387997744305
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M169_M170",
+        "mast_start": "M169",
+        "mast_end": "M170",
+        "vano": "M169 - M170",
+        "distancia_m": 480.6,
+        "label": "481 m",
+        "mid_lat": 54.7401878,
+        "mid_lng": 9.29263088
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2954996813592,
+            54.7387997744305
+          ],
+          [
+            9.28976208578364,
+            54.74157581669049
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M170_M171",
+        "mast_start": "M170",
+        "mast_end": "M171",
+        "vano": "M170 - M171",
+        "distancia_m": 409.8,
+        "label": "410 m",
+        "mid_lat": 54.74275947,
+        "mid_lng": 9.28731523
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.28976208578364,
+            54.74157581669049
+          ],
+          [
+            9.28486838131695,
+            54.7439431312673
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M171_M172",
+        "mast_start": "M171",
+        "mast_end": "M172",
+        "vano": "M171 - M172",
+        "distancia_m": 476.3,
+        "label": "476 m",
+        "mid_lat": 54.74531871,
+        "mid_lng": 9.28202417
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.28486838131695,
+            54.7439431312673
+          ],
+          [
+            9.27917996306228,
+            54.7466942887984
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M172_M173",
+        "mast_start": "M172",
+        "mast_end": "M173",
+        "vano": "M172 - M173",
+        "distancia_m": 421.4,
+        "label": "421 m",
+        "mid_lat": 54.74791123,
+        "mid_lng": 9.27666312
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.27917996306228,
+            54.7466942887984
+          ],
+          [
+            9.27414627440192,
+            54.7491281716795
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M173_M174",
+        "mast_start": "M173",
+        "mast_end": "M174",
+        "vano": "M173 - M174",
+        "distancia_m": 468.8,
+        "label": "469 m",
+        "mid_lat": 54.7504817,
+        "mid_lng": 9.27134641
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.27414627440192,
+            54.7491281716795
+          ],
+          [
+            9.26854653892394,
+            54.7518352196019
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M174_M175",
+        "mast_start": "M174",
+        "mast_end": "M175",
+        "vano": "M174 - M175",
+        "distancia_m": 424.7,
+        "label": "425 m",
+        "mid_lat": 54.75306133,
+        "mid_lng": 9.2660097
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.26854653892394,
+            54.7518352196019
+          ],
+          [
+            9.26347285150482,
+            54.7542874371276
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M175_M176",
+        "mast_start": "M175",
+        "mast_end": "M176",
+        "vano": "M175 - M176",
+        "distancia_m": 417.4,
+        "label": "417 m",
+        "mid_lat": 54.7561172,
+        "mid_lng": 9.2627477
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.26347285150482,
+            54.7542874371276
+          ],
+          [
+            9.26202255486686,
+            54.7579469546701
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M176_M177",
+        "mast_start": "M176",
+        "mast_end": "M177",
+        "vano": "M176 - M177",
+        "distancia_m": 312.1,
+        "label": "312 m",
+        "mid_lat": 54.75931506,
+        "mid_lng": 9.26148017
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.26202255486686,
+            54.7579469546701
+          ],
+          [
+            9.26093779303252,
+            54.7606831707712
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M177_M178",
+        "mast_start": "M177",
+        "mast_end": "M178",
+        "vano": "M177 - M178",
+        "distancia_m": 491.9,
+        "label": "492 m",
+        "mid_lat": 54.76283941,
+        "mid_lng": 9.26008271
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.26093779303252,
+            54.7606831707712
+          ],
+          [
+            9.2592276254339,
+            54.7649956510944
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M178_M179",
+        "mast_start": "M178",
+        "mast_end": "M179",
+        "vano": "M178 - M179",
+        "distancia_m": 380.6,
+        "label": "381 m",
+        "mid_lat": 54.76666375,
+        "mid_lng": 9.25856596
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2592276254339,
+            54.7649956510944
+          ],
+          [
+            9.25790429778756,
+            54.7683318552472
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M179_M180",
+        "mast_start": "M179",
+        "mast_end": "M180",
+        "vano": "M179 - M180",
+        "distancia_m": 415.6,
+        "label": "416 m",
+        "mid_lat": 54.77015371,
+        "mid_lng": 9.25718163
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25790429778756,
+            54.7683318552472
+          ],
+          [
+            9.25645896315964,
+            54.77197555925181
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M180_M181",
+        "mast_start": "M180",
+        "mast_end": "M181",
+        "vano": "M180 - M181",
+        "distancia_m": 441.3,
+        "label": "441 m",
+        "mid_lat": 54.77391001,
+        "mid_lng": 9.2556914
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25645896315964,
+            54.77197555925181
+          ],
+          [
+            9.25492384108775,
+            54.77584446134929
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M181_M182",
+        "mast_start": "M181",
+        "mast_end": "M182",
+        "vano": "M181 - M182",
+        "distancia_m": 223.2,
+        "label": "223 m",
+        "mid_lat": 54.77682299,
+        "mid_lng": 9.25453549
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25492384108775,
+            54.77584446134929
+          ],
+          [
+            9.25414713971001,
+            54.77780152497139
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M182_M183",
+        "mast_start": "M182",
+        "mast_end": "M183",
+        "vano": "M182 - M183",
+        "distancia_m": 229.2,
+        "label": "229 m",
+        "mid_lat": 54.77880614,
+        "mid_lng": 9.25374842
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25414713971001,
+            54.77780152497139
+          ],
+          [
+            9.25334970025968,
+            54.7798107495284
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M183_M184",
+        "mast_start": "M183",
+        "mast_end": "M184",
+        "vano": "M183 - M184",
+        "distancia_m": 446.1,
+        "label": "446 m",
+        "mid_lat": 54.78176618,
+        "mid_lng": 9.25257358
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25334970025968,
+            54.7798107495284
+          ],
+          [
+            9.25179745471918,
+            54.7837216104056
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M184_M185",
+        "mast_start": "M184",
+        "mast_end": "M185",
+        "vano": "M184 - M185",
+        "distancia_m": 453.1,
+        "label": "453 m",
+        "mid_lat": 54.78570743,
+        "mid_lng": 9.25100901
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25179745471918,
+            54.7837216104056
+          ],
+          [
+            9.25022056048585,
+            54.78769324995
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M185_M186",
+        "mast_start": "M185",
+        "mast_end": "M186",
+        "vano": "M185 - M186",
+        "distancia_m": 446.3,
+        "label": "446 m",
+        "mid_lat": 54.7896496,
+        "mid_lng": 9.24944375
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.25022056048585,
+            54.78769324995
+          ],
+          [
+            9.24866694723094,
+            54.7916059550895
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M186_M187",
+        "mast_start": "M186",
+        "mast_end": "M187",
+        "vano": "M186 - M187",
+        "distancia_m": 420.6,
+        "label": "421 m",
+        "mid_lat": 54.7934496,
+        "mid_lng": 9.24793464
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.24866694723094,
+            54.7916059550895
+          ],
+          [
+            9.24720233806068,
+            54.79529324817361
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M187_M188",
+        "mast_start": "M187",
+        "mast_end": "M188",
+        "vano": "M187 - M188",
+        "distancia_m": 373.7,
+        "label": "374 m",
+        "mid_lat": 54.79693137,
+        "mid_lng": 9.24655164
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.24720233806068,
+            54.79529324817361
+          ],
+          [
+            9.24590094077718,
+            54.7985694960591
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M188_M189",
+        "mast_start": "M188",
+        "mast_end": "M189",
+        "vano": "M188 - M189",
+        "distancia_m": 431.7,
+        "label": "432 m",
+        "mid_lat": 54.80046187,
+        "mid_lng": 9.24514908
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.24590094077718,
+            54.7985694960591
+          ],
+          [
+            9.24439721620037,
+            54.802354246065
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M189_M190",
+        "mast_start": "M189",
+        "mast_end": "M190",
+        "vano": "M189 - M190",
+        "distancia_m": 428.5,
+        "label": "428 m",
+        "mid_lat": 54.80403373,
+        "mid_lng": 9.24275925
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.24439721620037,
+            54.802354246065
+          ],
+          [
+            9.24112128673896,
+            54.8057132119582
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M190_M191",
+        "mast_start": "M190",
+        "mast_end": "M191",
+        "vano": "M190 - M191",
+        "distancia_m": 443.8,
+        "label": "444 m",
+        "mid_lat": 54.80745284,
+        "mid_lng": 9.23942444
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.24112128673896,
+            54.8057132119582
+          ],
+          [
+            9.23772758437887,
+            54.8091924703417
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M191_M192",
+        "mast_start": "M191",
+        "mast_end": "M192",
+        "vano": "M191 - M192",
+        "distancia_m": 389.0,
+        "label": "389 m",
+        "mid_lat": 54.81071727,
+        "mid_lng": 9.23623988
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.23772758437887,
+            54.8091924703417
+          ],
+          [
+            9.23475218225384,
+            54.8122420663093
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M192_M193",
+        "mast_start": "M192",
+        "mast_end": "M193",
+        "vano": "M192 - M193",
+        "distancia_m": 414.3,
+        "label": "414 m",
+        "mid_lat": 54.81386609,
+        "mid_lng": 9.23316741
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.23475218225384,
+            54.8122420663093
+          ],
+          [
+            9.23158264017716,
+            54.81549011509199
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M193_M194",
+        "mast_start": "M193",
+        "mast_end": "M194",
+        "vano": "M193 - M194",
+        "distancia_m": 411.0,
+        "label": "411 m",
+        "mid_lat": 54.817101,
+        "mid_lng": 9.23001046
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.23158264017716,
+            54.81549011509199
+          ],
+          [
+            9.22843827613963,
+            54.8187118801599
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M194_M195",
+        "mast_start": "M194",
+        "mast_end": "M195",
+        "vano": "M194 - M195",
+        "distancia_m": 487.6,
+        "label": "488 m",
+        "mid_lat": 54.82062293,
+        "mid_lng": 9.22657273
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.22843827613963,
+            54.8187118801599
+          ],
+          [
+            9.22470718575506,
+            54.8225339726664
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M195_M196",
+        "mast_start": "M195",
+        "mast_end": "M196",
+        "vano": "M195 - M196",
+        "distancia_m": 405.3,
+        "label": "405 m",
+        "mid_lat": 54.82412226,
+        "mid_lng": 9.22315644
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.22470718575506,
+            54.8225339726664
+          ],
+          [
+            9.22160568731804,
+            54.8257105431048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M196_M197",
+        "mast_start": "M196",
+        "mast_end": "M197",
+        "vano": "M196 - M197",
+        "distancia_m": 480.0,
+        "label": "480 m",
+        "mid_lat": 54.82759159,
+        "mid_lng": 9.21976868
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.22160568731804,
+            54.8257105431048
+          ],
+          [
+            9.21793167243397,
+            54.829472645889
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M197_M198",
+        "mast_start": "M197",
+        "mast_end": "M198",
+        "vano": "M197 - M198",
+        "distancia_m": 413.3,
+        "label": "413 m",
+        "mid_lat": 54.83109217,
+        "mid_lng": 9.21634973
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.21793167243397,
+            54.829472645889
+          ],
+          [
+            9.21476779455371,
+            54.8327116963469
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M198_M199",
+        "mast_start": "M198",
+        "mast_end": "M199",
+        "vano": "M198 - M199",
+        "distancia_m": 339.0,
+        "label": "339 m",
+        "mid_lat": 54.83404005,
+        "mid_lng": 9.21347008
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.21476779455371,
+            54.8327116963469
+          ],
+          [
+            9.21217237150229,
+            54.8353684112714
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M199_M200",
+        "mast_start": "M199",
+        "mast_end": "M200",
+        "vano": "M199 - M200",
+        "distancia_m": 493.5,
+        "label": "493 m",
+        "mid_lat": 54.83730216,
+        "mid_lng": 9.21028283
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.21217237150229,
+            54.8353684112714
+          ],
+          [
+            9.20839329314874,
+            54.83923590500661
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M200_M201",
+        "mast_start": "M200",
+        "mast_end": "M201",
+        "vano": "M200 - M201",
+        "distancia_m": 400.4,
+        "label": "400 m",
+        "mid_lat": 54.84080485,
+        "mid_lng": 9.20685993
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.20839329314874,
+            54.83923590500661
+          ],
+          [
+            9.20532656906429,
+            54.84237379546929
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M201_M202",
+        "mast_start": "M201",
+        "mast_end": "M202",
+        "vano": "M201 - M202",
+        "distancia_m": 455.3,
+        "label": "455 m",
+        "mid_lat": 54.8441581,
+        "mid_lng": 9.20358241
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.20532656906429,
+            54.84237379546929
+          ],
+          [
+            9.20183824713884,
+            54.8459424099335
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M202_M203N",
+        "mast_start": "M202",
+        "mast_end": "M203N",
+        "vano": "M202 - M203N",
+        "distancia_m": 412.8,
+        "label": "413 m",
+        "mid_lat": 54.8475601,
+        "mid_lng": 9.20025657
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.20183824713884,
+            54.8459424099335
+          ],
+          [
+            9.19867489301044,
+            54.8491777939346
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M203N_M204N",
+        "mast_start": "M203N",
+        "mast_end": "M204N",
+        "vano": "M203N - M204N",
+        "distancia_m": 441.0,
+        "label": "441 m",
+        "mid_lat": 54.85092345,
+        "mid_lng": 9.19704047
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.19867489301044,
+            54.8491777939346
+          ],
+          [
+            9.19540604487919,
+            54.85266911333461
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M204N_M205",
+        "mast_start": "M204N",
+        "mast_end": "M205",
+        "vano": "M204N - M205",
+        "distancia_m": 430.3,
+        "label": "430 m",
+        "mid_lat": 54.85456613,
+        "mid_lng": 9.19474625
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.19540604487919,
+            54.85266911333461
+          ],
+          [
+            9.19408646277032,
+            54.85646314853161
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "span_id": "M205_M206",
+        "mast_start": "M205",
+        "mast_end": "M206",
+        "vano": "M205 - M206",
+        "distancia_m": 362.4,
+        "label": "362 m",
+        "mid_lat": 54.85806114,
+        "mid_lng": 9.19353051
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.19408646277032,
+            54.85646314853161
+          ],
+          [
+            9.19297455715456,
+            54.859659135134
+          ]
+        ]
+      }
+    }
+  ]
+}
