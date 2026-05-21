@@ -366,11 +366,17 @@ const CHAIN_PLAN_BASE_URL = window.location.hostname.endsWith('github.io')
   ? `${window.location.origin}/Audorf-Kassoe/assets/ketten/`
   : 'assets/ketten/';
 const CHAIN_PLAN_LINKS = {
-  'DA-Kette': `${CHAIN_PLAN_BASE_URL}da-kette.pdf`,
-  'V-Kette': `${CHAIN_PLAN_BASE_URL}v-kette.pdf`,
-  'TA-Kette': `${CHAIN_PLAN_BASE_URL}ta-kette.pdf`,
-  'Hilfskette': `${CHAIN_PLAN_BASE_URL}eh-kette.pdf`,
+  'DA-Kette': `${CHAIN_PLAN_BASE_URL}LH-13-305_DA-Kette_002-442-213_Elecnor.pdf`,
+  'V-Kette': `${CHAIN_PLAN_BASE_URL}LH-13-305_V-Kette_002-442-214_Elecnor.pdf`,
+  'TA-Kette': `${CHAIN_PLAN_BASE_URL}LH-13-305_TA-Kette_V-Teil_002-294-203_Elecnor.pdf`,
+  'Hilfskette': `${CHAIN_PLAN_BASE_URL}EH-Kette_SSDH_002-384-768_Elecnor.pdf`,
 };
+const LWL_PLAN_LINKS = {
+  muffe: `${CHAIN_PLAN_BASE_URL}KETTEN_ESLK_Abspannung_Muffe_002-369-963_Elecnor.pdf`,
+  abspannung: `${CHAIN_PLAN_BASE_URL}KETTEN_ESLK_Abspannung_002-369-964_Elecnor.pdf`,
+  aufhaengung: `${CHAIN_PLAN_BASE_URL}KETTEN_ESLK_Aufhaengung_C-Bock_002-369-960_Elecnor.pdf`,
+};
+const LWL_MUFFE_MASTS = new Set(['79', '91', '100N', '108', '119', '128', '141', '146', '160', '175', '189', '206']);
 
 function setTowerChains(mast, chains) {
   TOWER_CHAIN_TYPES[String(mast).toUpperCase()] = chains;
@@ -447,6 +453,43 @@ function towerChainPlanButtons(apoyo) {
   return `<div class="popup-plan-actions">${buttons}</div>`;
 }
 
+function normalizedMastKey(apoyo) {
+  return String(apoyo || '').replace(/^M0*/i, '').toUpperCase();
+}
+
+function towerLwlPlanButton(apoyo, mastTyp) {
+  const mastKey = normalizedMastKey(apoyo);
+  const isMuffe = LWL_MUFFE_MASTS.has(mastKey);
+  const isAbspannung = mastTyp === 'Abspannmast';
+  const cfg = isMuffe
+    ? {
+        label: 'ESLK Abspannung Muffe',
+        href: LWL_PLAN_LINKS.muffe,
+        note: 'Muffenstandort gemaess Spleissplan',
+      }
+    : isAbspannung
+      ? {
+          label: 'ESLK Abspannung',
+          href: LWL_PLAN_LINKS.abspannung,
+          note: 'Abspannmast ohne Muffe',
+        }
+      : {
+          label: 'ESLK Aufhaengung C-Bock',
+          href: LWL_PLAN_LINKS.aufhaengung,
+          note: 'Tragmast / Aufhaengung',
+        };
+  return `
+    <div class="popup-plan-section">
+      <div class="popup-plan-section-title">LWL / Fibra optica</div>
+      <div class="popup-row"><span>Plano:</span> ${escapeHtml(cfg.label)}</div>
+      <div class="popup-row"><span>Aplicacion:</span> ${escapeHtml(cfg.note)}</div>
+      <div class="popup-plan-actions popup-plan-actions-compact">
+        <a class="popup-plan-link" href="${cfg.href}" target="_blank" rel="noopener noreferrer">Abrir plano LWL</a>
+      </div>
+    </div>
+  `;
+}
+
 function googleMapsDirectionsUrl(latlng) {
   if (!latlng) return '#';
   const lat = Number(latlng.lat).toFixed(6);
@@ -478,6 +521,7 @@ function towerPopupHtml(props, latlng) {
     <div class="popup-row"><span>Tipo:</span> ${escapeHtml(p.mast_typ || '-')}</div>
     <div class="popup-row"><span>Cadenas:</span> ${chainHtml}</div>
     ${towerChainPlanButtons(p.apoyo)}
+    ${towerLwlPlanButton(p.apoyo, p.mast_typ)}
     ${popupNavigationLink(latlng)}
   `;
 }
