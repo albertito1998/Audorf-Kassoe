@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "name": "toitoi",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ToiToi 1",
+        "apoyo": "M141",
+        "status": "proxima tirada",
+        "quelle": "Google Maps / Nikolai Rudolph",
+        "maps_url": "https://maps.app.goo.gl/B28831f2DVaiDoyj7"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.4196217, 54.6706766] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ToiToi 2",
+        "apoyo": "M143",
+        "status": "proxima tirada",
+        "quelle": "Google Maps / Nikolai Rudolph",
+        "maps_url": "https://maps.app.goo.gl/7K7oshpKzu2gQJfJ7"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.4179372, 54.6766542] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ToiToi 3",
+        "apoyo": "M146",
+        "status": "proxima tirada",
+        "quelle": "Google Maps / Nikolai Rudolph",
+        "maps_url": "https://maps.app.goo.gl/3Emf2B2qGEMiYy4KA"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.4089411, 54.6870598] }
+    }
+  ]
+}

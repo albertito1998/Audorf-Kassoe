@@ -39,6 +39,8 @@ map.createPane('rescuePane');
 map.getPane('rescuePane').style.zIndex = 650;
 map.createPane('warehousePane');
 map.getPane('warehousePane').style.zIndex = 640;
+map.createPane('toitoiPane');
+map.getPane('toitoiPane').style.zIndex = 645;
 map.createPane('spanPane');
 map.getPane('spanPane').style.zIndex = 520;
 map.createPane('vogelschutzPane');
@@ -533,6 +535,32 @@ function warehousePopupHtml(props, latlng) {
   `;
 }
 
+function createToiToiIcon() {
+  return L.divIcon({
+    className: '',
+    html: '<div class="toitoi-marker">WC</div>',
+    iconSize: [30, 34],
+    iconAnchor: [15, 17],
+    popupAnchor: [0, -17],
+  });
+}
+
+function toitoiPopupHtml(props, latlng) {
+  const p = props || {};
+  const mapsUrl = p.maps_url || googleMapsDirectionsUrl(latlng);
+  return `
+    <div class="popup-title">TOITOI / SANITÄR</div>
+    <div class="popup-row"><span>Name:</span> ${escapeHtml(p.name || '-')}</div>
+    <div class="popup-row"><span>Apoyo:</span> ${escapeHtml(p.apoyo || '-')}</div>
+    <div class="popup-row"><span>Status:</span> ${escapeHtml(p.status || '-')}</div>
+    <div class="popup-row"><span>Quelle:</span> ${escapeHtml(p.quelle || '-')}</div>
+    <div class="popup-actions">
+      <a class="popup-nav-link" href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer">Abrir punto en Google Maps</a>
+      <div class="popup-coords">Destino: ${Number(latlng.lat).toFixed(6)}, ${Number(latlng.lng).toFixed(6)}</div>
+    </div>
+  `;
+}
+
 function spanPopupHtml(props, latlng) {
   const p = props || {};
   return `
@@ -605,6 +633,7 @@ function loadGeoJSON(id, url, optsFn, onEachFn) {
 let towerLayer = null;
 let rescueLayer = null;
 let warehouseLayer = null;
+let toitoiLayer = null;
 let spanLayer = null;
 let vogelschutzLayer = null;
 
@@ -698,6 +727,35 @@ function loadWarehouses() {
         },
       });
       return warehouseLayer;
+    });
+}
+
+function loadToiToi() {
+  return fetch('data/toitoi.geojson')
+    .then(r => r.json())
+    .then(data => {
+      toitoiLayer = L.geoJSON(data, {
+        pane: 'toitoiPane',
+        pointToLayer: (feat, latlng) => {
+          const marker = L.marker(latlng, {
+            icon: createToiToiIcon(),
+            pane: 'toitoiPane',
+          });
+          marker.bindTooltip(feat.properties?.name || 'ToiToi', {
+            direction: 'top',
+            offset: [0, -15],
+            opacity: 0.96,
+          });
+          return marker;
+        },
+        onEachFeature: (feat, layer) => {
+          layer.on('click', e => {
+            layer.bindPopup(toitoiPopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
+        },
+      });
+      return toitoiLayer;
     });
 }
 
@@ -869,6 +927,19 @@ const warehousePromise = loadWarehouses().then(gl => {
   return gl;
 });
 
+const toitoiPromise = loadToiToi().then(gl => {
+  GEO_LAYERS['chk-toitoi'] = gl;
+  gl.addTo(map);
+  const b = gl.getBounds();
+  if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+  const el = document.getElementById('chk-toitoi');
+  if (el) el.addEventListener('change', e => {
+    if (e.target.checked) gl.addTo(map);
+    else map.removeLayer(gl);
+  });
+  return gl;
+});
+
 const spanPromise = loadSpanDistances().then(gl => {
   GEO_LAYERS['chk-vanos'] = gl;
   const el = document.getElementById('chk-vanos');
@@ -897,7 +968,7 @@ const vogelschutzPromise = loadVogelschutzMarkers().then(gl => {
   return gl;
 });
 
-Promise.all([...geoPromises, towerPromise, rescuePromise, warehousePromise, spanPromise, vogelschutzPromise]).then(() => {
+Promise.all([...geoPromises, towerPromise, rescuePromise, warehousePromise, toitoiPromise, spanPromise, vogelschutzPromise]).then(() => {
   if (bounds && bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
   document.getElementById('loading-overlay').classList.add('hidden');
   loadDefaultDeferredLayers();
