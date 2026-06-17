@@ -256,6 +256,23 @@ body {
   transform: rotate(45deg);
 }
 
+.erdung-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #facc15;
+  border: 2px solid #1f2937;
+  color: #1f2937;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.35);
+}
+
 .toitoi-swatch {
   width: 18px;
   height: 18px;
@@ -516,6 +533,21 @@ body {
 .popup-plan-link:hover {
   background: #1a4a80;
   color: #fff;
+}
+
+.erdung-popup-diagram {
+  margin: 8px 0 10px;
+  padding: 6px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 52, 96, 0.18);
+  border-radius: 6px;
+}
+
+.erdung-popup-diagram img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
 }
 
 .popup-coords {
@@ -851,6 +883,39 @@ body {
   transform: translateY(8px);
   color: #111827;
   text-shadow: 0 1px 1px rgba(255,255,255,0.45);
+}
+
+.erdung-marker {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.72), 0 0 0 2px rgba(17,24,39,0.45);
+}
+
+.erdung-marker span {
+  transform: translateY(-1px);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.45);
+}
+
+.erdung-rollenerde { background: #facc15; }
+
+.erdung-crossing {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.erdung-abspann {
+  background: #22c55e;
+  color: #052e16;
 }
 
 /* ===== LOADING ===== */

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="535" viewBox="0 0 560 535" role="img" aria-labelledby="title desc">
+  <title id="title">Befestigungspunkte Aussenleiter</title>
+  <desc id="desc">Silueta de torre con Traversen I, II y III y puntos 11, 12, 21, 22, 23, 24, 31, 32, 33, 34, 35 y 36.</desc>
+  <rect width="560" height="535" fill="#ffffff"/>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#4b5563" font-size="27">
+    <text x="16" y="102">Trav. I</text>
+    <text x="8" y="212">Trav. II</text>
+    <text x="1" y="346">Trav. III</text>
+  </g>
+  <g stroke="#4b5563" stroke-width="2" stroke-linecap="round">
+    <line x1="330" y1="0" x2="330" y2="454"/>
+    <line x1="234" y1="94" x2="436" y2="94"/>
+    <line x1="150" y1="210" x2="524" y2="210"/>
+    <line x1="116" y1="340" x2="541" y2="340"/>
+  </g>
+  <g fill="#003b88" stroke="#00245a" stroke-width="4">
+    <circle cx="234" cy="97" r="9"/>
+    <circle cx="435" cy="97" r="9"/>
+    <circle cx="149" cy="212" r="9"/>
+    <circle cx="246" cy="212" r="9"/>
+    <circle cx="417" cy="212" r="9"/>
+    <circle cx="523" cy="212" r="9"/>
+    <circle cx="116" cy="341" r="9"/>
+    <circle cx="189" cy="341" r="9"/>
+    <circle cx="265" cy="341" r="9"/>
+    <circle cx="392" cy="341" r="9"/>
+    <circle cx="468" cy="341" r="9"/>
+    <circle cx="540" cy="341" r="9"/>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#4b5563" font-size="28">
+    <text x="190" y="91">11</text>
+    <text x="442" y="91">12</text>
+    <text x="142" y="253">21</text>
+    <text x="240" y="253">22</text>
+    <text x="407" y="253">23</text>
+    <text x="509" y="253">24</text>
+    <text x="103" y="386">31</text>
+    <text x="178" y="386">32</text>
+    <text x="252" y="386">33</text>
+    <text x="379" y="386">34</text>
+    <text x="453" y="386">35</text>
+    <text x="527" y="386">36</text>
+  </g>
+  <text x="59" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#000000">Befestigungspunkte Außenleiter</text>
+</svg>

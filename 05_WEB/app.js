@@ -45,6 +45,8 @@ map.createPane('spanPane');
 map.getPane('spanPane').style.zIndex = 520;
 map.createPane('vogelschutzPane');
 map.getPane('vogelschutzPane').style.zIndex = 630;
+map.createPane('erdungPane');
+map.getPane('erdungPane').style.zIndex = 670;
 
 let userLocationMarker = null;
 let userAccuracyCircle = null;
@@ -377,6 +379,17 @@ const LWL_PLAN_LINKS = {
   aufhaengung: `${CHAIN_PLAN_BASE_URL}KETTEN_ESLK_Aufhaengung_C-Bock_002-369-960_Elecnor.pdf`,
 };
 const LWL_MUFFE_MASTS = new Set(['79', '91', '100N', '108', '119', '128', '141', '146', '160', '175', '189', '206']);
+const ERDUNG_ASSET_BASE_URL = window.location.hostname.endsWith('github.io')
+  ? `${window.location.origin}/Audorf-Kassoe/assets/Erdungen/`
+  : 'assets/Erdungen/';
+const ERDUNG_DOC_LINKS = {
+  rollenerde: `${ERDUNG_ASSET_BASE_URL}AAA-CE0256LB%20(%20singola%201000x95%20-%20spiegazione%20struttura%20codice%20).pdf`,
+  abspann: `${ERDUNG_ASSET_BASE_URL}Datenblatt%20Nr.%201.pdf`,
+  temporary: `${ERDUNG_ASSET_BASE_URL}Datenblatt%20Nr.%202.pdf`,
+  usage040250028: `${ERDUNG_ASSET_BASE_URL}040250028-EN-V02.pdf`,
+  usageEuK: `${ERDUNG_ASSET_BASE_URL}040106020_EuK_en_V02.PDF`,
+  silhouette: `${ERDUNG_ASSET_BASE_URL}befestigungspunkte-aussenleiter.svg`,
+};
 
 function setTowerChains(mast, chains) {
   TOWER_CHAIN_TYPES[String(mast).toUpperCase()] = chains;
@@ -642,6 +655,82 @@ function vogelschutzPopupHtml(props, latlng) {
   `;
 }
 
+function erdungIconClass(props) {
+  const types = String(props?.erdung_typen || '').toLowerCase();
+  if (types.includes('kreuzung')) return 'erdung-marker erdung-crossing';
+  if (types.includes('abspann')) return 'erdung-marker erdung-abspann';
+  return 'erdung-marker erdung-rollenerde';
+}
+
+function createErdungIcon(props) {
+  return L.divIcon({
+    className: '',
+    html: `<div class="${erdungIconClass(props)}"><span>⏚</span></div>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    popupAnchor: [0, -17],
+  });
+}
+
+function erdungPopupHtml(props, latlng) {
+  const p = props || {};
+  const types = String(p.erdung_typen || '');
+  const needsRollenerde = types.toLowerCase().includes('rolle');
+  const needsAbspann = types.toLowerCase().includes('abspann');
+  const rollenerdeButton = needsRollenerde
+    ? `<a class="popup-plan-link" href="${ERDUNG_DOC_LINKS.rollenerde}" target="_blank" rel="noopener noreferrer">Plan Rollenerde AAA-CE0256LB</a>`
+    : '';
+  const abspannButton = needsAbspann
+    ? `<a class="popup-plan-link" href="${ERDUNG_DOC_LINKS.abspann}" target="_blank" rel="noopener noreferrer">Datenblatt Erdung Nr. 1</a>`
+    : '';
+  return `
+    <div class="popup-title">ERDUNGSKONZEPT</div>
+    <div class="erdung-popup-diagram">
+      <img src="${ERDUNG_DOC_LINKS.silhouette}" alt="Befestigungspunkte Aussenleiter" />
+    </div>
+    <div class="popup-plan-section">
+      <div class="popup-plan-section-title">Montage Traversen I / II</div>
+      <div class="popup-row"><span>Tr. I:</span> 1 Erdung nach Datenblatt Nr. 1 je Phase und 1 Laufrad je Phase.</div>
+      <div class="popup-row"><span>Tr. II:</span> 1 Erdung nach Datenblatt Nr. 1 je Phase und 1 Laufrad je Phase.</div>
+      <div class="popup-row"><span>Referenz:</span> Befestigungspunkte Außenleiter gemäß beigefügtem Schema.</div>
+    </div>
+    <div class="popup-plan-section">
+      <div class="popup-plan-section-title">Temporäre Arbeitserdung</div>
+      <div class="popup-row"><span>Hinweis:</span> An jedem Mast, an dem gearbeitet wird, ist je Phase eine temporäre Erdung nach Datenblatt Nr. 2 anzubringen. Diese temporäre Erdung wird nicht gesondert symbolisiert.</div>
+      <div class="popup-plan-actions popup-plan-actions-compact">
+        <a class="popup-plan-link" href="${ERDUNG_DOC_LINKS.temporary}" target="_blank" rel="noopener noreferrer">Datenblatt Erdung Nr. 2</a>
+      </div>
+    </div>
+    <div class="popup-plan-section">
+      <div class="popup-plan-section-title">Anwendung der Erdungen</div>
+      <div class="popup-row"><span>Vorgabe:</span> Die Erdungen sind gemäß den verlinkten Anwendungsunterlagen zu montieren und zu verwenden.</div>
+      <div class="popup-plan-actions popup-plan-actions-compact">
+        <a class="popup-plan-link" href="${ERDUNG_DOC_LINKS.usage040250028}" target="_blank" rel="noopener noreferrer">040250028-EN-V02</a>
+        <a class="popup-plan-link" href="${ERDUNG_DOC_LINKS.usageEuK}" target="_blank" rel="noopener noreferrer">040106020 EuK</a>
+      </div>
+    </div>
+    <div class="popup-row"><span>Mast:</span> ${escapeHtml(p.apoyo || '-')}</div>
+    <div class="popup-row"><span>Masttyp:</span> ${escapeHtml(p.mast_typ || '-')}</div>
+    <div class="popup-row"><span>Erdung:</span> ${escapeHtml(p.erdung_typen || '-')}</div>
+    <div class="popup-row"><span>Grund:</span> ${escapeHtml(p.gruende || '-')}</div>
+    <div class="popup-row"><span>Seilzug:</span> ${escapeHtml(p.seilzug_abschnitt || p.abschnitt || '-')}</div>
+    <div class="popup-row"><span>Kreuzungsfeld:</span> ${escapeHtml(p.crossing_vanos || '-')}</div>
+    <div class="popup-row"><span>Register-Nr.:</span> ${escapeHtml(p.crossing_ids || '-')}</div>
+    <div class="popup-row"><span>Beschreibung:</span> ${escapeHtml(p.crossing_details || '-')}</div>
+    <div class="popup-row"><span>Besitzer / Behörde:</span> ${escapeHtml(p.besitzer || '-')}</div>
+    <div class="popup-plan-actions popup-plan-actions-compact">
+      ${rollenerdeButton}
+      ${abspannButton}
+    </div>
+    <div class="popup-actions">
+      <a class="popup-nav-link" href="${googleMapsDirectionsUrl(latlng)}" target="_blank" rel="noopener noreferrer">
+        Route in Google Maps öffnen
+      </a>
+      <div class="popup-coords">Ziel: ${Number(latlng.lat).toFixed(6)}, ${Number(latlng.lng).toFixed(6)}</div>
+    </div>
+  `;
+}
+
 function createTowerIcon(apoyo, mastTyp, zoom) {
   const label = apoyo.replace(/^M0*/, 'M');       // M097A â†’ M97A
   const color = MAST_COLOR[mastTyp] || '#888';
@@ -680,6 +769,7 @@ let warehouseLayer = null;
 let toitoiLayer = null;
 let spanLayer = null;
 let vogelschutzLayer = null;
+let erdungLayer = null;
 
 function loadTowers() {
   return fetch('data/torres_masten.geojson')
@@ -876,6 +966,35 @@ function loadVogelschutzMarkers() {
     });
 }
 
+function loadErdungskonzept() {
+  return fetch('data/erdungskonzept.geojson')
+    .then(r => r.json())
+    .then(data => {
+      erdungLayer = L.geoJSON(data, {
+        pane: 'erdungPane',
+        pointToLayer: (feat, latlng) => {
+          const marker = L.marker(latlng, {
+            icon: createErdungIcon(feat.properties),
+            pane: 'erdungPane',
+          });
+          marker.bindTooltip(`${feat.properties?.apoyo || 'Mast'} · ${feat.properties?.erdung_typen || 'Erdung'}`, {
+            direction: 'top',
+            offset: [0, -15],
+            opacity: 0.96,
+          });
+          return marker;
+        },
+        onEachFeature: (feat, layer) => {
+          layer.on('click', e => {
+            layer.bindPopup(erdungPopupHtml(feat.properties, e.latlng));
+            layer.openPopup(e.latlng);
+          });
+        },
+      });
+      return erdungLayer;
+    });
+}
+
 // ===== DATA FILE DEFINITIONS =====
 const DATA_FILES = [
   { id: 'chk-buffer', url: 'data/trassenachse_gesamt_buffer_800m.geojson',
@@ -1012,7 +1131,22 @@ const vogelschutzPromise = loadVogelschutzMarkers().then(gl => {
   return gl;
 });
 
-Promise.all([...geoPromises, towerPromise, rescuePromise, warehousePromise, toitoiPromise, spanPromise, vogelschutzPromise]).then(() => {
+const erdungPromise = loadErdungskonzept().then(gl => {
+  GEO_LAYERS['chk-erdung'] = gl;
+  const el = document.getElementById('chk-erdung');
+  if (el) {
+    if (el.checked) gl.addTo(map);
+    const b = gl.getBounds();
+    if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+    el.addEventListener('change', e => {
+      if (e.target.checked) gl.addTo(map);
+      else map.removeLayer(gl);
+    });
+  }
+  return gl;
+});
+
+Promise.all([...geoPromises, towerPromise, rescuePromise, warehousePromise, toitoiPromise, spanPromise, vogelschutzPromise, erdungPromise]).then(() => {
   if (bounds && bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
   document.getElementById('loading-overlay').classList.add('hidden');
   loadDefaultDeferredLayers();

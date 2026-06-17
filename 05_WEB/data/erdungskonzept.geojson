@@ -1,0 +1,1330 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M79",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Leitungsanfang LH-13-305",
+        "abschnitt": "M79-M91",
+        "seilzug_abschnitt": "Seilzug Abschnitt 1: M79-M91",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "Leitungsanfang LH-13-305: Rollenerde an Leitungsanfang/-ende",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42318487719121,
+          54.44143408397129,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M82",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M79-M91",
+        "seilzug_abschnitt": "Seilzug Abschnitt 1: M79-M91",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42395898870912,
+          54.4520989669431,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M86",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M79-M91",
+        "seilzug_abschnitt": "Seilzug Abschnitt 1: M79-M91",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42511284099121,
+          54.4679849212157,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M90",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M79-M91",
+        "seilzug_abschnitt": "Seilzug Abschnitt 1: M79-M91",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4261674981364,
+          54.4824954022243,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M91",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M79-M91",
+        "seilzug_abschnitt": "Seilzug Abschnitt 1: M79-M91",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4264084712358,
+          54.4858072607373,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M92",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4",
+        "crossing_vanos": "M92 - M93",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 380-kV-Ltg. LH-13-324 Feld 102-103 | Oberkreuzung",
+        "besitzer": "TenneT TSO GmbH"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42690587615297,
+          54.48963560855039,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M93",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4",
+        "crossing_vanos": "M92 - M93",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 380-kV-Ltg. LH-13-324 Feld 102-103 | Oberkreuzung",
+        "besitzer": "TenneT TSO GmbH"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42745724806042,
+          54.49387735485791,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M94",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M91-M097A",
+        "seilzug_abschnitt": "Seilzug Abschnitt 2: M91-M097A",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42795585258593,
+          54.4977126993903,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M097A",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M91-M097A",
+        "seilzug_abschnitt": "Seilzug Abschnitt 2: M91-M097A",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42947878628323,
+          54.5094232500405,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M099A",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M097A-M099A",
+        "seilzug_abschnitt": "Seilzug Abschnitt 3: M097A-M099A",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43458640787166,
+          54.51414999124371,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M099B",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M099A-M099B",
+        "seilzug_abschnitt": "Seilzug Abschnitt 4: M099A-M099B",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43362971874725,
+          54.5180076876144,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M100N",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M099B-M100N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 5: M099B-M100N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.43091946433343,
+          54.5209697670888,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M103",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M100N-M108",
+        "seilzug_abschnitt": "Seilzug Abschnitt 6: M100N-M108",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42893288954297,
+          54.533386456473,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M106",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4, 1.1A, 1.1B",
+        "crossing_vanos": "M106 - M107",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 380-kV-Ltg. LH-13-331 Feld 119-120 | Oberkreuzung || Bahnlinie, elektrifiziert | Bahnlinie 1040 Neumuenster - Flensburg |  || Freileitung mit U_N >= 110 kV | 110-kV-Ltg. LH-13-106B Feld 012-013 / 110-kV-Ltg. BL 579 Feld 012-013 | Unterkreuzung",
+        "besitzer": "TenneT TSO GmbH / Deutsche Bahn AG / Schleswig-Holstein Netz AG / DB Energie GmbH"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42702517749536,
+          54.5449419252294,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M107",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde, Rollenerde Kreuzung",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts | Kreuzung im Seilzug",
+        "abschnitt": "M100N-M108",
+        "seilzug_abschnitt": "Seilzug Abschnitt 6: M100N-M108",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4, 1.1A, 1.1B",
+        "crossing_vanos": "M106 - M107",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 380-kV-Ltg. LH-13-331 Feld 119-120 | Oberkreuzung || Bahnlinie, elektrifiziert | Bahnlinie 1040 Neumuenster - Flensburg |  || Freileitung mit U_N >= 110 kV | 110-kV-Ltg. LH-13-106B Feld 012-013 / 110-kV-Ltg. BL 579 Feld 012-013 | Unterkreuzung",
+        "besitzer": "TenneT TSO GmbH / Deutsche Bahn AG / Schleswig-Holstein Netz AG / DB Energie GmbH"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42642583548736,
+          54.5485717139058,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M108",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M100N-M108",
+        "seilzug_abschnitt": "Seilzug Abschnitt 6: M100N-M108",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42571060443588,
+          54.5529011967414,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M111",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M108-M114",
+        "seilzug_abschnitt": "Seilzug Abschnitt 7: M108-M114",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41794988341582,
+          54.5631352404951,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M114",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M108-M114",
+        "seilzug_abschnitt": "Seilzug Abschnitt 7: M108-M114",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.40943870286297,
+          54.5743522492661,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M117",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M114-M119",
+        "seilzug_abschnitt": "Seilzug Abschnitt 8: M114-M119",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.40664082657135,
+          54.5843214816932,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M119",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M114-M119",
+        "seilzug_abschnitt": "Seilzug Abschnitt 8: M114-M119",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4048999871007,
+          54.5905219530328,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M122",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M119-M122",
+        "seilzug_abschnitt": "Seilzug Abschnitt 9: M119-M122",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41072609760527,
+          54.60064318789371,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M125",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M122-M128",
+        "seilzug_abschnitt": "Seilzug Abschnitt 10: M122-M128",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41633143110373,
+          54.6103750300861,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M128",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M122-M128",
+        "seilzug_abschnitt": "Seilzug Abschnitt 10: M122-M128",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42298519644657,
+          54.62192030837,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M131",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M128-M141",
+        "seilzug_abschnitt": "Seilzug Abschnitt 11: M128-M141",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42225535202048,
+          54.6326659837424,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M135",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M128-M141",
+        "seilzug_abschnitt": "Seilzug Abschnitt 11: M128-M141",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4211686770323,
+          54.64865240399249,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M139",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M128-M141",
+        "seilzug_abschnitt": "Seilzug Abschnitt 11: M128-M141",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.42007984257041,
+          54.6646592686374,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M141",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M128-M141",
+        "seilzug_abschnitt": "Seilzug Abschnitt 11: M128-M141",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41963741246636,
+          54.6711614554421,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M142",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4",
+        "crossing_vanos": "M142 - M143",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 110-kV-Ltg. LH-13-106A Feld 001-002 | Unterkreuzung",
+        "besitzer": "Schleswig-Holstein Netz AG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41814339007126,
+          54.673320442376,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M143",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4",
+        "crossing_vanos": "M142 - M143",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 110-kV-Ltg. LH-13-106A Feld 001-002 | Unterkreuzung",
+        "besitzer": "Schleswig-Holstein Netz AG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41558555270839,
+          54.6770161524046,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M144",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M141-M146",
+        "seilzug_abschnitt": "Seilzug Abschnitt 12: M141-M146",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.41299545697541,
+          54.6807576590291,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M146",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde Kreuzung",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Kreuzung im Seilzug",
+        "abschnitt": "M141-M146",
+        "seilzug_abschnitt": "Seilzug Abschnitt 12: M141-M146",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "2.6B",
+        "crossing_vanos": "M146 - M147",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 380-kV-Ltg. LH-13-324 Feld 161-162 | Oberkreuzung",
+        "besitzer": "TenneT TSO GmbH"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.40883374293864,
+          54.686768056333,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M147",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "2.6B, 1.1A, 1.1B",
+        "crossing_vanos": "M146 - M147, M147 - M148",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 380-kV-Ltg. LH-13-324 Feld 161-162 | Oberkreuzung || Bahnlinie, elektrifiziert | Bahnlinie 1040 Neumuenster - Flensburg | ",
+        "besitzer": "TenneT TSO GmbH / Deutsche Bahn AG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.40366665620698,
+          54.689068874408,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M148",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde Kreuzung",
+        "gruende": "Kreuzung im Seilzug",
+        "abschnitt": "",
+        "seilzug_abschnitt": "",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "1.1A, 1.1B",
+        "crossing_vanos": "M147 - M148",
+        "crossing_details": "Bahnlinie, elektrifiziert | Bahnlinie 1040 Neumuenster - Flensburg | ",
+        "besitzer": "Deutsche Bahn AG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.39843040138889,
+          54.6913999837499,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M149",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M146-M160",
+        "seilzug_abschnitt": "Seilzug Abschnitt 13: M146-M160",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.39347285095562,
+          54.69360647978431,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M153",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M146-M160",
+        "seilzug_abschnitt": "Seilzug Abschnitt 13: M146-M160",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.37248245498437,
+          54.70294417789851,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M157",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M146-M160",
+        "seilzug_abschnitt": "Seilzug Abschnitt 13: M146-M160",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.3515782766046,
+          54.7122356331964,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M160",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde Kreuzung",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Kreuzung im Seilzug",
+        "abschnitt": "M146-M160",
+        "seilzug_abschnitt": "Seilzug Abschnitt 13: M146-M160",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4",
+        "crossing_vanos": "M160 - M161",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 110-kV-Ltg. LH-13-107 Feld 003-004 | Unterkreuzung",
+        "besitzer": "Schleswig-Holstein Netz AG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.33671256756887,
+          54.7188383586755,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M161N",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde Kreuzung",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Kreuzung im Seilzug",
+        "abschnitt": "M160-M161N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 14: M160-M161N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "4.4",
+        "crossing_vanos": "M160 - M161",
+        "crossing_details": "Freileitung mit U_N >= 110 kV | 110-kV-Ltg. LH-13-107 Feld 003-004 | Unterkreuzung",
+        "besitzer": "Schleswig-Holstein Netz AG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.33218851355321,
+          54.7210303390471,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M164A",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M161N-M165B",
+        "seilzug_abschnitt": "Seilzug Abschnitt 15: M161N-M165B",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.3152628115128,
+          54.7242202208333,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M165B",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Leitungsende / Übergang LH-13-305 | Leitungsanfang / Übergang LH-13-332",
+        "abschnitt": "M161N-M165B",
+        "seilzug_abschnitt": "Seilzug Abschnitt 15: M161N-M165B",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "Leitungsende / Übergang LH-13-305: Rollenerde an Leitungsanfang/-ende || Leitungsanfang / Übergang LH-13-332: Rollenerde an Leitungsanfang/-ende",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.31360608401119,
+          54.7300251840354,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M168",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M165B-M175",
+        "seilzug_abschnitt": "Seilzug Abschnitt 16: M165B-M175",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.30008386852389,
+          54.736581256472,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M172",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M165B-M175",
+        "seilzug_abschnitt": "Seilzug Abschnitt 16: M165B-M175",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.27917996306228,
+          54.7466942887984,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M175",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M165B-M175",
+        "seilzug_abschnitt": "Seilzug Abschnitt 16: M165B-M175",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.26347285150482,
+          54.7542874371276,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M178",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M175-M189",
+        "seilzug_abschnitt": "Seilzug Abschnitt 17: M175-M189",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.2592276254339,
+          54.7649956510944,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M182",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M175-M189",
+        "seilzug_abschnitt": "Seilzug Abschnitt 17: M175-M189",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.25414713971001,
+          54.77780152497139,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M186",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M175-M189",
+        "seilzug_abschnitt": "Seilzug Abschnitt 17: M175-M189",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.24866694723094,
+          54.7916059550895,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M189",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M175-M189",
+        "seilzug_abschnitt": "Seilzug Abschnitt 17: M175-M189",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.24439721620037,
+          54.802354246065,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M192",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M189-M203N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 18: M189-M203N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.23475218225384,
+          54.8122420663093,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M196",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M189-M203N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 18: M189-M203N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.22160568731804,
+          54.8257105431048,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M200",
+        "mast_typ": "Tragmast",
+        "erdung_typen": "Rollenerde",
+        "gruende": "Jeder 4. Mast innerhalb des Seilzugabschnitts",
+        "abschnitt": "M189-M203N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 18: M189-M203N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.20839329314874,
+          54.83923590500661,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M203N",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Leitungsende / Übergang LH-13-332 | Leitungsanfang / Übergang LH-13-323",
+        "abschnitt": "M189-M203N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 18: M189-M203N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "Leitungsende / Übergang LH-13-332: Rollenerde an Leitungsanfang/-ende || Leitungsanfang / Übergang LH-13-323: Rollenerde an Leitungsanfang/-ende",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.19867489301044,
+          54.8491777939346,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M204N",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug",
+        "abschnitt": "M203N-M204N",
+        "seilzug_abschnitt": "Seilzug Abschnitt 19: M203N-M204N",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.19540604487919,
+          54.85266911333461,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "apoyo": "M206",
+        "mast_typ": "Abspannmast",
+        "erdung_typen": "Erdung Abspannmast, Rollenerde",
+        "gruende": "Abspannmast / Tragabspannmast im Seilzug | Leitungsende LH-13-323",
+        "abschnitt": "M204N-M206",
+        "seilzug_abschnitt": "Seilzug Abschnitt 20: M204N-M206",
+        "pdf_rollenerde": "assets/Erdungen/AAA-CE0256LB ( singola 1000x95 - spiegazione struttura codice ).pdf",
+        "pdf_abspann_erdung": "assets/Erdungen/Datenblatt Nr. 1.pdf",
+        "crossing_ids": "",
+        "crossing_vanos": "",
+        "crossing_details": "Leitungsende LH-13-323: Rollenerde an Leitungsanfang/-ende",
+        "besitzer": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.19297455715456,
+          54.859659135134,
+          0.0
+        ]
+      }
+    }
+  ]
+}
