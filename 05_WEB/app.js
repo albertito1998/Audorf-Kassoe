@@ -771,6 +771,7 @@ let spanLayer = null;
 let vogelschutzLayer = null;
 let erdungLayer = null;
 const towerLookup = {};
+const towerSuggestions = [];
 
 function normalizeTowerQuery(value) {
   let text = String(value || '').trim().toUpperCase();
@@ -780,11 +781,35 @@ function normalizeTowerQuery(value) {
   return text.replace(/^M0+(?=\d)/, 'M');
 }
 
+function mastNumberKey(value) {
+  const text = normalizeTowerQuery(value);
+  const match = text.match(/\d+/);
+  const number = match ? Number(match[0]) : 999999;
+  const suffix = text.replace(/^M\d*/, '');
+  return [number, suffix];
+}
+
 function showTowerSearchStatus(message, isError = false) {
   const el = document.querySelector('.goto-mast-status');
   if (!el) return;
   el.textContent = message || '';
   el.classList.toggle('error', Boolean(isError));
+}
+
+function refreshTowerSuggestions() {
+  const list = document.getElementById('goto-mast-options');
+  if (!list) return;
+  const current = new Set(Array.from(list.options).map(option => option.value));
+  towerSuggestions
+    .filter(item => item.value && !current.has(item.value))
+    .sort((a, b) => a.sortKey[0] - b.sortKey[0] || a.sortKey[1].localeCompare(b.sortKey[1]))
+    .forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.value;
+      option.label = item.label;
+      list.appendChild(option);
+      current.add(item.value);
+    });
 }
 
 function goToMast(value) {
@@ -824,10 +849,11 @@ const GoToMastControl = L.Control.extend({
       <form class="goto-mast-form" autocomplete="off">
         <label for="goto-mast-input">Go To Mast:</label>
         <div class="goto-mast-row">
-          <input id="goto-mast-input" type="text" inputmode="text" placeholder="M160" aria-label="Go To Mast" />
+          <input id="goto-mast-input" type="text" inputmode="text" list="goto-mast-options" placeholder="M160" aria-label="Go To Mast" />
+          <datalist id="goto-mast-options"></datalist>
           <button type="submit">OK</button>
         </div>
-        <div class="goto-mast-status" aria-live="polite"></div>
+        <div class="goto-mast-status" aria-live="polite">Escribe o elige un apoyo</div>
       </form>
     `;
 
@@ -848,6 +874,17 @@ const GoToMastControl = L.Control.extend({
         document.querySelector('.measure-btn')?.classList.remove('active');
       }
     });
+    input.addEventListener('input', () => {
+      const key = normalizeTowerQuery(input.value);
+      if (!key) {
+        showTowerSearchStatus('Escribe o elige un apoyo');
+      } else if (towerLookup[key]) {
+        showTowerSearchStatus(`${key} listo`);
+      } else {
+        showTowerSearchStatus('Selecciona una torre de la lista', true);
+      }
+    });
+    window.setTimeout(refreshTowerSuggestions, 0);
     return container;
   },
 });
@@ -867,7 +904,15 @@ function loadTowers() {
           m._mastTyp = mastTyp;
           m._featureProps = feat.properties;
           const key = normalizeTowerQuery(apoyo);
-          if (key) towerLookup[key] = m;
+          if (key) {
+            towerLookup[key] = m;
+            towerSuggestions.push({
+              value: key,
+              label: `${key} - ${mastTyp}`,
+              sortKey: mastNumberKey(key),
+            });
+            refreshTowerSuggestions();
+          }
           return m;
         },
         onEachFeature: (feat, layer) => {
