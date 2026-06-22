@@ -770,6 +770,89 @@ let toitoiLayer = null;
 let spanLayer = null;
 let vogelschutzLayer = null;
 let erdungLayer = null;
+const towerLookup = {};
+
+function normalizeTowerQuery(value) {
+  let text = String(value || '').trim().toUpperCase();
+  text = text.replace(/^MAST\s*/i, '').replace(/\s+/g, '');
+  if (!text) return '';
+  if (!text.startsWith('M')) text = `M${text}`;
+  return text.replace(/^M0+(?=\d)/, 'M');
+}
+
+function showTowerSearchStatus(message, isError = false) {
+  const el = document.querySelector('.goto-mast-status');
+  if (!el) return;
+  el.textContent = message || '';
+  el.classList.toggle('error', Boolean(isError));
+}
+
+function goToMast(value) {
+  const key = normalizeTowerQuery(value);
+  if (!key) {
+    showTowerSearchStatus('Introduce un apoyo', true);
+    return;
+  }
+
+  const marker = towerLookup[key];
+  if (!marker) {
+    showTowerSearchStatus(`${key} no encontrado`, true);
+    return;
+  }
+
+  const layerToggle = document.getElementById('chk-torres');
+  if (towerLayer && !map.hasLayer(towerLayer)) {
+    towerLayer.addTo(map);
+    if (layerToggle) layerToggle.checked = true;
+  }
+
+  const latlng = marker.getLatLng();
+  showTowerSearchStatus(`Zoom a ${marker._apoyo || key}`);
+  map.flyTo(latlng, Math.max(map.getZoom(), 16), { duration: 0.75 });
+  window.setTimeout(() => {
+    marker.setIcon(createTowerIcon(marker._apoyo, marker._mastTyp, map.getZoom()));
+    marker.bindPopup(towerPopupHtml(marker._featureProps || { apoyo: marker._apoyo, mast_typ: marker._mastTyp }, latlng));
+    marker.openPopup();
+  }, 780);
+}
+
+const GoToMastControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd() {
+    const container = L.DomUtil.create('div', 'leaflet-bar goto-mast-control');
+    container.innerHTML = `
+      <form class="goto-mast-form" autocomplete="off">
+        <label for="goto-mast-input">Go To Mast:</label>
+        <div class="goto-mast-row">
+          <input id="goto-mast-input" type="text" inputmode="text" placeholder="M160" aria-label="Go To Mast" />
+          <button type="submit">OK</button>
+        </div>
+        <div class="goto-mast-status" aria-live="polite"></div>
+      </form>
+    `;
+
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.disableScrollPropagation(container);
+    const form = container.querySelector('form');
+    const input = container.querySelector('input');
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      goToMast(input.value);
+      input.blur();
+    });
+    input.addEventListener('focus', () => {
+      if (measureActive) {
+        measureActive = false;
+        map.getContainer().style.cursor = '';
+        clearMeasure();
+        document.querySelector('.measure-btn')?.classList.remove('active');
+      }
+    });
+    return container;
+  },
+});
+
+map.addControl(new GoToMastControl());
 
 function loadTowers() {
   return fetch('data/torres_masten.geojson')
@@ -782,6 +865,9 @@ function loadTowers() {
           const m = L.marker(latlng, { icon: createTowerIcon(apoyo, mastTyp, map.getZoom()) });
           m._apoyo   = apoyo;
           m._mastTyp = mastTyp;
+          m._featureProps = feat.properties;
+          const key = normalizeTowerQuery(apoyo);
+          if (key) towerLookup[key] = m;
           return m;
         },
         onEachFeature: (feat, layer) => {

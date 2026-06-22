@@ -627,6 +627,80 @@ body {
 .measure-btn:hover { background: #0f3460; color: #fff; }
 .measure-btn.active { background: #e63030; color: #fff; border-color: #e63030; }
 
+.goto-mast-control {
+  background: rgba(22, 33, 62, 0.96);
+  border: 1px solid #0f3460;
+  color: #e7edf7;
+  padding: 7px;
+  width: 142px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42);
+}
+
+.goto-mast-form {
+  margin: 0;
+}
+
+.goto-mast-form label {
+  display: block;
+  margin: 0 0 5px;
+  color: #a9b7d0;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.goto-mast-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34px;
+  gap: 5px;
+  align-items: center;
+}
+
+.goto-mast-row input {
+  min-width: 0;
+  height: 26px;
+  box-sizing: border-box;
+  border: 1px solid #30496d;
+  border-radius: 4px;
+  background: #0d162b;
+  color: #fff;
+  padding: 0 7px;
+  font-size: 12px;
+  outline: none;
+}
+
+.goto-mast-row input:focus {
+  border-color: #69b3ff;
+  box-shadow: 0 0 0 2px rgba(105, 179, 255, 0.18);
+}
+
+.goto-mast-row button {
+  height: 26px;
+  border: 1px solid #e63030;
+  border-radius: 4px;
+  background: #e63030;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.goto-mast-row button:hover {
+  background: #ff4545;
+}
+
+.goto-mast-status {
+  min-height: 13px;
+  margin-top: 4px;
+  color: #9fd3ff;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.goto-mast-status.error {
+  color: #ff9b9b;
+}
+
 #measure-result {
   position: fixed;
   bottom: 26px;
