@@ -1331,6 +1331,7 @@ function statusGenehmigungPopup(props, latlng) {
   return `
     <div class="popup-title">STATUS GENEHMIGUNG</div>
     <div class="popup-row"><span>Status:</span> ${escapeHtml(p.status_label || 'â€”')}</div>
+    <div class="popup-row"><span>Ampel:</span> ${escapeHtml(p.ampel || 'â€”')}</div>
     <div class="popup-row"><span>Gemarkung:</span> ${escapeHtml(p.gemarkung || 'â€”')}</div>
     <div class="popup-row"><span>Flur:</span> ${escapeHtml(p.flur || 'â€”')}</div>
     <div class="popup-row"><span>FlurstÃ¼ck:</span> ${escapeHtml(p.flurstueck || p.flstkennz || 'â€”')}</div>
@@ -1338,6 +1339,8 @@ function statusGenehmigungPopup(props, latlng) {
     <div class="popup-row"><span>Kreis:</span> ${escapeHtml(p.kreis || 'â€”')}</div>
     <div class="popup-row"><span>ALKIS aktualit.:</span> ${escapeHtml(p.aktualit || 'â€”')}</div>
     <div class="popup-row"><span>Baulos:</span> ${escapeHtml(p.baulos || 'â€”')}</div>
+    <div class="popup-row"><span>Leitung:</span> ${escapeHtml(p.leitung || 'â€”')}</div>
+    <div class="popup-row"><span>Art:</span> ${escapeHtml(p.art || 'â€”')}</div>
     <div class="popup-row"><span>Masten:</span> ${escapeHtml(p.masten || 'â€”')}</div>
     <div class="popup-row"><span>Eigentuemer:</span> ${escapeHtml(p.eigentuemer || 'â€”')}</div>
     <div class="popup-row"><span>Nombre:</span> ${escapeHtml(p.vorname || 'â€”')}</div>

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from collections import defaultdict
 from datetime import date, datetime
 from pathlib import Path
@@ -12,10 +13,9 @@ from pathlib import Path
 import openpyxl
 
 
-EXCEL_GLOB = "../../04_PERMITS/*.xlsx"
 CADASTRE_GEOJSON = "../data/catastro_flurstueck.geojson"
 OUTPUT_GEOJSON = "../data/status_genehmigung.geojson"
-PERMIT_SHEETS = ("Eigentürmer BL02", "Eigentürmer BL03")
+PERMIT_SHEETS = ("Eigentümer BL02", "Eigentümer BL03", "Eigentürmer BL02", "Eigentürmer BL03", "Liste")
 
 
 def clean_text(value) -> str:
@@ -27,6 +27,12 @@ def clean_text(value) -> str:
 
 def normalize_text(value) -> str:
     return clean_text(value).casefold()
+
+
+def normalize_header(value) -> str:
+    text = unicodedata.normalize("NFKD", clean_text(value))
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return re.sub(r"[^a-z0-9]+", "", text.casefold())
 
 
 def normalize_flur(value) -> str:
@@ -71,9 +77,47 @@ def format_value(value) -> str:
     return clean_text(value)
 
 
-def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
-    wb = openpyxl.load_workbook(excel_path, read_only=True, data_only=True)
-    permits = defaultdict(lambda: {
+def header_value(header_index: dict[str, int], row, *names):
+    for name in names:
+        idx = header_index.get(normalize_header(name))
+        if idx is not None and idx < len(row):
+            return row[idx]
+    return None
+
+
+def find_header_row(ws):
+    previous = None
+    for row_number, row in enumerate(ws.iter_rows(values_only=True), start=1):
+        headers = [clean_text(v) for v in row]
+        normalized = {normalize_header(v) for v in headers if v}
+        has_flurstueck = "flurstuck" in normalized or "flurstueck" in normalized
+        if {"ampel", "flur"} <= normalized and has_flurstueck:
+            merged = []
+            for idx, header in enumerate(headers):
+                if header:
+                    merged.append(header)
+                elif previous and idx < len(previous) and clean_text(previous[idx]) == "Kommentar":
+                    merged.append("Kommentar")
+                else:
+                    merged.append("")
+            return row_number, merged
+        previous = headers
+    return None, None
+
+
+def ampel_status(value) -> str:
+    text = normalize_text(value)
+    if not text:
+        return "nicht_informiert"
+    if "zustimmung" in text and "erteilt" in text:
+        return "genehmigt"
+    if "kontaktiert" in text:
+        return "informiert_offen"
+    return "informiert_offen"
+
+
+def new_entry():
+    return {
         "masts": set(),
         "owners": set(),
         "first_names": set(),
@@ -81,26 +125,39 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
         "emails": set(),
         "phones": set(),
         "baulose": set(),
+        "leitungen": set(),
+        "work_types": set(),
         "remarks": set(),
         "info_dates": set(),
+        "ampel_values": set(),
+        "ampel_statuses": [],
         "permission_values": [],
         "rows": 0,
-    })
+    }
+
+
+def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
+    wb = openpyxl.load_workbook(excel_path, read_only=True, data_only=True)
+    permits = defaultdict(new_entry)
 
     for sheet_name in PERMIT_SHEETS:
         if sheet_name not in wb.sheetnames:
             continue
         ws = wb[sheet_name]
-        rows = ws.iter_rows(values_only=True)
-        headers = [clean_text(v) for v in next(rows)]
-        header_index = {name: idx for idx, name in enumerate(headers) if name}
+        header_row_number, headers = find_header_row(ws)
+        if not headers:
+            continue
 
-        def get(row, name):
-            idx = header_index.get(name)
-            return row[idx] if idx is not None and idx < len(row) else None
+        header_index = {}
+        for idx, name in enumerate(headers):
+            key = normalize_header(name)
+            if key and key not in header_index:
+                header_index[key] = idx
 
         blank_streak = 0
-        for row in rows:
+        for row_number, row in enumerate(ws.iter_rows(values_only=True), start=1):
+            if row_number <= header_row_number:
+                continue
             if not any(v is not None for v in row[:12]):
                 blank_streak += 1
                 if blank_streak > 25:
@@ -108,20 +165,23 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
                 continue
             blank_streak = 0
 
-            gemarkung = get(row, "Gemarkung")
-            flur = get(row, "Flur")
-            flurstueck = get(row, "Flurstueck")
+            gemarkung = header_value(header_index, row, "Gemarkung")
+            flur = header_value(header_index, row, "Flur")
+            flurstueck = header_value(header_index, row, "Flurstueck", "Flurstück")
             key = parcel_key(gemarkung, flur, flurstueck)
             if not all(key):
                 continue
 
             entry = permits[key]
             entry["rows"] += 1
-            entry["baulose"].add(sheet_name.replace("Eigentürmer ", ""))
-            entry["masts"].add(format_value(get(row, "Mast")))
+            baulos = format_value(header_value(header_index, row, "Los", "Baulos"))
+            entry["baulose"].add(baulos or sheet_name.replace("Eigentümer ", ""))
+            entry["leitungen"].add(format_value(header_value(header_index, row, "Leitung")))
+            entry["work_types"].add(format_value(header_value(header_index, row, "Art")))
+            entry["masts"].add(format_value(header_value(header_index, row, "Mast")))
 
-            first_name = format_value(get(row, "Vorname"))
-            last_name = format_value(get(row, "Nachname"))
+            first_name = format_value(header_value(header_index, row, "Vorname"))
+            last_name = format_value(header_value(header_index, row, "Nachname"))
             if first_name:
                 entry["first_names"].add(first_name)
             if last_name:
@@ -132,27 +192,30 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
                 entry["owners"].add(owner)
 
             for header in headers:
-                header_norm = normalize_text(header)
-                value = format_value(get(row, header))
+                header_norm = normalize_header(header)
+                value = format_value(header_value(header_index, row, header))
                 if not value:
                     continue
-                if any(token in header_norm for token in ("mail", "email", "e-mail")):
+                if any(token in header_norm for token in ("mail", "email")):
                     entry["emails"].add(value)
-                if any(token in header_norm for token in ("telefon", "tel.", "phone", "mobil", "handy")):
+                if any(token in header_norm for token in ("telefon", "tel", "phone", "mobil", "handy")):
                     entry["phones"].add(value)
 
-            remark = format_value(get(row, "Bemerkung"))
+            remark = format_value(header_value(header_index, row, "Bemerkung", "Kommentar"))
             if remark:
                 entry["remarks"].add(remark)
 
-            permission_value = get(row, "Zustimmung")
-            if permission_value is None:
-                permission_value = get(row, "Erlaubnis erhalten")
+            ampel = format_value(header_value(header_index, row, "Ampel"))
+            entry["ampel_statuses"].append(ampel_status(ampel))
+            if ampel:
+                entry["ampel_values"].add(ampel)
+
+            permission_value = header_value(header_index, row, "Zustimmung", "Erlaubnis erhalten")
             entry["permission_values"].append(is_truthy(permission_value))
 
             for header in headers:
-                if header.startswith("Fecha Información"):
-                    info_date = format_value(get(row, header))
+                if normalize_header(header).startswith("fechainformacion"):
+                    info_date = format_value(header_value(header_index, row, header))
                     if info_date:
                         entry["info_dates"].add(info_date)
 
@@ -160,6 +223,12 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
 
 
 def status_for(entry: dict) -> str:
+    if entry["ampel_statuses"]:
+        if "genehmigt" in entry["ampel_statuses"]:
+            return "genehmigt"
+        if "informiert_offen" in entry["ampel_statuses"]:
+            return "informiert_offen"
+        return "nicht_informiert"
     if any(entry["permission_values"]):
         return "genehmigt"
     if not entry["info_dates"]:
@@ -167,9 +236,34 @@ def status_for(entry: dict) -> str:
     return "informiert_offen"
 
 
+def merge_entry(target: dict, value: dict) -> None:
+    for set_key in (
+        "masts",
+        "owners",
+        "first_names",
+        "last_names",
+        "emails",
+        "phones",
+        "baulose",
+        "leitungen",
+        "work_types",
+        "remarks",
+        "info_dates",
+        "ampel_values",
+    ):
+        target[set_key].update(value[set_key])
+    target["ampel_statuses"].extend(value["ampel_statuses"])
+    target["permission_values"].extend(value["permission_values"])
+    target["rows"] += value["rows"]
+
+
+def sorted_masts(values):
+    return sorted((v for v in values if v), key=lambda x: (len(x), x))
+
+
 def main() -> None:
     base = Path(__file__).resolve().parent
-    excel_files = list((base / "../../04_PERMITS").resolve().glob("*.xlsx"))
+    excel_files = sorted((base / "../../04_PERMITS").resolve().glob("*.xlsx"))
     if not excel_files:
         raise FileNotFoundError("No .xlsx files found in 04_PERMITS")
 
@@ -177,11 +271,7 @@ def main() -> None:
     for excel_path in excel_files:
         for key, value in read_permit_rows(excel_path).items():
             if key in permits:
-                target = permits[key]
-                for set_key in ("masts", "owners", "first_names", "last_names", "emails", "phones", "baulose", "remarks", "info_dates"):
-                    target[set_key].update(value[set_key])
-                target["permission_values"].extend(value["permission_values"])
-                target["rows"] += value["rows"]
+                merge_entry(permits[key], value)
             else:
                 permits[key] = value
 
@@ -202,12 +292,15 @@ def main() -> None:
             **props,
             "status_genehmigung": status,
             "status_label": {
-                "genehmigt": "Genehmigt",
-                "nicht_informiert": "Nicht informiert",
-                "informiert_offen": "Informiert / offen",
+                "genehmigt": "Zustimmung erteilt",
+                "nicht_informiert": "Nicht kontaktiert",
+                "informiert_offen": "Kontaktiert",
             }[status],
+            "ampel": "; ".join(sorted(entry["ampel_values"])),
             "baulos": ", ".join(sorted(v for v in entry["baulose"] if v)),
-            "masten": ", ".join(sorted((v for v in entry["masts"] if v), key=lambda x: (len(x), x))),
+            "leitung": ", ".join(sorted(v for v in entry["leitungen"] if v)),
+            "art": ", ".join(sorted(v for v in entry["work_types"] if v)),
+            "masten": ", ".join(sorted_masts(entry["masts"])),
             "eigentuemer": "; ".join(sorted(entry["owners"])),
             "vorname": "; ".join(sorted(entry["first_names"])),
             "nachname": "; ".join(sorted(entry["last_names"])),
@@ -228,7 +321,7 @@ def main() -> None:
         json.dumps({
             "type": "FeatureCollection",
             "name": "status_genehmigung",
-            "source": str(excel_files[0].name),
+            "source": ", ".join(path.name for path in excel_files),
             "features": features,
         }, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
