@@ -1332,6 +1332,7 @@ function statusGenehmigungPopup(props, latlng) {
     <div class="popup-title">STATUS GENEHMIGUNG</div>
     <div class="popup-row"><span>Status:</span> ${escapeHtml(p.status_label || 'â€”')}</div>
     <div class="popup-row"><span>Ampel:</span> ${escapeHtml(p.ampel || 'â€”')}</div>
+    <div class="popup-row"><span>Letzter Kontakt:</span> ${escapeHtml(p.letzter_kontakt_label || p.letzter_kontakt || 'â€”')}</div>
     <div class="popup-row"><span>Gemarkung:</span> ${escapeHtml(p.gemarkung || 'â€”')}</div>
     <div class="popup-row"><span>Flur:</span> ${escapeHtml(p.flur || 'â€”')}</div>
     <div class="popup-row"><span>FlurstÃ¼ck:</span> ${escapeHtml(p.flurstueck || p.flstkennz || 'â€”')}</div>

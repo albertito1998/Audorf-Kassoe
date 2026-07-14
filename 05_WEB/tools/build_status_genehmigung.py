@@ -77,12 +77,37 @@ def format_value(value) -> str:
     return clean_text(value)
 
 
+def parse_date_value(value):
+    if value is None:
+        return None
+    if isinstance(value, datetime):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    text = clean_text(value)
+    if not text:
+        return None
+    for fmt in ("%Y-%m-%d", "%d.%m.%Y", "%d/%m/%Y"):
+        try:
+            return datetime.strptime(text, fmt).date()
+        except ValueError:
+            pass
+    return None
+
+
 def header_value(header_index: dict[str, int], row, *names):
     for name in names:
         idx = header_index.get(normalize_header(name))
         if idx is not None and idx < len(row):
             return row[idx]
     return None
+
+
+def values_for_header(headers: list[str], row, *names):
+    normalized_names = {normalize_header(name) for name in names}
+    for idx, header in enumerate(headers):
+        if normalize_header(header) in normalized_names and idx < len(row):
+            yield row[idx]
 
 
 def find_header_row(ws):
@@ -109,6 +134,8 @@ def ampel_status(value) -> str:
     text = normalize_text(value)
     if not text:
         return "nicht_informiert"
+    if "keine kontaktdaten" in text:
+        return "nicht_informiert"
     if "zustimmung" in text and "erteilt" in text:
         return "genehmigt"
     if "kontaktiert" in text:
@@ -129,6 +156,7 @@ def new_entry():
         "work_types": set(),
         "remarks": set(),
         "info_dates": set(),
+        "contact_dates": set(),
         "ampel_values": set(),
         "ampel_statuses": [],
         "permission_values": [],
@@ -219,6 +247,11 @@ def read_permit_rows(excel_path: Path) -> dict[tuple[str, str, str], dict]:
                     if info_date:
                         entry["info_dates"].add(info_date)
 
+            for contact_date in values_for_header(headers, row, "Datum"):
+                parsed_date = parse_date_value(contact_date)
+                if parsed_date:
+                    entry["contact_dates"].add(parsed_date.isoformat())
+
     return permits
 
 
@@ -249,6 +282,7 @@ def merge_entry(target: dict, value: dict) -> None:
         "work_types",
         "remarks",
         "info_dates",
+        "contact_dates",
         "ampel_values",
     ):
         target[set_key].update(value[set_key])
@@ -259,6 +293,11 @@ def merge_entry(target: dict, value: dict) -> None:
 
 def sorted_masts(values):
     return sorted((v for v in values if v), key=lambda x: (len(x), x))
+
+
+def german_date(value: str) -> str:
+    parsed = parse_date_value(value)
+    return parsed.strftime("%d.%m.%Y") if parsed else ""
 
 
 def main() -> None:
@@ -288,6 +327,7 @@ def main() -> None:
             continue
         matched += 1
         status = status_for(entry)
+        latest_contact = max(entry["contact_dates"]) if entry["contact_dates"] else ""
         status_props = {
             **props,
             "status_genehmigung": status,
@@ -307,6 +347,9 @@ def main() -> None:
             "email": "; ".join(sorted(entry["emails"])),
             "telefon": "; ".join(sorted(entry["phones"])),
             "info_daten": ", ".join(sorted(entry["info_dates"])),
+            "kontakt_daten": ", ".join(sorted(entry["contact_dates"])),
+            "letzter_kontakt": latest_contact,
+            "letzter_kontakt_label": german_date(latest_contact),
             "bemerkung": "; ".join(sorted(entry["remarks"])),
             "permit_rows": entry["rows"],
         }
