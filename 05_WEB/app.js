@@ -345,9 +345,9 @@ WMS_LAYERS['chk-hq100'] = createWmsLayer(
 // ===== STYLE HELPERS =====
 function styleFor(layerName) {
   const cfg = {
-    'wbk_weg_best':      { color: '#a85c00', fillColor: '#d4891a', weight: 2, fillOpacity: 0.45 },
-    'wbk_weg_temp':      { color: '#ff8c00', fillColor: '#ffb347', weight: 2, fillOpacity: 0.35, dashArray: '6 4' },
-    'wbk_arbeitsflaeche':{ color: '#00aa44', fillColor: '#00cc55', weight: 1.5, fillOpacity: 0.3 },
+    'wbk_weg_best':      { color: '#7c3aed', fillColor: '#7c3aed', weight: 5, opacity: 1, fillOpacity: 1 },
+    'wbk_weg_temp':      { color: '#ff2d95', fillColor: '#ff2d95', weight: 5, opacity: 1, fillOpacity: 1 },
+    'wbk_arbeitsflaeche':{ color: '#00d4ff', fillColor: '#00d4ff', weight: 2.5, opacity: 1, fillOpacity: 1 },
     'wbk_geruest':       { color: '#aa00aa', fillColor: '#cc44cc', weight: 1.5, fillOpacity: 0.35 },
     'wbk_ausholzung':    { color: '#007733', fillColor: '#009944', weight: 2,   fillOpacity: 0.4, dashArray: '4 3' },
     'wbk_schutznetz':    { color: '#0055bb', fillColor: '#2277ee', weight: 1.5, fillOpacity: 0.35 },
